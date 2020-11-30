@@ -1,1 +1,50 @@
  
+
+ 
+ .cardsin{
+     background-color: rgb(255,255,255);
+
+     border: 1px solid #F1F0EC;
+     border-radius:  25px; 
+     font-size:14px;
+     
+    
+ }
+
+
+ .userpic{
+   
+     width:40px;
+     border-radius:50%;
+     margin-right:10px
+
+ }
+
+ .icons{
+     color:#5F5F5F;
+     font-size:32px;
+     padding:3px;
+   
+     border: 1px solid #5F5F5F;
+     border-radius:50%;
+    
+ }
+ .content{
+    padding-bottom:10px;
+    padding-top:10px;
+     border-bottom:2px solid #F1F0EC;;
+ }
+
+ .btn-sidebar{
+     width:100%;
+     background-color:transparent;
+     border:none;
+     padding:25px;
+     color:#1066C2;
+     font-weight:bold;
+
+ }
+ .btn-sidebar:hover {
+     background-color: #DCE7F1;
+     color:#1066C2;
+ }
