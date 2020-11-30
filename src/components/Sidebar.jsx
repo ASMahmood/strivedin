@@ -47,7 +47,9 @@
 
                      <User key={user.id} image={user.image} name={user.name} title={user.title} />
                 )}
-            <Button className="btn-sidebar" onClick={() => this.setState({ show: "12" })} >Show More</Button>
+            <Button className="btn-sidebar" onClick={() => this.state.show ==="6" ? this.setState({ show: "12" }):this.setState({ show: "6" })} >
+                {this.state.show ==="6" ?  
+                <p>Show More</p> : <p>Show Less</p> } </Button>
             </div>
           
         
