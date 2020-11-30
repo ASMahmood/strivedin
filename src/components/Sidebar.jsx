@@ -34,8 +34,6 @@
                     this.fetch()
                 }
                 showMore= () => {
-                    this.setState({show:"10"})
-                    this.fetch ()
                 }
 
         render(){
@@ -49,7 +47,7 @@
 
                      <User key={user.id} image={user.image} name={user.name} title={user.title} />
                 )}
-            <Button className="btn-sidebar" onClick={()=> showMore } >Show More</Button>
+            <Button className="btn-sidebar" onClick={() => this.setState({ show: "12" })} >Show More</Button>
             </div>
           
         
