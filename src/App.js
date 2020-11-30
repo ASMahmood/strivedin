@@ -18,6 +18,7 @@ function App() {
 				<Row>
 					<Col md={10}>
 						{/**here goes the body*/}
+            <MyJumbotron />
 						<GenericBody />
 					</Col>
 					<Col md={2}>
@@ -32,4 +33,4 @@ function App() {
 	)
 }
 
-export default App
+export default App;
