@@ -24,6 +24,12 @@
 
  }
 
+ .icons0{
+    color:#5F5F5F;
+    font-size:32px;
+    padding:3px;
+ }
+
  .icons{
      color:#5F5F5F;
      font-size:32px;
@@ -33,6 +39,8 @@
      border-radius:50%;
     
  }
+
+
  .content{
     padding-bottom:10px;
     padding-top:10px;
