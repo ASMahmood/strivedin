@@ -56,8 +56,8 @@ class MyJumbotron extends React.Component {
 					src="https://place-hold.it/130x130"
 				/>
 				<Row className="coverPhotoRow">
-					<Col sm={5}></Col>
-					<Col sm={4}>
+					<Col sm={8}></Col>
+					<Col sm={2}>
 						<Dropdown>
 							<Dropdown.Toggle
 								className="addProfileSection"
@@ -97,14 +97,14 @@ class MyJumbotron extends React.Component {
 							</Dropdown.Menu>
 						</Dropdown>
 					</Col>
-					<Col sm={3}>
-						<Button className="moreButton">
+					<Col sm={2}>
+						<Button className="moreButton ml-1">
 							<solid> More... </solid>
 						</Button>
 						<BsPencil className="pencil" />
 					</Col>
 				</Row>
-				<Container>
+				<Container className="m-3">
 					<Row className="name">
 						{this.state.myObject.name} {this.state.myObject.surname}
 					</Row>
