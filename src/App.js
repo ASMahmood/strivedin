@@ -5,6 +5,7 @@ import "./css/Hilal.css"
 import "./css/Evgeni.css"
 import "./App.css"
 import Sidebar from './components/Sidebar'
+import Sidebar0 from './components/Sidebar0'
 import { Container, Row, Col } from "react-bootstrap"
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
 				<Row>
 					<Col md={9}>{/**here goes the body*/}</Col>
 					<Col md={3}>
+						<Sidebar0/>
 						<Sidebar title="People also viewed" />
 						<Sidebar title="People you may know" />
 					</Col>
