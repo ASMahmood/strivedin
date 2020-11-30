@@ -1,12 +1,5 @@
 import React from "react"
-import {
-	Form,
-	Navbar,
-	Nav,
-	FormControl,
-	Image,
-	Container,
-} from "react-bootstrap"
+import { Form, Navbar, Nav, FormControl, Image } from "react-bootstrap"
 
 class OurNavBar extends React.Component {
 	render() {
