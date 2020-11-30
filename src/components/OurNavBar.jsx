@@ -4,35 +4,36 @@ import { Form, Navbar, Nav, FormControl, Image } from "react-bootstrap"
 class OurNavBar extends React.Component {
 	render() {
 		return (
-			<div className="d-flex justify-content-center bg-white w-100 mx-auto">
 				<Navbar
 					variant="light"
-					className="d-flex m-0 p-0 justify-content-center"
+					className="d-flex m-0 p-0 px-3 justify-content-center"
 					sticky="top"
 				>
-					<Navbar.Brand href="#home">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="34"
-							height="34"
-							viewBox="0 0 34 34"
-							className="global-nav__logo"
-						>
-							<title>LinkedIn</title>
+					<div className="d-flex mr-auto">
+						<Navbar.Brand href="#home">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="34"
+								height="34"
+								viewBox="0 0 34 34"
+								className="global-nav__logo"
+							>
+								<title>LinkedIn</title>
 
-							<g>
-								<path
-									d="M34,2.5v29A2.5,2.5,0,0,1,31.5,34H2.5A2.5,2.5,0,0,1,0,31.5V2.5A2.5,2.5,0,0,1,2.5,0h29A2.5,2.5,0,0,1,34,2.5ZM10,13H5V29h5Zm.45-5.5A2.88,2.88,0,0,0,7.59,4.6H7.5a2.9,2.9,0,0,0,0,5.8h0a2.88,2.88,0,0,0,2.95-2.81ZM29,19.28c0-4.81-3.06-6.68-6.1-6.68a5.7,5.7,0,0,0-5.06,2.58H17.7V13H13V29h5V20.49a3.32,3.32,0,0,1,3-3.58h.19c1.59,0,2.77,1,2.77,3.52V29h5Z"
-									fill="currentColor"
-								></path>
-							</g>
-						</svg>
-					</Navbar.Brand>
-					<Form inline className="">
-						<FormControl type="text" placeholder="Search" className="mr-sm-2" />
-					</Form>
-
-					<Nav className="mr-0">
+								<g>
+									<path
+										d="M34,2.5v29A2.5,2.5,0,0,1,31.5,34H2.5A2.5,2.5,0,0,1,0,31.5V2.5A2.5,2.5,0,0,1,2.5,0h29A2.5,2.5,0,0,1,34,2.5ZM10,13H5V29h5Zm.45-5.5A2.88,2.88,0,0,0,7.59,4.6H7.5a2.9,2.9,0,0,0,0,5.8h0a2.88,2.88,0,0,0,2.95-2.81ZM29,19.28c0-4.81-3.06-6.68-6.1-6.68a5.7,5.7,0,0,0-5.06,2.58H17.7V13H13V29h5V20.49a3.32,3.32,0,0,1,3-3.58h.19c1.59,0,2.77,1,2.77,3.52V29h5Z"
+										fill="currentColor"
+									></path>
+								</g>
+							</svg>
+						</Navbar.Brand>
+						<Form inline className="">
+							<FormControl type="text" placeholder="Search" className="mr-sm-2" />
+						</Form>
+					</div>
+					
+					<Nav className="p-0">
 						<Nav.Link href="#home">
 							<svg
 								id="global-nav-icon--mercado__home"
@@ -105,13 +106,11 @@ class OurNavBar extends React.Component {
 							</svg>
 							<p className="m-0">Work</p>
 						</Nav.Link>
-						<Nav.Link href="#premium" className="">
+						<Nav.Link href="#premium" className="" >
 							<span className="text-only">Renew premium</span>
 						</Nav.Link>
-						<Nav.Link href="#jobs"></Nav.Link>
 					</Nav>
 				</Navbar>
-			</div>
 		)
 	}
 }
