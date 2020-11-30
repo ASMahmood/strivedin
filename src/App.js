@@ -1,4 +1,7 @@
-import logo from "./logo.svg"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "./css/Roberto.css"
+import "./css/Hilal.css"
+import "./css/Evgeni.css"
 import "./App.css"
 import { Container, Row, Col } from "react-bootstrap"
 
