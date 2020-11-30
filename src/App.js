@@ -7,6 +7,7 @@ import { Container, Row, Col } from "react-bootstrap"
 import OurNavBar from "./components/OurNavBar"
 import GenericBody from "./components/GenericBody"
 import GenericSidebar from "./components/GenericSidebar"
+import MyJumbotron from "./components/MyJumbotron"
 
 function App() {
 	return (
@@ -18,7 +19,7 @@ function App() {
 				<Row>
 					<Col md={10}>
 						{/**here goes the body*/}
-            <MyJumbotron />
+						<MyJumbotron />
 						<GenericBody />
 					</Col>
 					<Col md={2}>
@@ -33,4 +34,4 @@ function App() {
 	)
 }
 
-export default App;
+export default App
