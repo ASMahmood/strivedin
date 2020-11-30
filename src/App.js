@@ -4,15 +4,26 @@ import "./css/Hilal.css"
 import "./css/Evgeni.css"
 import "./App.css"
 import { Container, Row, Col } from "react-bootstrap"
+import OurNavBar from "./components/OurNavBar"
+import GenericBody from "./components/GenericBody"
+import GenericSidebar from "./components/GenericSidebar"
 
 function App() {
 	return (
 		<>
+			{/*here goes the navbar*/}
+			<OurNavBar />
+
 			<Container>
-				<Row>{/*here goes the navbar*/}</Row>
 				<Row>
-					<Col md={10}>{/**here goes the body*/}</Col>
-					<Col md={2}>{/**here goes the sidebar */}</Col>
+					<Col md={10}>
+						{/**here goes the body*/}
+						<GenericBody />
+					</Col>
+					<Col md={2}>
+						{/**here goes the sidebar */}
+						<GenericSidebar />
+					</Col>
 				</Row>
 				<Row>{/**here goes the footer*/}</Row>
 			</Container>

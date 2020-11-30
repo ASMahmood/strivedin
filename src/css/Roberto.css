@@ -1,1 +1,28 @@
- 
+.navbar-container {
+	background-color: white;
+}
+
+.navbar {
+	background-color: white;
+}
+.global-nav__logo {
+	color: #0a66c2;
+}
+
+.global-nav__icon {
+	fill: #0009;
+}
+.global-nav__icon:active {
+	fill: #000;
+}
+.GenericBody,
+.GenericSidebar {
+	background-color: white;
+	border-style: solid;
+	border-width: thin;
+	border-color: #0009;
+	border-radius: 1rem;
+	padding: 1rem;
+	min-height: 3rem;
+	margin-bottom: 0.8rem;
+}
