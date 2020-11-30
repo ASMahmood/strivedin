@@ -12,12 +12,18 @@
 }
 .moreButton {
 	font-size: 12px;
+	font-weight: bold;
 	border-radius: 10px;
 	margin-top: 95px;
 	background-color: aliceblue !important;
 	color: grey;
 	border-color: 1px black solid !important;
 }
+
+.moreButton:hover {
+	color: black;
+}
+
 .name {
 	margin-top: 8px;
 }
