@@ -10,7 +10,7 @@ class GenericSidebar extends React.Component {
 			 	<h4 className="mb-3"><FaLinkedin/> Learning </h4>
                 <h4 className="mb-3">Add new skills with these courses</h4>
 						<div className="d-flex  content  ">
-									<Image  src="https://miro.medium.com/max/1400/1*tmD_elC_QhRU0Cag2cKoKA.jpeg" className="learnImg" />
+									<Image  src="https://miro.medium.com/max/1400/1*tmD_elC_QhRU0Cag2cKoKA.jpeg" className="Img" />
 									<div>
 										<h6> Vanilla Javascript Animations</h6>
 										<p className="mb-0 text-muted">8,317 viewers</p>

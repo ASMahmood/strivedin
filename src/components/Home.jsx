@@ -1,7 +1,7 @@
 import React from "react"
 import Sidebar from "./Sidebar.jsx"
 import Sidebar0 from "./Sidebar0.jsx"
-import Experience from "./Experience.jsx"
+
 import { Container, Row, Col } from "react-bootstrap"
 import OurNavBar from "./OurNavBar.jsx"
 import Body from "./Body.jsx"
@@ -24,7 +24,7 @@ class Home extends React.Component {
 						<MyJumbotron />
 						<GenericBody />
 						<Body title="Experience"/>
-						<Experience/>
+						
 					</Col>
 					<Col md={3}>
 						<Sidebar0 />
