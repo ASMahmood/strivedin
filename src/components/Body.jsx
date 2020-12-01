@@ -1,14 +1,66 @@
 import React from "react"
 import Experience from './Experience.jsx'
 import {AiOutlinePlus} from 'react-icons/ai'
-import {Modal, Button} from 'react-bootstrap'
+import {Modal, Button,Form} from 'react-bootstrap'
 
 class Body extends React.Component {
 
     state={
+        experience:{
+            title:'',
+            employmentType:'Choose one',
+            company:'',
+            location:'',
+            currentlyWork:true,
+            startMonth:'',
+            startYear:'',
+            endMonth:'',
+            endYear:'',
+            endDate:'present',
+            updateIndustry:false,
+            updateHeadline:true,
+            headline:'',
+            description:'',
+
+
+            
+
+
+        },
         experiences:[],
         show:false,
     }
+
+    submitForm=(e)=> {
+        e.preventDefault()
+
+       
+    }
+
+    
+
+    updateField=(e)=>{
+        let experience= {...this.state.experience}
+        let currentid=e.currentTarget.id
+        if (currentId === 'currentlyWork') {
+            experience[currentId] = !e.currentTarget.checked
+        } 
+        else if(currentId === 'updateIndustry') {
+            experience[currentId] = e.currentTarget.checked
+        } 
+        else if(currentId === 'updateHeadline') {
+            experience[currentId] = e.currentTarget.checked
+        } 
+        else {
+            experience[currentId] = e.currentTarget.value // e.currentTarget.value is the keystroke
+        }
+
+
+        this.setState({ experience:experience })
+
+    }
+
+
 
    
     handleClose = () => this.setState({show:false});
@@ -52,15 +104,145 @@ class Body extends React.Component {
            
          <Modal show={this.state.show} onHide={this.handleClose} >
          <Modal.Header closeButton>
-           <Modal.Title>Modal heading</Modal.Title>
+           <Modal.Title>Add Experience</Modal.Title>
          </Modal.Header>
-         <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+         <Modal.Body>
+                    <Form  onSubmit={this.submitForm}>
+                        
+                            <Form.Group    >
+                                <Form.Label>Title*</Form.Label>
+                                
+                                <Form.Control id="title" type="text"  value={this.state.experience.title} onChange={this.updateField} placeholder="Ex: Retail Sales Manager"  required/>
+                                
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label htmlFor="employmentType">
+                                   Employment Type
+                            </Form.Label>
+                                <Form.Control
+                                    as="select"
+                                    name="employmentType"
+                                    id="employmentType"
+                                    value={this.state.experience.employmentType}
+                                    onChange={this.updateField}
+                                >
+                                    <option>Full-time</option>
+                                    <option>Part-time</option>
+                                    <option>Self- Employed</option>
+                                    <option>Freelance</option>
+                                    <option>Contract</option>
+                                    <option>Internship</option>
+                                    <option>Seasonal</option>
+                                    <option>Apprenticeship</option>
+                                </Form.Control>
+                                <Form.Label htmlFor="employmentType">
+                                  Country Spesific Employment Types
+                            </Form.Label>
+                            </Form.Group>
+                            <Form.Group  >
+                                <Form.Label>Company *</Form.Label>
+                                <Form.Control  id="company"  type="text"  value={this.state.experience.company} onChange={this.updateField} placeholder="Ex: Strive School" required/>                   
+                            </Form.Group>
+                            <Form.Group  >
+                                <Form.Label>Location</Form.Label>
+                                <Form.Control  id="location"  type="text"  value={this.state.experience.location} onChange={this.updateField} placeholder="Ex: İstanbul /Turkey"/>                   
+                            </Form.Group>
+                            
+                            <Form.Group>
+                                <Form.Label>
+                                    <Form.Check
+                                        type="checkbox"
+                                        id="currentlyWork"
+                                        label="I am currently working in this role"
+                                        checked={this.state.experience.currentlyWork}
+                                        onChange={this.updateField}
+                                    />
+                                </Form.Label>
+                            </Form.Group>
+                            
+                            <Form.Group>
+                                            <Form.Label htmlFor="month">Start Month</Form.Label>
+                                            <Form.Control
+                                                type="month"
+                                                name="startMonth"
+                                                id="startMonth"
+                                                placeholder="Month"
+                                                value={this.state.experience.startMonth}
+                                                onChange={this.updateField}
+                                                
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Label htmlFor="year">Start Month</Form.Label>
+                                            <Form.Control
+                                                type="month"
+                                                name="startYear"
+                                                id="startYear"
+                                                placeholder="year"
+                                                value={this.state.experience.startYear}
+                                                onChange={this.updateField}
+                                                
+                                            />
+                                        </Form.Group>
+
+                                        <Form.Group>
+                                    <Form.Label>
+                                        <Form.Check
+                                            type="checkbox"
+                                            id="updateIndustry"
+                                            label="Update my industry"
+                                            checked={this.state.experience.updateIndustry}
+                                            onChange={this.updateField}
+                                        />
+                                    </Form.Label>
+                                </Form.Group>
+
+                                <Form.Group>
+                                    <Form.Label>
+                                        <Form.Check
+                                            type="checkbox"
+                                            id="updateHeadline"
+                                            label="Update my headline"
+                                            checked={this.state.experience.updateHeadline}
+                                            onChange={this.updateField}
+                                        />
+                                    </Form.Label>
+                                </Form.Group>
+                                <Form.Group>
+                                            <Form.Label htmlFor="headline">Start Month</Form.Label>
+                                            <Form.Control
+                                                type="headline"
+                                                name="headline"
+                                                id="headline"
+                                                placeholder="year"
+                                                value={this.state.experience.headline}
+                                                onChange={this.updateField}
+                                                
+                                            />
+                                        </Form.Group>
+
+                                        <Form.Group>
+                                            <Form.Label htmlFor="description">Start Month</Form.Label>
+                                            <Form.Control
+                                                type="description"
+                                                name="description"
+                                                id="description"
+                                                placeholder="year"
+                                                value={this.state.experience.description}
+                                                onChange={this.updateField}
+                                                
+                                            />
+                                        </Form.Group>
+                                    
+                            
+              </Form>
+       
+         </Modal.Body>
          <Modal.Footer>
-           <Button variant="secondary" onClick={this.handleClose}>
-             Close
-           </Button>
+          
            <Button variant="primary" onClick={this.handleClose}>
-             Save Changes
+             Save 
            </Button>
          </Modal.Footer>
        </Modal>
