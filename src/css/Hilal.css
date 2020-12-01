@@ -66,4 +66,14 @@
 
 	margin-right: 10px
 }
+.modal-content{
+width:744px;
+overflow-y:auto!important;
+}
+.modal-body{
+	height: 60vh;
+    overflow-y: auto;
+
+}
+
 

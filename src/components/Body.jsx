@@ -20,19 +20,19 @@ class Body extends React.Component {
             updateIndustry:false,
             updateHeadline:true,
             headline:'',
-            description:'',
-
-
-            
-
+            description:''
 
         },
         experiences:[],
         show:false,
+        errMessage:'',
+        loading:false,
     }
 
     submitForm=(e)=> {
-        e.preventDefault()
+        e.preventDefault(),
+        this.setState({loading:true})
+        this.postFetch()
 
        
     }
@@ -42,17 +42,18 @@ class Body extends React.Component {
     updateField=(e)=>{
         let experience= {...this.state.experience}
         let currentid=e.currentTarget.id
-        if (currentId === 'currentlyWork') {
-            experience[currentId] = !e.currentTarget.checked
+
+        if (currentid=== 'currentlyWork') {
+            experience[currentid] = e.currentTarget.checked
         } 
-        else if(currentId === 'updateIndustry') {
-            experience[currentId] = e.currentTarget.checked
+        else if(currentid=== 'updateIndustry') {
+            experience[currentid] = e.currentTarget.checked
         } 
-        else if(currentId === 'updateHeadline') {
-            experience[currentId] = e.currentTarget.checked
+        else if(currentid=== 'updateHeadline') {
+            experience[currentid] = e.currentTarget.checked
         } 
         else {
-            experience[currentId] = e.currentTarget.value // e.currentTarget.value is the keystroke
+            experience[currentid] = e.currentTarget.value // e.currentTarget.value is the keystroke
         }
 
 
@@ -61,10 +62,62 @@ class Body extends React.Component {
     }
 
 
+    postFetch=async () => {
+
+        try {
+            let response = await fetch('https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences',
+                {
+                    method: 'POST',
+                    body: JSON.stringify(this.state.experience),
+                    headers: new Headers({
+                        "Content-Type": "application/json"
+                    })
+                })
+            if (response.ok) {
+                alert('Experience saved!')
+                this.setState({
+                    experience:{
+                        title:'',
+                        employmentType:'Choose one',
+                        company:'',
+                        location:'',
+                        currentlyWork:true,
+                        startMonth:'',
+                        startYear:'',
+                        endMonth:'',
+                        endYear:'',
+                        endDate:'present',
+                        updateIndustry:false,
+                        updateHeadline:true,
+                        headline:'',
+                        description:'',
+            
+                    },
+                    errMessage: '',
+                    loading: false,
+                })
+            } else {
+                console.log('an error occurred')
+                let error = await response.json()
+                this.setState({
+                    errMessage: error.message,
+                    loading: false,
+                })
+            }
+        } catch (e) {
+            console.log(e) // Error
+            this.setState({
+                errMessage: e.message,
+                loading: false,
+            })
+        }
+    }
+
 
    
     handleClose = () => this.setState({show:false});
   handleShow = () => this.setState({show:true});
+
     
     fetch= async () => {
         const url= "https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences"
@@ -160,30 +213,54 @@ class Body extends React.Component {
                                     />
                                 </Form.Label>
                             </Form.Group>
+                           
                             
                             <Form.Group>
                                             <Form.Label htmlFor="month">Start Month</Form.Label>
                                             <Form.Control
-                                                type="month"
+                                                as="select"
+                                                
                                                 name="startMonth"
                                                 id="startMonth"
                                                 placeholder="Month"
                                                 value={this.state.experience.startMonth}
                                                 onChange={this.updateField}
                                                 
-                                            />
+                                            >
+                                            <option>January</option>
+                                            <option>February</option>
+                                            <option>March</option>
+                                            <option>April</option>
+                                            <option>May</option>
+                                            <option>June</option>
+                                            <option>July</option>
+                                            <option>August</option>
+                                            <option>September</option>
+                                            <option>October</option>
+                                            <option>November</option>
+                                            <option>December</option>
+                                    </Form.Control>
                                         </Form.Group>
                                         <Form.Group>
                                             <Form.Label htmlFor="year">Start Month</Form.Label>
                                             <Form.Control
-                                                type="month"
+                                                as="select"
                                                 name="startYear"
                                                 id="startYear"
                                                 placeholder="year"
                                                 value={this.state.experience.startYear}
                                                 onChange={this.updateField}
                                                 
-                                            />
+                                            >
+                                                <option>2015</option>
+                                                <option>2016</option>
+                                                <option>2017</option>
+                                                <option>2018</option>
+                                                <option>2019</option>
+                                                <option>2020</option>
+                                            
+                                            
+                                                </Form.Control>
                                         </Form.Group>
 
                                         <Form.Group>
@@ -241,8 +318,11 @@ class Body extends React.Component {
          </Modal.Body>
          <Modal.Footer>
           
-           <Button variant="primary" onClick={this.handleClose}>
+           <Button variant="primary" type ="submit">
              Save 
+           </Button>
+           <Button variant="primary" onClick={this.handleClose} >
+             Close 
            </Button>
          </Modal.Footer>
        </Modal>
@@ -251,7 +331,7 @@ class Body extends React.Component {
                 <div className="d-flex content">
                 <h4 className="mb-3 d-inline ">{this.props.title}</h4>
                 <AiOutlinePlus className= "icons ml-auto" onClick={this.handleShow}/>
-                <Button variant="primary" onClick={this.handleShow}></Button>
+                
               
                 </div>
 			
