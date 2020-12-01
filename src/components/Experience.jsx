@@ -14,14 +14,16 @@ import {Image} from "react-bootstrap"
         render(){
 
            const {company,role, area, startDate, endDate } = this.props
-            // console.log("company")
+            console.log(startDate,endDate)
         
-            
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
            
          return(
           
            
-
+            // new Date(endDate).getDate() + '-'+ new Date(endDate).getFullYear() + '-'+ (parseInt(new Date(endDate).getMonth())+1)
             <div className="d-flex  content  mt-3 mb-3 ">
             <Image className="Img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG9FxYCx3Z63hljZuqkk2220u1CtSQc8xX1exxCkxBnlVC3PXVhRwgFUzvK3Z5t33ZmHR9yZ-DB3h_Co4z5N4g5H8gX-Fj6Uo&usqp=CAU&ec=45732304"/>
             <div className="ml-3">
@@ -29,7 +31,7 @@ import {Image} from "react-bootstrap"
                 <p className="mb-0 ">{company}</p>
                 <p className="mb-0 d-inline "> {format (parseISO(startDate),'dd-MM-yyyy')} </p>
                
-                <p className="mb-0 d-inline ">{endDate}</p>
+                <p className="mb-0 d-inline ">{endDate && format (parseISO(startDate),'dd-MM-yyyy')}</p>
                 <p className="mb-0">{area}</p>
                 
             </div>
