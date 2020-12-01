@@ -53,7 +53,7 @@ class MyJumbotron extends React.Component {
 				<Image
 					className="profilePic border-2 border-white"
 					roundedCircle
-					src="https://place-hold.it/130x130"
+					src={this.state.myObject.image} /*"https://place-hold.it/130x130"*/
 				/>
 				<Row className="coverPhotoRow">
 					<Col sm={8}></Col>

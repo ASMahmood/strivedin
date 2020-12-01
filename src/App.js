@@ -6,12 +6,16 @@ import "./css/Evgeni.css"
 import "./App.css"
 import { Route, BrowserRouter as Router } from "react-router-dom"
 import Home from "./components/Home"
+import OurNavBar from "./components/OurNavBar"
+require("dotenv").config()
 
 function App() {
+	console.log("env in app.js", process.env)
 	return (
 		<>
+			<OurNavBar />
 			<Router>
-				<Route exact path="/" component={Home}/>
+				<Route path="/" component={Home} />
 			</Router>
 		</>
 	)
