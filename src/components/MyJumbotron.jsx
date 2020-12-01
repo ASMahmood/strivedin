@@ -47,7 +47,7 @@ class MyJumbotron extends React.Component {
 			<Jumbotron className="customJumbotron GenericBody p-0">
 				<Image
 					className="coverPhoto"
-					src="https://place-hold.it/1000x198"
+					src="https://place-hold.it/1920x300"
 					fluid
 				/>
 				<Image
@@ -98,7 +98,7 @@ class MyJumbotron extends React.Component {
 						</Dropdown>
 					</Col>
 					<Col sm={2}>
-						<Button className="moreButton ml-1">
+						<Button className="moreButton ml-1 btn-outline-dark rounded-pill">
 							<solid> More... </solid>
 						</Button>
 						<BsPencil className="pencil" />

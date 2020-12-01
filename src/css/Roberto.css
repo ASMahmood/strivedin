@@ -35,7 +35,7 @@
 	background-color: white;
 	border-style: solid;
 	border-width: thin;
-	border-color: #0009;
+	border-color: #d6d5d1;
 	border-radius: 1rem;
 	padding: 1rem;
 	min-height: 3rem;
@@ -45,5 +45,9 @@
 .me {
 	border-right-style: solid;
 	border-right-width: thin;
-	border-right-color: #0009;
+	border-right-color: #d6d5d1;
+}
+
+.bodyColumn {
+	margin-top: 20px;
 }
