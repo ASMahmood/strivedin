@@ -65,12 +65,17 @@ const ProfileMenu = React.forwardRef(
 							<b>View Profile</b>
 						</Button>
 						<Dropdown.Divider />
-						<h6>Account</h6>
+						<Dropdown.ItemText className="font-weight-bold">
+							<h6>Account</h6>
+						</Dropdown.ItemText>
+
 						<Dropdown.Item>Settings & Privacy</Dropdown.Item>
 						<Dropdown.Item>Help</Dropdown.Item>
 						<Dropdown.Item>Language</Dropdown.Item>
 						<Dropdown.Divider />
-						<h6>Manage</h6>
+						<Dropdown.ItemText>
+							<h6>Manage</h6>
+						</Dropdown.ItemText>
 						<Dropdown.Item>Posts & Activity</Dropdown.Item>
 						<Dropdown.Item>Job Posting Account</Dropdown.Item>
 						<Dropdown.Divider />
