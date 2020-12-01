@@ -53,7 +53,7 @@
 	fill: #000;
 }
 .GenericBody,
-.GenericSidebar {
+/* .GenericSidebar {
 	background-color: white;
 	border-style: solid;
 	border-width: thin;
@@ -62,7 +62,7 @@
 	padding: 1rem;
 	min-height: 3rem;
 	margin-bottom: 0.8rem;
-}
+} */
 
 .me {
 	border-right-style: solid;

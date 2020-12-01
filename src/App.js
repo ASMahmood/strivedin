@@ -4,8 +4,8 @@ import "./App.css"
 import "./css/Roberto.css"
 import "./css/Hilal.css"
 import "./css/Evgeni.css"
-
-import { Route, BrowserRouter as Router } from "react-router-dom"
+import "./App.css"
+import {BrowserRouter as Router, Route } from "react-router-dom"
 import Home from "./components/Home"
 import OurNavBar from "./components/OurNavBar"
 require("dotenv").config()

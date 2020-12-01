@@ -5,11 +5,15 @@ import Sidebar0 from "./Sidebar0";
 import { Container, Row, Col } from "react-bootstrap";
 
 import GenericBody from "./GenericBody";
+import Body from "./Body.jsx"
 import GenericSidebar from "./GenericSidebar";
 import MyJumbotron from "./MyJumbotron";
 import Footer from "./Footer";
 import { withRouter } from "react-router";
 import YourDashboard from "./YourDashboard";
+
+
+
 /**
  * we will neeed this when we start routing stuff
  */
@@ -25,6 +29,7 @@ class Home extends React.Component {
               <MyJumbotron />
               <YourDashboard />
               <GenericBody />
+              <Body title="Experience"/>
             </Col>
             <Col md={3}>
               <Sidebar0 />
@@ -42,5 +47,6 @@ class Home extends React.Component {
     );
   }
 }
+		
 
 export default withRouter(Home);
