@@ -1,7 +1,16 @@
 import userEvent from "@testing-library/user-event"
 import React, { useState } from "react"
 
-import { FormControl, Card, Image, Container, Row, Col } from "react-bootstrap"
+import {
+	FormControl,
+	Card,
+	Image,
+	Container,
+	Row,
+	Col,
+	Dropdown,
+	Button,
+} from "react-bootstrap"
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -28,11 +37,11 @@ const ProfileMenu = React.forwardRef(
 			<div
 				ref={ref}
 				style={style}
-				className={className + " hideme mt-2 p-1 rounded"}
+				className={className + " m-2 p-1 userMenu"}
 				aria-labelledby={labeledBy}
 			>
-				<Card className="userMenu">
-					<Card.Header className="p-0 m-0">
+				<Card>
+					<Card.Body className="p-1">
 						<Container fluid>
 							<Row>
 								<Col className="p-0 m-0">
@@ -48,7 +57,25 @@ const ProfileMenu = React.forwardRef(
 								</Col>
 							</Row>
 						</Container>
-					</Card.Header>
+						<Button
+							variant="outline-primary"
+							size="sm"
+							className="rounded-pill py-0 w-100 mt-1"
+						>
+							<b>View Profile</b>
+						</Button>
+						<Dropdown.Divider />
+						<h6>Account</h6>
+						<Dropdown.Item>Settings & Privacy</Dropdown.Item>
+						<Dropdown.Item>Help</Dropdown.Item>
+						<Dropdown.Item>Language</Dropdown.Item>
+						<Dropdown.Divider />
+						<h6>Manage</h6>
+						<Dropdown.Item>Posts & Activity</Dropdown.Item>
+						<Dropdown.Item>Job Posting Account</Dropdown.Item>
+						<Dropdown.Divider />
+						<p className="mb-0">Sign Out</p>
+					</Card.Body>
 				</Card>
 			</div>
 		)
