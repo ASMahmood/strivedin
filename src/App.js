@@ -5,10 +5,9 @@ import "./css/Roberto.css"
 import "./css/Hilal.css"
 import "./css/Evgeni.css"
 import "./App.css"
-import {BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route } from "react-router-dom"
 import Home from "./components/Home"
 import OurNavBar from "./components/OurNavBar"
-require("dotenv").config()
 
 function App() {
 	console.log("env in app.js", process.env)
@@ -22,4 +21,4 @@ function App() {
 	)
 }
 
-export default App;
+export default App

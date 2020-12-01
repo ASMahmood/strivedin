@@ -16,7 +16,7 @@ class OurNavBar extends React.Component {
 	}
 
 	fetchMe = async () => {
-		console.log("test env", process.env.TEST)
+		console.log("test env", process.env.REACT_APP_TEST)
 		let TOKEN =
 			"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YWY0NmI3MDhjMjAwMTc1ZGU4OGYiLCJpYXQiOjE2MDY3MjU0NDcsImV4cCI6MTYwNzkzNTA0N30.ppvvQH_pnCAahOhoQdnrzZ2oTQpxvgez6g6vaeT7It0"
 		try {
