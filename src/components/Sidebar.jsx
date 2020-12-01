@@ -9,7 +9,7 @@ class Sidebar extends React.Component {
 		show: "6",
 	}
 
-	fetch = async () => {
+	fetch = async (team) => {
 		const url = "https://striveschool-api.herokuapp.com/api/profile"
 		let response = await fetch(url, {
 			method: "GET",
@@ -20,12 +20,21 @@ class Sidebar extends React.Component {
 		})
 		if (response.ok) {
 			let users = await response.json()
+			if (team) {
+				users = users.filter(
+					(user) =>
+						user.name === "Hilal" ||
+						user.name === "Evgeni" ||
+						user.name === "Roberto"
+				)
+			}
 			//console.log("sidebar users", users)
 			this.setState({ users })
 		}
 	}
+
 	componentDidMount = () => {
-		this.fetch()
+		this.fetch(this.props.title === "Our Team")
 	}
 
 	render() {

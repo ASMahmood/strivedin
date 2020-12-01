@@ -38,6 +38,7 @@ class Home extends React.Component {
 						</Col>
 						<Col md={3}>
 							<Sidebar0 />
+							<Sidebar title="Our Team" />
 							<Sidebar title="People also viewed" />
 							<Sidebar title="People you may know" />
 							<GenericSidebar />
