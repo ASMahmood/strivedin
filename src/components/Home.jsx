@@ -1,8 +1,9 @@
+
 import React from "react";
 import Sidebar from "./Sidebar";
 import Sidebar0 from "./Sidebar0";
 import { Container, Row, Col } from "react-bootstrap";
-import OurNavBar from "./OurNavBar";
+
 import GenericBody from "./GenericBody";
 import GenericSidebar from "./GenericSidebar";
 import MyJumbotron from "./MyJumbotron";
@@ -13,10 +14,10 @@ import YourDashboard from "./YourDashboard";
  * we will neeed this when we start routing stuff
  */
 class Home extends React.Component {
+
   render() {
     return (
       <>
-        <OurNavBar />
         <Container fluid>
           <Row>
             <Col md={9} className="bodyColumn">
