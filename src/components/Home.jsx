@@ -1,10 +1,12 @@
 import React from "react"
-import Sidebar from "./Sidebar"
-import Sidebar0 from "./Sidebar0"
+import Sidebar from "./Sidebar.jsx"
+import Sidebar0 from "./Sidebar0.jsx"
+import Experience from "./Experience.jsx"
 import { Container, Row, Col } from "react-bootstrap"
-import OurNavBar from "./OurNavBar"
-import GenericBody from "./GenericBody"
-import GenericSidebar from "./GenericSidebar"
+import OurNavBar from "./OurNavBar.jsx"
+import Body from "./Body.jsx"
+import GenericBody from "./GenericBody.jsx"
+import GenericSidebar from "./GenericSidebar.jsx"
 import MyJumbotron from "./MyJumbotron"
 import { withRouter } from "react-router"
 /**
@@ -21,6 +23,8 @@ class Home extends React.Component {
 						{/**here goes the body*/}
 						<MyJumbotron />
 						<GenericBody />
+						<Body title="Experience"/>
+						<Experience/>
 					</Col>
 					<Col md={3}>
 						<Sidebar0 />

@@ -33,8 +33,7 @@
                 componentDidMount=()=>{
                     this.fetch()
                 }
-                showMore= () => {
-                }
+                
 
         render(){
             console.log(this.state.users)

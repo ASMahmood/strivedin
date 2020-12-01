@@ -4,7 +4,7 @@ import "./css/Roberto.css"
 import "./css/Hilal.css"
 import "./css/Evgeni.css"
 import "./App.css"
-import { Route, BrowserRouter as Router } from "react-router-dom"
+import {BrowserRouter as Router, Route } from "react-router-dom"
 import Home from "./components/Home"
 
 function App() {
