@@ -16,18 +16,18 @@ class Sidebar0 extends React.Component{
             <>
 
             <div className="cardsin pt-3 px-3 pb-0 ">
-            <div className="d-flex  content  ">
+           
                            
-                            <div>
-                                <h6> Edit Public Profile & URL</h6>
+                            <div className="d-flex  content  ">
+                                <h6 className= "d-inline"> Edit Public Profile & URL</h6>
                                 <BsQuestionCircleFill     className="icons0 ml-auto"/>
                                 
                             </div>
-                            <div>
+                            <div className="d-flex  content  ">
                             <h6 className="mb-0">Add Profile in Another Language </h6>
                             <BsQuestionCircleFill className="icons0 ml-auto"/>
                         </div>
-            </div>
+           
             </div>
          
            <div  className="cardsin pt-3 px-3 pb-0 ">
