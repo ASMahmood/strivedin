@@ -19,11 +19,11 @@ class MyJumbotron extends React.Component {
 	state = {
 		myObject: {},
 	}
-	fetchMe = async () => {
+	fetchMe = async (id) => {
 		try {
 			console.log(this.props.tracksUrl)
 			let response = await fetch(
-				`https://striveschool-api.herokuapp.com/api/profile/me`,
+				`https://striveschool-api.herokuapp.com/api/profile/${id ? id : "me"}`,
 				{
 					method: "GET",
 					headers: new Headers({
@@ -40,7 +40,13 @@ class MyJumbotron extends React.Component {
 		}
 	}
 	componentDidMount = () => {
-		this.fetchMe()
+		console.log("id passed to the jumbotron", this.props.id)
+		this.fetchMe(this.props.id)
+	}
+	componentDidUpdate = (oldprops) => {
+		if (oldprops.id !== this.props.id) {
+			this.fetchMe(this.props.id)
+		}
 	}
 	render() {
 		return (
@@ -60,7 +66,7 @@ class MyJumbotron extends React.Component {
 					<Col sm={2}>
 						<Dropdown>
 							<Dropdown.Toggle
-								className="addProfileSection"
+								className="addProfileSection rounded-pill"
 								id="dropdown-basic"
 							>
 								Add profile section
@@ -98,7 +104,7 @@ class MyJumbotron extends React.Component {
 						</Dropdown>
 					</Col>
 					<Col sm={2}>
-						<Button className="moreButton ml-1 btn-outline-dark rounded-pill">
+						<Button className="moreButton ml-4 btn-outline-dark rounded-pill">
 							<solid> More... </solid>
 						</Button>
 						<BsPencil className="pencil" />

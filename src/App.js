@@ -15,7 +15,8 @@ function App() {
 		<>
 			<OurNavBar />
 			<Router>
-				<Route path="/" component={Home} />
+				<Route exact path="/" component={Home} />
+				<Route path="/profile/:id" component={Home} />
 			</Router>
 		</>
 	)

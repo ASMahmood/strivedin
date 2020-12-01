@@ -8,24 +8,33 @@ import Body from "./Body.jsx"
 import GenericSidebar from "./GenericSidebar"
 import MyJumbotron from "./MyJumbotron"
 import Footer from "./Footer"
-import { withRouter } from "react-router"
+import { withRouter } from "react-router-dom"
 import YourDashboard from "./YourDashboard"
 
 /**
  * we will neeed this when we start routing stuff
  */
 class Home extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {}
+	}
+
+	gotId = () => {
+		return this.props.match.params.id ? this.props.match.params.id : "me"
+	}
+
 	render() {
 		return (
 			<>
-				<Container fluid>
+				<Container>
 					<Row>
 						<Col md={9} className="bodyColumn">
 							{/**here goes the body*/}
-							<MyJumbotron />
+							<MyJumbotron id={this.gotId()} />
 							<YourDashboard />
 							<GenericBody />
-							<Body title="Experience" />
+							<Body title="Experience" id={this.gotId()} />
 						</Col>
 						<Col md={3}>
 							<Sidebar0 />
