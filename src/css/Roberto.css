@@ -1,10 +1,23 @@
 .navbar {
 	background-color: white;
 }
-
+.myHr {
+	height: 1px;
+}
 .miniProfilePic {
 	width: 25px;
 	height: 25px;
+}
+
+.noManualResize {
+	resize: none;
+}
+.postTypeBtn {
+	border-radius: 2px;
+}
+
+.newPostUi:hover {
+	background-color: rgba(0, 0, 0, 0.2);
 }
 
 .dropdown-item-text > .h6 {
