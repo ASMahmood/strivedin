@@ -9,6 +9,7 @@ import Profile from "./components/Profile.jsx"
 
 import OurNavBar from "./components/OurNavBar"
 import { BrowserRouter as Router, Route } from "react-router-dom"
+import NewsPage from "./components/NewsPage"
 
 function App() {
 	console.log("env in app.js", process.env)
@@ -16,7 +17,7 @@ function App() {
 		<>
 			<OurNavBar />
 			<Router>
-				<Route exact path="/" component={Home} />
+				<Route exact path="/" component={NewsPage} />
 				<Route path="/profile/:id" component={Profile} />
 			</Router>
 		</>
