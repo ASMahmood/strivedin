@@ -2,7 +2,6 @@
   /*border-radius: 50%;*/
   position: relative;
   width: 130px;
-  margin-top: -10%;
   margin-left: 30px;
 }
 .addProfileSection {
@@ -189,7 +188,7 @@ hr {
   color: grey;
   font-size: 23px;
 }
-@media only screen and (max-width: 1215px) {
+@media only screen and (max-width: 2215px) {
   .outOfNames2 {
     font-size: 15px;
   }
@@ -212,6 +211,7 @@ hr {
   .profilePic {
     width: 100px;
     height: 100px;
+    margin-bottom: -20%;
   }
   .coverPhoto {
     height: 100px;
@@ -219,6 +219,9 @@ hr {
   }
 }
 @media only screen and (max-width: 575px) {
+  .profilePic {
+    margin-bottom: -15%;
+  }
   .coverPhoto {
     height: 100px;
     margin-bottom: -20px;
