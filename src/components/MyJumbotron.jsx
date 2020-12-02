@@ -50,7 +50,7 @@ class MyJumbotron extends React.Component {
 	}
 	render() {
 		return (
-			<Jumbotron className="customJumbotron GenericBody p-0">
+			<Jumbotron className="customJumbotron GenericBody p-0 cardsin">
 				<Image
 					className="coverPhoto"
 					src="https://place-hold.it/1920x300"
@@ -61,63 +61,62 @@ class MyJumbotron extends React.Component {
 					roundedCircle
 					src={this.state.myObject.image} /*"https://place-hold.it/130x130"*/
 				/>
-				<Row className="coverPhotoRow">
-					<Col sm={8}></Col>
-					<Col sm={2}>
-						<Dropdown>
-							<Dropdown.Toggle
-								className="addProfileSection rounded-pill"
-								id="dropdown-basic"
-							>
-								Add profile section
-							</Dropdown.Toggle>
-
-							<Dropdown.Menu>
-								<Dropdown.Item className="dropDownItem" href="#/action-1">
-									Intro
-								</Dropdown.Item>
-								<hr />
-								<Dropdown.Item className="dropDownItem" href="#/action-2">
-									About
-								</Dropdown.Item>
-								<hr />
-								<Dropdown.Item className="dropDownItem" href="#/action-3">
-									Background
-								</Dropdown.Item>
-								<hr />
-								<Dropdown.Item className="dropDownItem" href="#/action-3">
-									Skills
-								</Dropdown.Item>
-								<hr />
-								<Dropdown.Item className="dropDownItem" href="#/action-3">
-									Accomplishments
-								</Dropdown.Item>
-								<hr />
-								<Dropdown.Item className="dropDownItem" href="#/action-3">
-									Additional information
-								</Dropdown.Item>
-								<hr />
-								<Dropdown.Item className="dropDownItem" href="#/action-3">
-									Supported Languages
-								</Dropdown.Item>
-							</Dropdown.Menu>
-						</Dropdown>
-					</Col>
-					<Col sm={2}>
-						<Button className="moreButton ml-4 btn-outline-dark rounded-pill">
-							<solid> More... </solid>
-						</Button>
-						<BsPencil className="pencil" />
-					</Col>
-				</Row>
-				<Container className="m-3">
+				<Container className="d-flex flex-row justify-content-end offset-overlay">
+					<Dropdown className="Jumbodrop">
+						<Dropdown.Toggle
+							className="addProfileSection rounded-pill"
+							id="dropdown-basic"
+						>
+							Add profile section
+						</Dropdown.Toggle>
+						<Dropdown.Menu>
+							<Dropdown.Item className="dropDownItem" href="#/action-1">
+								Intro
+							</Dropdown.Item>
+							<hr />
+							<Dropdown.Item className="dropDownItem" href="#/action-2">
+								About
+							</Dropdown.Item>
+							<hr />
+							<Dropdown.Item className="dropDownItem" href="#/action-3">
+								Background
+							</Dropdown.Item>
+							<hr />
+							<Dropdown.Item className="dropDownItem" href="#/action-3">
+								Skills
+							</Dropdown.Item>
+							<hr />
+							<Dropdown.Item className="dropDownItem" href="#/action-3">
+								Accomplishments
+							</Dropdown.Item>
+							<hr />
+							<Dropdown.Item className="dropDownItem" href="#/action-3">
+								Additional information
+							</Dropdown.Item>
+							<hr />
+							<Dropdown.Item className="dropDownItem" href="#/action-3">
+								Supported Languages
+							</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
+					<Button className="moreButton ml-4 btn-outline-dark rounded-pill">
+						<solid> More... </solid>
+					</Button>
+					<BsPencil className="pencil my-auto" />
+				</Container>
+				<Container className="m-0 mb-4">
 					<Row className="name">
-						{this.state.myObject.name} {this.state.myObject.surname}
+						<Col>
+							{this.state.myObject.name} {this.state.myObject.surname}
+						</Col>
 					</Row>
-					<Row>{this.state.myObject.bio}</Row>
+					<Row>
+						<Col>{this.state.myObject.bio}</Col>
+					</Row>
+					<hr />
 					<Row>
 						<Col sm={8} className="area">
-							{this.state.myObject.area}, England, United Kingdom
+							{this.state.myObject.area}
 						</Col>
 						<Col className="ContactInfo" sm={4}>
 							<a>Contact info </a>
