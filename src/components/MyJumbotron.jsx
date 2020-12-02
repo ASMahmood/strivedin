@@ -14,6 +14,7 @@ import {
   Jumbotron,
   Dropdown,
   Image,
+  Card,
 } from "react-bootstrap";
 class MyJumbotron extends React.Component {
   state = {
@@ -50,80 +51,122 @@ class MyJumbotron extends React.Component {
   };
   render() {
     return (
-      <Jumbotron className="customJumbotron GenericBody p-0 cardsin">
-        <Image
-          className="coverPhoto"
-          src="https://place-hold.it/1920x300"
-          fluid
-        />
-        <Image
-          className="profilePic border-2 border-white"
-          roundedCircle
-          src={this.state.myObject.image} /*"https://place-hold.it/130x130"*/
-        />
-        <Container className="d-flex flex-row justify-content-end offset-overlay">
-          <Dropdown className="Jumbodrop">
-            <Dropdown.Toggle
-              className="addProfileSection rounded-pill"
-              id="dropdown-basic"
-            >
-              Add profile section
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item className="dropDownItem" href="#/action-1">
-                Intro
-              </Dropdown.Item>
-              <hr />
-              <Dropdown.Item className="dropDownItem" href="#/action-2">
-                About
-              </Dropdown.Item>
-              <hr />
-              <Dropdown.Item className="dropDownItem" href="#/action-3">
-                Background
-              </Dropdown.Item>
-              <hr />
-              <Dropdown.Item className="dropDownItem" href="#/action-3">
-                Skills
-              </Dropdown.Item>
-              <hr />
-              <Dropdown.Item className="dropDownItem" href="#/action-3">
-                Accomplishments
-              </Dropdown.Item>
-              <hr />
-              <Dropdown.Item className="dropDownItem" href="#/action-3">
-                Additional information
-              </Dropdown.Item>
-              <hr />
-              <Dropdown.Item className="dropDownItem" href="#/action-3">
-                Supported Languages
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-          <Button className="moreButton ml-4 btn-outline-dark rounded-pill">
-            <solid> More... </solid>
-          </Button>
-          <BsPencil className="pencil my-auto" />
-        </Container>
-        <Container className="m-0 mb-4">
-          <Row className="name">
-            <Col>
-              {this.state.myObject.name} {this.state.myObject.surname}
-            </Col>
-          </Row>
-          <Row>
-            <Col>{this.state.myObject.bio}</Col>
-          </Row>
-          <hr />
-          <Row>
-            <Col sm={8} className="area">
-              {this.state.myObject.area}
-            </Col>
-            <Col className="ContactInfo" sm={4}>
-              <a>Contact info </a>
-            </Col>
-          </Row>
-        </Container>
-      </Jumbotron>
+      <Container className="notJumbotronContainer">
+        <Row>
+          <Image
+            className="coverPhoto"
+            src="https://place-hold.it/800x400"
+            fluid
+          />
+        </Row>
+        <Row>
+          <Col sm={11} xs={10}>
+            <Image
+              className="profilePhoto"
+              src="https://place-hold.it/1920x300"
+              fluid
+              roundedCircle
+            />
+          </Col>
+          <Col sm={1} xs={2}>
+            <BsPencil className="pencil" />
+          </Col>
+        </Row>
+        <Row className="username">{this.state.myObject.username}</Row>
+        <Row className="bio">{this.state.myObject.bio}</Row>
+        <Row>
+          <Col className="location">
+            {this.state.myObject.area} <a href="/profile/me">Contact Info </a>
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={3} className="colBtn first">
+            <Dropdown className="Jumbodrop">
+              <Dropdown.Toggle
+                className="addProfileSection rounded-pill"
+                id="dropdown-basic"
+              >
+                Open to
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item className="dropDownItem" href="#/action-1">
+                  Finding a new job
+                </Dropdown.Item>
+                <hr />
+                <Dropdown.Item className="dropDownItem" href="#/action-2">
+                  Hiring
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Col>
+          <Col sm={5} className="colBtn second">
+            <Dropdown className="Jumbodrop">
+              <Dropdown.Toggle
+                className="addProfileSection second rounded-pill"
+                id="dropdown-basic"
+              >
+                Add profile section
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item className="dropDownItem" href="#/action-1">
+                  Intro
+                </Dropdown.Item>
+                <hr />
+                <Dropdown.Item className="dropDownItem" href="#/action-2">
+                  About
+                </Dropdown.Item>
+                <hr />
+                <Dropdown.Item className="dropDownItem" href="#/action-3">
+                  Background
+                </Dropdown.Item>
+                <hr />
+                <Dropdown.Item className="dropDownItem" href="#/action-3">
+                  Skills
+                </Dropdown.Item>
+                <hr />
+                <Dropdown.Item className="dropDownItem" href="#/action-3">
+                  Accomplishments
+                </Dropdown.Item>
+                <hr />
+                <Dropdown.Item className="dropDownItem" href="#/action-3">
+                  Additional information
+                </Dropdown.Item>
+                <hr />
+                <Dropdown.Item className="dropDownItem" href="#/action-3">
+                  Supported Languages
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Col>
+          <Col sm={3} className="colBtn third">
+            <Button className="moreBtn rounded-pill btn-outline-secondary">
+              More...
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={6} xs={7}>
+            <Container className="dottedContainer">
+              <Row className="ml-1">
+                Show recruiters you're open to work-you control who sees this{" "}
+              </Row>
+              <Row className="ml-1">
+                <a href="/profile/me">Get started</a>
+              </Row>
+            </Container>
+          </Col>
+          <Col sm={6} xs={7}>
+            <Container className="dottedContainer">
+              <Row className="ml-1">
+                Shere that you're hiring - and attract qualified candidates.{" "}
+              </Row>
+              <Row className="ml-1">
+                <a href="/profile/me">Get started</a>
+              </Row>
+            </Container>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
