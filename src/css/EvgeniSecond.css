@@ -1,0 +1,136 @@
+.firstContainer {
+  height: 500px;
+  width: 270px;
+  border: 1px lightgrey solid;
+  border-radius: 17px;
+  background-color: white;
+  z-index: 9;
+}
+.coverImageRow {
+  z-index: 10;
+  position: relative;
+}
+.profilePic {
+  position: relative;
+  z-index: 11;
+  margin-top: -24%;
+  margin-left: 80px;
+}
+.userNameRow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 30px;
+  margin-top: 25px;
+  font-size: 20px;
+  font-weight: 500;
+}
+.bioRow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+  padding-bottom: 15px;
+  color: grey;
+  font-size: 16px;
+  border-bottom: 1px lightgrey solid;
+}
+.connections {
+  margin-top: 22px;
+  margin-left: 4px;
+  font-weight: 500;
+  color: grey;
+}
+.grow {
+  margin-left: 4px;
+  font-weight: 500;
+}
+.addUser {
+  margin-top: 27px;
+  font-size: 22px;
+}
+.addUser:hover {
+  font-size: 25px;
+}
+.access {
+  color: grey;
+  font-size: 16px;
+  margin-top: 35px;
+  margin-left: 4px;
+}
+.premiumIcon {
+  font-size: 22px;
+  margin-left: 6px;
+}
+.premiumText {
+  font-size: 17px;
+  font-weight: 500;
+}
+.premiumRow {
+  border-bottom: 1px lightgrey solid;
+  padding-bottom: 15px;
+}
+.dirtyFlag {
+  transform: rotate(90deg);
+  margin-left: 0.5px;
+}
+.savedText {
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 11px;
+}
+/* second container */
+.secondContainer {
+  margin-top: 10px;
+  height: 195px;
+  width: 270px;
+  border: 1px lightgrey solid;
+  border-radius: 17px;
+  background-color: white;
+  z-index: 9;
+}
+.groups {
+  margin-left: 8px;
+  margin-top: 8px;
+  font-size: 19px;
+  font-weight: 500;
+}
+.events {
+  margin-left: -7px;
+  margin-top: 15px;
+  font-size: 19px;
+  font-weight: 500;
+}
+.hashTag {
+  margin-top: 15px;
+  font-size: 19px;
+  font-weight: 500;
+  border-bottom: 1px lightgrey solid;
+  padding-bottom: 8px;
+}
+.hashTagText {
+  margin-left: 22px;
+}
+.plus {
+  margin-left: 27px;
+  font-size: 25px;
+}
+.discoverMe {
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: 20px;
+  margin-left: 5px;
+}
+@media screen and (max-width: 577px) {
+  .firstContainer {
+    height: 470px;
+  }
+}
+@media screen and (min-width: 1210px) {
+  .profilePic {
+    width: 100px;
+  }
+  .coverPhoto {
+    height: 100px;
+  }
+}
