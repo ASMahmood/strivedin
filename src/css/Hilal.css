@@ -9,7 +9,7 @@
 }
 
 .cardsin h6 {
-	font-weight:bold;
+	font-weight: bold;
 }
 
 .userpic {
@@ -30,7 +30,7 @@
 	color: #5f5f5f;
 	font-size: 32px;
 	padding: 3px;
-
+	min-width: 32px;
 	border: 1px solid #5f5f5f;
 	border-radius: 50%;
 }
@@ -58,22 +58,21 @@
 	color: #1066c2;
 	border: transparent;
 }
-.Img{
-	width:50px;
-	max-height:40px;
+.Img {
+	width: 50px;
+	max-height: 40px;
 
 	max-width: 40px;
 
-	margin-right: 10px
+	margin-right: 10px;
 }
-.modal-content{
-width:744px;
-overflow-y:auto!important;
+.modal-content {
+	width: 744px;
+	overflow-y: auto !important;
 }
-.modal-body{
+.modal-body {
 	height: 60vh;
-    overflow-y: auto;
-
+	overflow-y: auto;
 }
 
 .saveBtn{
