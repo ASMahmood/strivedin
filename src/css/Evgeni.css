@@ -1,57 +1,57 @@
-.profilePic {
-  /*border-radius: 50%;*/
-  position: relative;
-  width: 130px;
-  margin-left: 30px;
+.notJumbotronContainer {
+  border-radius: 15px;
+  height: 500px;
+  border: 1px lightgrey solid;
+  margin-bottom: 15px;
 }
-.addProfileSection {
-  font-size: 12px !important;
-  border-radius: 10px; /*!important;*/
-  /*margin-top: 95px !important;*/
-  margin-left: 25px;
+.addProfileSection.second {
+  background-color: white;
+  color: rgb(11, 103, 194);
 }
-.moreButton {
-  font-size: 12px;
-  font-weight: bold;
+.dottedContainer {
+  width: 220px;
+  height: 100px;
+  border: 2px grey dotted;
   border-radius: 10px;
-  /*margin-top: 95px;*/
-  background-color: aliceblue !important;
-  color: grey;
-  border-color: 1px black solid !important;
+  margin-top: 30px;
 }
-
-.moreButton:hover {
-  color: black;
+.moreBtn {
+  background-color: white;
+  color: gray;
 }
-
-.name {
-  margin-top: 8px;
-}
-.area {
-  display: flex;
-  justify-content: left;
-  font-size: 14px;
+.profilePhoto {
+  width: 110px;
+  height: 110px;
+  margin-left: 10px;
+  margin-top: -55px;
+  border: 1px white solid;
 }
 .coverPhoto {
-  margin: 0;
-  border-top-right-radius: 1rem;
-  border-top-left-radius: 1rem;
-  z-index: -2;
-  /*margin-top: -70px;
-	margin-left: -32px;
-		position: absolute;*/
+  border-radius: 15px 15px 0px 0px;
+  width: 100%;
+  height: 150px;
 }
-
+.pencil {
+  font-size: 25px;
+  margin-top: 10px;
+}
+.location {
+  margin-left: 10px; /* HERE */
+  font-size: 19px; /* HERE */
+}
+.username {
+  margin-left: 10px; /* HERE */
+  font-size: 22px; /* HERE */
+}
+.bio {
+  margin-left: 10px; /* HERE */
+  font-size: 19px; /* HERE */
+}
 .dropDownItem {
   height: 30px;
 }
 hr {
   padding-top: -20px;
-}
-.pencil {
-  /*margin-top: 95px;*/
-  margin-left: 17px;
-  font-size: 19px;
 }
 
 .footerImage {
@@ -213,32 +213,14 @@ hr {
     height: 100px;
     margin-bottom: -20%;
   }
-  .coverPhoto {
-    height: 100px;
-    width: 100%;
+}
+
+@media only screen and (max-width: 578px) {
+  .notJumbotronContainer {
+    height: 700px;
   }
 }
 @media only screen and (max-width: 575px) {
-  .profilePic {
-    margin-bottom: -15%;
-  }
-  .coverPhoto {
-    height: 100px;
-    margin-bottom: -20px;
-  }
-  .addProfileSection {
-    margin-top: 30px;
-    margin-right: -20px;
-  }
-  .pencil {
-    margin-top: 50px;
-  }
-  .moreButton {
-    margin-top: 30px;
-    height: 35px;
-    width: 45px;
-    padding-left: 2px;
-  }
   .dasboardContainer {
     height: 600px;
   }
