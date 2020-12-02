@@ -2,7 +2,7 @@ import React from "react"
 
 import {Modal, Button,Form, Col} from 'react-bootstrap'
 
-class Body extends React.Component {
+class AddExperience extends React.Component {
 
     state={
         experience:{
@@ -21,14 +21,15 @@ class Body extends React.Component {
 
         },
       
-        
+        exp:{},
         errMessage:'',
         loading:false,
     }
 
-   
-
+  
+  //It passes false as showMode to parent body. It means dont show Modal.
     handleClose = () => this.props.handleClose(false);
+
     updateField=(e)=>{
         let experience= {...this.state.experience}
         let currentid=e.currentTarget.id
@@ -51,9 +52,24 @@ class Body extends React.Component {
 
     }
 
-    postFetch= async ()=>{
+    EditFetch= async ()=>{
+        let response
+
         try {
-            let response = await fetch('https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences',
+                if (this.props.exId){
+                    const url = `https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences/`
+                    response = await fetch(url + this.props.exId, {
+                        method: "PUT",
+                        body: JSON.stringify(this.state.experience),
+                                 headers: new Headers({
+                                     "Content-Type": "application/json",
+                                     Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+                                 })
+                             })
+                }
+                else {
+                    
+                    response = await fetch('https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences',
                 {
                     method: 'POST',
                     body: JSON.stringify(this.state.experience),
@@ -61,7 +77,10 @@ class Body extends React.Component {
                         "Content-Type": "application/json",
                         Authorization:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q"
                     })
-                })
+                })}
+                            
+
+
             if (response.ok) {
                 alert('Experience saved!')
                 this.setState({
@@ -78,6 +97,7 @@ class Body extends React.Component {
                     errMessage: '',
                     loading: false,
                 })
+                this.handleClose()
             } else {
                 console.log('an error occurred')
                 let error = await response.json()
@@ -100,16 +120,80 @@ class Body extends React.Component {
     submitForm=(e)=> {
         e.preventDefault()
         this.setState({loading:true})
-        this.postFetch()
+        this.EditFetch()
         
     }
 
 
+    getFetch=async()=>{
 
+    try{
+            const url = `https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences/`
+            let response = await fetch(url + this.props.exId, {
+                method: "GET",
+                headers: {
+                    Authorization:
+                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+                },
+            })
+            if (response.ok) {
+                let exp= await response.json()
+                console.log("exp:", exp)
 
+                this.setState({  experience:{
+                    role:exp.role,
+                    company:exp.company,
+                    area:exp.area,
+                    startDate:exp.startDate,
+                    endDate:exp.endDate,
+                    description:exp.description,
+                
+
+                },})
+            }
+        }
+        catch(e){
+            console.log(e)
+        }
+    }
+  
+    handleDelete = async () => {
+        try{
+            const url = `https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences/`
+       let response = await fetch(url + this.props.exId, {
+           method: "DELETE",
+           headers: {
+               Authorization:
+                   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+           },
+       })
+           if (response.ok) {
+               alert("exp deleted succesfully")
+               this.handleClose()
+           }
+           else {
+               alert("Something went wrong!");
+        }
+       }
+        catch(e){
+           console.log(e);
    
+        }
+           
+       };
+   
+       
 
+
+        componentDidMount=async()=>{
+            console.log(this.props.exId)
+
+            if(this.props.exId){
+        this.getFetch()
+            }
+            }
     
+   
    
   
 
@@ -120,6 +204,8 @@ class Body extends React.Component {
 
 
 	render() {
+       
+        // console.log("id:",this.props.match.params.id)
 
         const {show } = this.props
 		return(
@@ -265,12 +351,15 @@ class Body extends React.Component {
                                                 
                                             />
                                         </Form.Group>
-                                        <Button variant="primary" type ="submit">
-                                            Save 
+                                        <Form.Group className="d-flex px-3">{this.props.exId &&
+                                        <Button  className=" deleteBtn" variant="primary" onClick={this.handleDelete} >
+                                          Delete
+                                        </Button>}
+                                        <Button className= "saveBtn ml-auto" variant="primary" type ="submit"> Save
+                                           
                                         </Button>  
-                                        <Button variant="primary" onClick={this.handleClose} >
-             Close 
-           </Button> 
+                                        
+           </Form.Group>
                                     
                                           
               </Form>
@@ -287,4 +376,4 @@ class Body extends React.Component {
 	}
 }
 
-export default Body
+export default AddExperience

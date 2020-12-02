@@ -64,7 +64,7 @@ class Body extends React.Component {
 					<AddExperience
 						show={this.state.show}
 						handleClose={this.handleClose}
-						// exId={this.state.exId}
+						exId={this.state.exId}
 					/>
 				)}
 

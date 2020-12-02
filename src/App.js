@@ -18,7 +18,7 @@ function App() {
 			<OurNavBar />
 			<Router>
 				<Route exact path="/" component={NewsPage} />
-				<Route path="/profile/:id" component={Profile} />
+				<Route path="/profile/:id" exact render={(props)=><Profile {...props}/>} />
 			</Router>
 		</>
 	)
