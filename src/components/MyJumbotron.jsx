@@ -19,11 +19,11 @@ class MyJumbotron extends React.Component {
 	state = {
 		myObject: {},
 	}
-	fetchMe = async () => {
+	fetchMe = async (id) => {
 		try {
 			console.log(this.props.tracksUrl)
 			let response = await fetch(
-				`https://striveschool-api.herokuapp.com/api/profile/me`,
+				`https://striveschool-api.herokuapp.com/api/profile/${id ? id : "me"}`,
 				{
 					method: "GET",
 					headers: new Headers({
@@ -40,11 +40,17 @@ class MyJumbotron extends React.Component {
 		}
 	}
 	componentDidMount = () => {
-		this.fetchMe()
+		console.log("id passed to the jumbotron", this.props.id)
+		this.fetchMe(this.props.id)
+	}
+	componentDidUpdate = (oldprops) => {
+		if (oldprops.id !== this.props.id) {
+			this.fetchMe(this.props.id)
+		}
 	}
 	render() {
 		return (
-			<Jumbotron className="customJumbotron GenericBody p-0">
+			<Jumbotron className="customJumbotron GenericBody p-0 cardsin">
 				<Image
 					className="coverPhoto"
 					src="https://place-hold.it/1920x300"
@@ -55,63 +61,62 @@ class MyJumbotron extends React.Component {
 					roundedCircle
 					src={this.state.myObject.image} /*"https://place-hold.it/130x130"*/
 				/>
-				<Row className="coverPhotoRow">
-					<Col sm={8}></Col>
-					<Col sm={2}>
-						<Dropdown>
-							<Dropdown.Toggle
-								className="addProfileSection"
-								id="dropdown-basic"
-							>
-								Add profile section
-							</Dropdown.Toggle>
-
-							<Dropdown.Menu>
-								<Dropdown.Item className="dropDownItem" href="#/action-1">
-									Intro
-								</Dropdown.Item>
-								<hr />
-								<Dropdown.Item className="dropDownItem" href="#/action-2">
-									About
-								</Dropdown.Item>
-								<hr />
-								<Dropdown.Item className="dropDownItem" href="#/action-3">
-									Background
-								</Dropdown.Item>
-								<hr />
-								<Dropdown.Item className="dropDownItem" href="#/action-3">
-									Skills
-								</Dropdown.Item>
-								<hr />
-								<Dropdown.Item className="dropDownItem" href="#/action-3">
-									Accomplishments
-								</Dropdown.Item>
-								<hr />
-								<Dropdown.Item className="dropDownItem" href="#/action-3">
-									Additional information
-								</Dropdown.Item>
-								<hr />
-								<Dropdown.Item className="dropDownItem" href="#/action-3">
-									Supported Languages
-								</Dropdown.Item>
-							</Dropdown.Menu>
-						</Dropdown>
-					</Col>
-					<Col sm={2}>
-						<Button className="moreButton ml-1 btn-outline-dark rounded-pill">
-							<solid> More... </solid>
-						</Button>
-						<BsPencil className="pencil" />
-					</Col>
-				</Row>
-				<Container className="m-3">
+				<Container className="d-flex flex-row justify-content-end offset-overlay">
+					<Dropdown className="Jumbodrop">
+						<Dropdown.Toggle
+							className="addProfileSection rounded-pill"
+							id="dropdown-basic"
+						>
+							Add profile section
+						</Dropdown.Toggle>
+						<Dropdown.Menu>
+							<Dropdown.Item className="dropDownItem" href="#/action-1">
+								Intro
+							</Dropdown.Item>
+							<hr />
+							<Dropdown.Item className="dropDownItem" href="#/action-2">
+								About
+							</Dropdown.Item>
+							<hr />
+							<Dropdown.Item className="dropDownItem" href="#/action-3">
+								Background
+							</Dropdown.Item>
+							<hr />
+							<Dropdown.Item className="dropDownItem" href="#/action-3">
+								Skills
+							</Dropdown.Item>
+							<hr />
+							<Dropdown.Item className="dropDownItem" href="#/action-3">
+								Accomplishments
+							</Dropdown.Item>
+							<hr />
+							<Dropdown.Item className="dropDownItem" href="#/action-3">
+								Additional information
+							</Dropdown.Item>
+							<hr />
+							<Dropdown.Item className="dropDownItem" href="#/action-3">
+								Supported Languages
+							</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
+					<Button className="moreButton ml-4 btn-outline-dark rounded-pill">
+						<solid> More... </solid>
+					</Button>
+					<BsPencil className="pencil my-auto" />
+				</Container>
+				<Container className="m-0 mb-4">
 					<Row className="name">
-						{this.state.myObject.name} {this.state.myObject.surname}
+						<Col>
+							{this.state.myObject.name} {this.state.myObject.surname}
+						</Col>
 					</Row>
-					<Row>{this.state.myObject.bio}</Row>
+					<Row>
+						<Col>{this.state.myObject.bio}</Col>
+					</Row>
+					<hr />
 					<Row>
 						<Col sm={8} className="area">
-							{this.state.myObject.area}, England, United Kingdom
+							{this.state.myObject.area}
 						</Col>
 						<Col className="ContactInfo" sm={4}>
 							<a>Contact info </a>
