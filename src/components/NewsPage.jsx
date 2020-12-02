@@ -1,14 +1,23 @@
-import React from "react";
-import Sidebar from "./Sidebar";
-import Sidebar0 from "./Sidebar0";
-import { Container, Row, Col } from "react-bootstrap";
+
+
+
+
 import LeftSidebarNewsPage from "./leftSideBarNewsPage";
-import GenericBody from "./GenericBody";
-import Body from "./Body.jsx";
-import GenericSidebar from "./GenericSidebar";
-import MyJumbotron from "./MyJumbotron";
-import Footer from "./Footer";
-import { withRouter } from "react-router-dom";
+
+
+
+
+
+import React from "react"
+import Sidebar from "./Sidebar"
+import Sidebar0 from "./Sidebar0"
+import { Container, Row, Col } from "react-bootstrap"
+
+import GenericSidebar from "./GenericSidebar"
+import Footer from "./Footer"
+import { withRouter } from "react-router-dom"
+import NewsFeedBody from "./NewsFeedBody"
+
 
 /**
  * we will neeed this when we start routing stuff
@@ -32,7 +41,7 @@ class Newsfeed extends React.Component {
               <LeftSidebarNewsPage />
             </Col>
             <Col md={6} className="bodyColumn">
-              {" "}
+              <NewsFeedBody />
             </Col>
             <Col md={3}>
               <Sidebar0 />
