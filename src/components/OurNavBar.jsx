@@ -9,7 +9,7 @@ import {
 	Dropdown,
 	Container,
 } from "react-bootstrap"
-import { withRouter } from "react-router"
+import { me } from "../fetch"
 
 class OurNavBar extends React.Component {
 	constructor(props) {
@@ -18,27 +18,12 @@ class OurNavBar extends React.Component {
 	}
 
 	fetchMe = async () => {
-		let TOKEN = process.env.REACT_APP_TOKEN
-
-		try {
-			let response = await fetch(
-				`https://striveschool-api.herokuapp.com/api/profile/me`,
-				{
-					method: "GET",
-					headers: new Headers({
-						Authorization: `Bearer ${TOKEN}`,
-					}),
-				}
-			)
-			response = await response.json()
-			this.setState({ profile: response })
-			console.log("user", response)
-		} catch (e) {
-			console.log("ERROR fetching" + e)
-		}
+		let response = await me()
+		this.setState({ profile: response })
 	}
 	componentDidMount() {
 		this.fetchMe()
+		console.log("context test lv1 ournavbar component", this.context.value)
 	}
 	render() {
 		return (
@@ -78,7 +63,7 @@ class OurNavBar extends React.Component {
 						</div>
 
 						<Nav className="p-0">
-							<Nav.Link href="#home">
+							<Nav.Link href="/">
 								<svg
 									id="global-nav-icon--mercado__home"
 									className="global-nav__icon"

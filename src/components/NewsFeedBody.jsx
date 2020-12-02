@@ -2,6 +2,7 @@ import React from "react"
 import { Container, Button, Modal } from "react-bootstrap"
 import NewPostForm from "./newPostForm"
 import NewsFeedPost from "./NewsFeedPost"
+import { me } from "../fetch"
 
 class NewsFeedBody extends React.Component {
 	constructor(props) {
@@ -10,15 +11,17 @@ class NewsFeedBody extends React.Component {
 			posts: [],
 			openForm: false,
 			editMe: false,
+			Me: {},
 		}
 		this.refresh = this.refresh.bind(this)
+		this.stopPosting = this.stopPosting.bind(this)
 		this.editMe = this.editMe.bind(this)
 	}
 	openForm() {
 		this.setState({ openForm: true })
 	}
 	editMe(editMe) {
-		this.setState({ editMe, openForm: true })
+		this.setState({ editMe }, () => this.setState({ openForm: true }))
 	}
 	get = async () => {
 		try {
@@ -34,7 +37,7 @@ class NewsFeedBody extends React.Component {
 				}
 			)
 			response = await response.json()
-			return response
+			return response.reverse()
 		} catch (error) {
 			console.error(error)
 		}
@@ -48,13 +51,14 @@ class NewsFeedBody extends React.Component {
 		)
 		if (!this.state.posts) {
 			let posts = await this.get()
-			this.setState({ posts })
+			this.setState({ posts, editMe: false })
 		}
 	}
 	componentDidMount = async () => {
 		let posts = await this.get()
+		let Me = await me()
 		console.log(posts)
-		this.setState({ posts })
+		this.setState({ posts, Me })
 	}
 	stopPosting = async () => {
 		this.setState({ posts: false, openForm: false })
@@ -63,7 +67,7 @@ class NewsFeedBody extends React.Component {
 		this.setState({ posts: false })
 	}
 	isMine(post) {
-		let myid = "5fc4af46b708c200175de88f" //placeholder
+		let myid = this.state.Me._id
 		return post.user._id === myid ? true : false
 	}
 
@@ -190,11 +194,14 @@ class NewsFeedBody extends React.Component {
 				>
 					<Modal.Header closeButton size="lg">
 						<Modal.Title id="example-modal-sizes-title-sm">
-							{this.state.editMe ? "Create" : "Edit"} a post
+							{this.state.editMe ? "Edit" : "Create"} a post
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
-						<NewPostForm edit={this.state.editMe ? this.state.editMe : false} />
+						<NewPostForm
+							edit={this.state.editMe ? this.state.editMe : false}
+							refresh={this.stopPosting}
+						/>
 					</Modal.Body>
 				</Modal>
 			</>
