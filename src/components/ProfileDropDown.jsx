@@ -11,6 +11,7 @@ import {
 	Dropdown,
 	Button,
 } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -57,13 +58,15 @@ const ProfileMenu = React.forwardRef(
 								</Col>
 							</Row>
 						</Container>
-						<Button
-							variant="outline-primary"
-							size="sm"
-							className="rounded-pill py-0 w-100 mt-1"
-						>
-							<b>View Profile</b>
-						</Button>
+						<a href="/profile/me">
+							<Button
+								variant="outline-primary"
+								size="sm"
+								className="rounded-pill py-0 w-100 mt-1"
+							>
+								<b>View Profile</b>
+							</Button>
+						</a>
 						<Dropdown.Divider />
 						<Dropdown.ItemText className="font-weight-bold">
 							<h6>Account</h6>
