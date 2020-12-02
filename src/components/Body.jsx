@@ -3,7 +3,7 @@ import Experience from "./Experience.jsx"
 import { AiOutlinePlus } from "react-icons/ai"
 import AddExperience from "./AddExperience.jsx"
 
-
+//HERE IS PROFILE BODY 
 
 
 class Body extends React.Component {
@@ -12,10 +12,11 @@ class Body extends React.Component {
 		show: false,
 		errMessage: "",
 		loading: false,
+		exId:''
 	}
 
-	handleShow = () => this.setState({ show: true })
 
+ //THis fetch for showing experiences based on id/Id is coming from clicking
 	fetch = async () => {
 		//old url https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences
 		const url = `https://striveschool-api.herokuapp.com/api/profile/${this.props.id}/experiences`
@@ -36,22 +37,34 @@ class Body extends React.Component {
 	componentDidMount = () => {
 		this.fetch()
 	}
-	handleClose = (showMode) => {
-		this.setState({ show: showMode })
-		this.fetch()
-	}
+
+    
+	//when comes the new id , it updates the profile page based on new id
 	componentDidUpdate = (oldprops) => {
 		if (oldprops.id !== this.props.id) {
 			this.fetch()
 		}
 	}
+
+	//It opens the modal in the component(AddExperience)
+	handleShow = (showMode) => this.setState({ show: showMode})
+	handleId= (id) => this.setState({ exId: id})
+
+	//Here the showMode (false) is coming from a child component(AddExperience-inside of the Modal)
+	handleClose = (showMode) => {
+		this.setState({ show: showMode, exId:'' })
+		this.fetch()
+	}
+
 	render() {
+		console.log("ex id:",this.state.exId)
 		return (
 			<>
 				{this.state.show && (
 					<AddExperience
 						show={this.state.show}
 						handleClose={this.handleClose}
+						// exId={this.state.exId}
 					/>
 				)}
 
@@ -69,12 +82,17 @@ class Body extends React.Component {
 
 						<Experience
 							key={experience._id}
+							id={experience._id}
 							role={experience.role}
 							company={experience.company}
 							description={experience.description}
 							startDate={experience.startDate}
 							endDate={experience.endDate}
 							area={experience.area}
+							handleShow={this.handleShow}//It accepts the showMode:true as prop from Experience and triggers the modal(add experience) open
+							handleId={this.handleId}
+							
+
 						/>
 					))}
 				</div>

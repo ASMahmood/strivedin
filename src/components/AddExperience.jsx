@@ -102,7 +102,6 @@ class Body extends React.Component {
         this.setState({loading:true})
         this.postFetch()
         
-       
     }
 
 
