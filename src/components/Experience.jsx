@@ -7,17 +7,12 @@ import {Image} from "react-bootstrap"
 
    
 
-             
-
-        
-
         render(){
 
            const {company,role, area, startDate, endDate } = this.props
             console.log(startDate,endDate)
         
-            const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+          
 ];
            
          return(
