@@ -6,7 +6,8 @@ import "./css/Hilal.css"
 import "./css/Evgeni.css"
 import "./App.css"
 import { BrowserRouter as Router, Route } from "react-router-dom"
-import Home from "./components/Home"
+import Profile from "./components/Profile.jsx"
+
 import OurNavBar from "./components/OurNavBar"
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
 			<OurNavBar />
 			<Router>
 				<Route exact path="/" component={Home} />
-				<Route path="/profile/:id" component={Home} />
+				<Route path="/profile/:id" component={Profile} />
 			</Router>
 		</>
 	)
