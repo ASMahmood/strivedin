@@ -2,6 +2,36 @@
 	background-color: white;
 }
 
+.miniProfilePic {
+	width: 25px;
+	height: 25px;
+}
+
+.dropdown-item-text > .h6 {
+	/*font-weight: bolder;*/
+}
+
+.offset-overlay {
+	margin-top: -2rem;
+}
+
+.Jumbodrop {
+	height: fit-content;
+}
+
+.mediumProfilePic {
+	width: 50px;
+	height: 50px;
+}
+
+.nocaret::after {
+	display: none;
+}
+.userMenu {
+	min-width: 10vw;
+	border-radius: 0.5rem;
+	border-top-right-radius: 0px;
+}
 .border-2 {
 	border-style: solid;
 	border-width: 2px;
@@ -31,7 +61,7 @@
 	fill: #000;
 }
 .GenericBody,
-.GenericSidebar {
+/* .GenericSidebar {
 	background-color: white;
 	border-style: solid;
 	border-width: thin;
@@ -40,7 +70,7 @@
 	padding: 1rem;
 	min-height: 3rem;
 	margin-bottom: 0.8rem;
-}
+} */
 
 .me {
 	border-right-style: solid;
