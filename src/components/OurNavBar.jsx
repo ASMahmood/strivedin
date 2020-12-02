@@ -18,11 +18,9 @@ class OurNavBar extends React.Component {
 	}
 
 	fetchMe = async () => {
-		console.log("test env", process.env.REACT_APP_TOKEN)
 		let TOKEN = process.env.REACT_APP_TOKEN
 
 		try {
-			console.log(this.props.tracksUrl)
 			let response = await fetch(
 				`https://striveschool-api.herokuapp.com/api/profile/me`,
 				{

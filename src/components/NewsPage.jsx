@@ -3,12 +3,10 @@ import Sidebar from "./Sidebar"
 import Sidebar0 from "./Sidebar0"
 import { Container, Row, Col } from "react-bootstrap"
 
-import GenericBody from "./GenericBody"
-import Body from "./Body.jsx"
 import GenericSidebar from "./GenericSidebar"
-import MyJumbotron from "./MyJumbotron"
 import Footer from "./Footer"
 import { withRouter } from "react-router-dom"
+import NewsFeedBody from "./NewsFeedBody"
 
 /**
  * we will neeed this when we start routing stuff
@@ -28,8 +26,10 @@ class Newsfeed extends React.Component {
 			<>
 				<Container>
 					<Row>
-						<Col className="leftSidebar"></Col>
-						<Col md={9} className="bodyColumn"></Col>
+						<Col md={3} className="leftSidebar"></Col>
+						<Col md={6} className="bodyColumn">
+							<NewsFeedBody />
+						</Col>
 						<Col md={3}>
 							<Sidebar0 />
 							<Sidebar title="Our Team" />
