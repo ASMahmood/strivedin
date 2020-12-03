@@ -1,8 +1,9 @@
 .notJumbotronContainer {
 	border-radius: 15px;
-	height: 500px;
+	/*height: 500px; removed, messed up the scaling*/
 	border: 1px lightgrey solid;
 	margin-bottom: 15px;
+	padding-bottom: 2rem; /*this whill leave 2 rows of space at the bottom and the container can self adjust it's heigth*/
 }
 .addProfileSection.second {
 	background-color: white;
@@ -219,11 +220,13 @@ hr {
 	}
 }
 
+/*
+	this is not needed anymore
 @media only screen and (max-width: 578px) {
 	.notJumbotronContainer {
 		height: 700px;
 	}
-}
+}*/
 @media only screen and (max-width: 575px) {
 	.dasboardContainer {
 		height: 600px;

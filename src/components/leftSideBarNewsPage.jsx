@@ -54,7 +54,7 @@ class LeftSideBarNewsPage extends React.Component {
 							roundedCircle
 						/>
 					</Row>
-					<Row className="userNameRow">
+					<Row className="userNameRow text-center">
 						<Col>{this.state.myObject.username}</Col>
 					</Row>
 					<Row className="bioRow">

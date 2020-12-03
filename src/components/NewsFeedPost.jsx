@@ -59,7 +59,9 @@ class NewsFeedPost extends React.Component {
 					</Container>
 					<div className="myHr w-100 bg-dark my-1" />
 					<Container className="d-flex flex-row">
-						<span className="flex-fill">{this.state.text}</span>
+						<span className="flex-fill d-inline-block myWrap">
+							{this.state.text}
+						</span>
 						{this.state.mine && (
 							<>
 								<GoPencil

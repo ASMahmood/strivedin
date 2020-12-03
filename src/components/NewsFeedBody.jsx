@@ -74,7 +74,7 @@ class NewsFeedBody extends React.Component {
 	render(props) {
 		return (
 			<>
-				<Container className="cardsin">
+				<Container className="cardsin mt-0">
 					<p
 						className="rounded-pill border border-dark p-3 m-2 newPostUi"
 						onClick={() => this.openForm()}

@@ -27,7 +27,7 @@ class OurNavBar extends React.Component {
 	}
 	render() {
 		return (
-			<Container fluid className="position-sticky sticky-top bg-white">
+			<Container fluid className="position-sticky sticky-top bg-white mb-5">
 				<Container>
 					<Navbar
 						variant="light"
