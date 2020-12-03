@@ -3,7 +3,7 @@ import "../css/Evgeni.css";
 import { BsPencil } from "react-icons/bs";
 import { Col, Row, Button, Container, Dropdown, Image } from "react-bootstrap";
 import { me, addProfilePic } from "../fetch";
-
+var tries = 1;
 class MyJumbotron extends React.Component {
   state = {
     myObject: {},
@@ -38,6 +38,16 @@ class MyJumbotron extends React.Component {
     let parsedResponse = await addProfilePic(formData, this.state.myObject._id);
     console.log(parsedResponse);
   };
+
+  showChangeAvatar = () => {
+    let inputButton = document.querySelector(".inputImage");
+    if (tries % 2 == 1) {
+      inputButton.classList.remove("d-none");
+    } else {
+      inputButton.classList.add("d-none");
+    }
+    tries++;
+  };
   componentDidMount = () => {
     console.log("id passed to the jumbotron", this.props.id);
     this.fetchMe(this.props.id);
@@ -66,23 +76,24 @@ class MyJumbotron extends React.Component {
           />
         </Row>
         <Row>
-          <Col sm={8} xs={10}>
+          <Col sm={10} xs={10}>
             <Image
-              className="profilePhoto"
+              className="profilePhoto "
               src={this.state.myObject.image}
               fluid
               roundedCircle
+              onClick={() => this.showChangeAvatar()}
             />
-          </Col>
-          <Col sm={4} xs={2}>
             <input
-              className="inputImage ml-5"
+              className="inputImage d-none"
               type="file"
               id="avatar"
               name="avatar"
               accept="image/png, image/jpeg"
               onChange={(event) => this.fetchAddProfilePic(event)}
             />
+          </Col>
+          <Col sm={2} xs={2}>
             <BsPencil className="pencil" />
           </Col>
         </Row>
