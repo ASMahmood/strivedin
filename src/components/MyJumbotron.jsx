@@ -11,12 +11,15 @@ class MyJumbotron extends React.Component {
 	fetchMe = async (id) => {
 		try {
 			console.log(this.props.tracksUrl)
+			let TOKEN = process.env.REACT_APP_TOKEN
 			let response = await fetch(
 				`https://striveschool-api.herokuapp.com/api/profile/${id ? id : "me"}`,
 				{
 					method: "GET",
 					headers: new Headers({
-						Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
+
+						Authorization: `Bearer ${TOKEN}`,
+
 					}),
 				}
 			)
@@ -26,11 +29,13 @@ class MyJumbotron extends React.Component {
 		} catch (e) {
 			console.log("ERROR fetching" + e)
 		}
-		/*	let parsedResponse = await me()
-		this.setState({ myObject: parsedResponse })*/
+
+		//let parsedResponse = await me()
+		//this.setState({ myObject: parsedResponse })
+
 	}
 	componentDidMount = () => {
-		console.log("id passed to the jumbotron", this.props.id)
+		// console.log("id passed to the jumbotron", this.props.id)
 		this.fetchMe(this.props.id)
 	}
 	componentDidUpdate = (oldprops) => {
@@ -40,7 +45,7 @@ class MyJumbotron extends React.Component {
 	}
 	render() {
 		return (
-			<Container className="notJumbotronContainer">
+			<Container className="notJumbotronContainer cardsin content">
 				<Row>
 					<Image
 						className="coverPhoto"

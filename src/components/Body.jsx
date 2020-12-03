@@ -3,6 +3,8 @@ import Experience from "./Experience.jsx"
 import { AiOutlinePlus } from "react-icons/ai"
 import AddExperience from "./AddExperience.jsx"
 
+import { me } from "../fetch"
+
 //HERE IS PROFILE BODY
 
 class Body extends React.Component {
@@ -12,16 +14,25 @@ class Body extends React.Component {
 		errMessage: "",
 		loading: false,
 		exId: "",
+
+		id: false,
+
 	}
 
 	//THis fetch for showing experiences based on id/Id is coming from clicking
 	fetch = async () => {
+		let TOKEN = process.env.REACT_APP_TOKEN
+		console.log("this.state.id", this.state.id)
 		//old url https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences
-		const url = `https://striveschool-api.herokuapp.com/api/profile/${this.props.id}/experiences`
+		const url = `https://striveschool-api.herokuapp.com/api/profile/${
+			this.props.id === "me" ? this.state.id : this.props.id
+		}/experiences`
 		let response = await fetch(url, {
 			method: "GET",
 			headers: {
-				Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
+
+				Authorization: `Bearer ${TOKEN}`,
+
 			},
 		})
 		if (response.ok) {
@@ -32,7 +43,15 @@ class Body extends React.Component {
 		}
 	}
 	componentDidMount = () => {
-		this.fetch()
+		this.myId()
+		//this.fetch()
+	}
+
+	myId = async () => {
+		let id = await me()
+		id = id._id
+		this.setState({ id }, this.fetch)
+		console.log("my own id", id)
 	}
 
 	//when comes the new id , it updates the profile page based on new id
@@ -49,6 +68,9 @@ class Body extends React.Component {
 	//Here the showMode (false) is coming from a child component(AddExperience-inside of the Modal)
 	handleClose = (showMode) => {
 		this.setState({ show: showMode, exId: "" })
+
+		this.myId()
+
 		this.fetch()
 	}
 
@@ -61,6 +83,7 @@ class Body extends React.Component {
 						show={this.state.show}
 						handleClose={this.handleClose}
 						exId={this.state.exId}
+						uid={this.state.id}
 					/>
 				)}
 
@@ -84,6 +107,7 @@ class Body extends React.Component {
 							description={experience.description}
 							startDate={experience.startDate}
 							endDate={experience.endDate}
+							image={experience.image}
 							area={experience.area}
 							handleShow={this.handleShow} //It accepts the showMode:true as prop from Experience and triggers the modal(add experience) open
 							handleId={this.handleId}
