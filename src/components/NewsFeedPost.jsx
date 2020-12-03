@@ -1,6 +1,12 @@
 import React from "react"
-import { Card, Image } from "react-bootstrap"
+import { Card, Image, Container } from "react-bootstrap"
 import { GoPencil, GoTrashcan } from "react-icons/go"
+import {
+	formatISO9075,
+	compareAsc,
+	formatDuration,
+	intervalToDuration,
+} from "date-fns"
 
 class NewsFeedPost extends React.Component {
 	constructor(props) {
@@ -36,37 +42,55 @@ class NewsFeedPost extends React.Component {
 	}
 
 	render() {
+		let created = new Date(this.state.createdAt)
+		let updated = new Date(this.state.updatedAt)
 		return (
 			<Card className="cardsin">
-				<Card.Header>
-					<Image
-						src={this.state.user.image}
-						className="miniProfilePic"
-						roundedCircle
-					/>
-					<b className="ml-1">
-						{this.state.user.name} {this.state.user.surname}
-					</b>
-				</Card.Header>
-				<Card.Body className="d-flex flex-row">
-					<span className="flex-fill">{this.state.text}</span>
-					{this.state.mine && (
-						<>
-							<GoPencil
-								className="icons mx-1"
-								onClick={() =>
-									this.props.edit({
-										text: this.state.text,
-										id: this.state._id,
-									})
-								}
-							/>
-							<GoTrashcan
-								className="icons"
-								onClick={() => this.deleteMe(this.state._id)}
-							/>
-						</>
-					)}
+				<Card.Body className="d-flex flex-column">
+					<Container className="d-flex flex-row">
+						<Image
+							src={this.state.user.image}
+							className="miniProfilePic"
+							roundedCircle
+						/>
+						<b className="ml-1">
+							{this.state.user.name} {this.state.user.surname}
+						</b>
+					</Container>
+					<div className="myHr w-100 bg-dark my-1" />
+					<Container className="d-flex flex-row">
+						<span className="flex-fill">{this.state.text}</span>
+						{this.state.mine && (
+							<>
+								<GoPencil
+									className="icons mx-1"
+									onClick={() =>
+										this.props.edit({
+											text: this.state.text,
+											id: this.state._id,
+										})
+									}
+								/>
+								<GoTrashcan
+									className="icons"
+									onClick={() => this.deleteMe(this.state._id)}
+								/>
+							</>
+						)}
+					</Container>
+					<div className="myHr w-100 bg-dark my-1" />
+					<Container className=" d-flex flex-row-reverse ">
+						{compareAsc(created, updated) !== 0 && (
+							<span>
+								edited{" "}
+								{formatDuration(
+									intervalToDuration({ start: created, end: updated })
+								)}{" "}
+								ago
+							</span>
+						)}
+						<span className="mx-1">created at {formatISO9075(created)}</span>
+					</Container>
 				</Card.Body>
 			</Card>
 		)
