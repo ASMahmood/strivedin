@@ -7,7 +7,7 @@ class Sidebar0 extends React.Component {
 	render() {
 		return (
 			<>
-				<div className="cardsin pt-3 px-3 pb-0 ">
+				<div className="cardsin pt-3 px-3 pb-0 mt-0">
 					<div className="d-flex content ">
 						<h6 className="d-inline"> Edit Public Profile & URL</h6>
 						<BsQuestionCircleFill className="icons0 ml-auto" />

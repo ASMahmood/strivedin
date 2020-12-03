@@ -29,14 +29,14 @@ class Home extends React.Component {
 			<>
 				<Container>
 					<Row>
-						<Col md={9} className="bodyColumn">
+						<Col md={12} lg={9} className="bodyColumn">
 							{/**here goes the body*/}
 							<MyJumbotron id={this.gotId()} />
 							<YourDashboard />
 							<GenericBody />
 							<Body title="Experience" id={this.gotId()} />
 						</Col>
-						<Col md={3}>
+						<Col md={12} lg={3}>
 							<Sidebar0 />
 							<Sidebar title="Our Team" />
 							<Sidebar title="People also viewed" />
