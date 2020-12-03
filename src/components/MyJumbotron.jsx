@@ -9,15 +9,15 @@ class MyJumbotron extends React.Component {
 		myObject: {},
 	}
 	fetchMe = async (id) => {
-		/*try {
+		try {
 			console.log(this.props.tracksUrl)
+			let TOKEN = process.env.REACT_APP_TOKEN
 			let response = await fetch(
 				`https://striveschool-api.herokuapp.com/api/profile/${id ? id : "me"}`,
 				{
 					method: "GET",
 					headers: new Headers({
-						Authorization:
-							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0Y2MwNGVkMjY2ODAwMTcwZWEzZTEiLCJpYXQiOjE2MDY3MzI4MDQsImV4cCI6MTYwNzk0MjQwNH0.5SXRMRe0ODrHgIQD_X5IjaBng7GYCNd_FeZthitZ8bs",
+						Authorization: `Bearer ${TOKEN}`,
 					}),
 				}
 			)
@@ -26,9 +26,9 @@ class MyJumbotron extends React.Component {
 			console.log(parsedResponse)
 		} catch (e) {
 			console.log("ERROR fetching" + e)
-    }*/
-		let parsedResponse = await me()
-		this.setState({ myObject: parsedResponse })
+		}
+		//let parsedResponse = await me()
+		//this.setState({ myObject: parsedResponse })
 	}
 	componentDidMount = () => {
 		// console.log("id passed to the jumbotron", this.props.id)
@@ -62,7 +62,7 @@ class MyJumbotron extends React.Component {
 						<BsPencil className="pencil" />
 					</Col>
 				</Row>
-				<Row className= "username">{this.state.myObject.username}</Row>
+				<Row className="username">{this.state.myObject.username}</Row>
 				{/*<Row className="bio">{this.state.myObject.bio}</Row> i commented this out because it broke stuff if the bio was too long*/}
 				<Row className="bio">
 					{this.state && new String(this.state.myObject.bio).substring(0, 200)}
