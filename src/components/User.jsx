@@ -10,7 +10,7 @@ class User extends React.Component {
 				<Image className="userpic" src={this.props.image} />
 				<div>
 					<Link to={`/profile/${this.props.id}`}>
-						<h6> {this.props.name}</h6>
+						<h6> {this.props.name} </h6>
 					</Link>
 					<p className="mb-0">{this.props.title}</p>
 				</div>
