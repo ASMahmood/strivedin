@@ -41,7 +41,7 @@ class MyJumbotron extends React.Component {
 	}
 	render() {
 		return (
-			<Container className="notJumbotronContainer">
+			<Container className="notJumbotronContainer cardsin content">
 				<Row>
 					<Image
 						className="coverPhoto"
@@ -62,7 +62,7 @@ class MyJumbotron extends React.Component {
 						<BsPencil className="pencil" />
 					</Col>
 				</Row>
-				<Row className="username">{this.state.myObject.username}</Row>
+				<Row className= "username">{this.state.myObject.username}</Row>
 				{/*<Row className="bio">{this.state.myObject.bio}</Row> i commented this out because it broke stuff if the bio was too long*/}
 				<Row className="bio">
 					{this.state && new String(this.state.myObject.bio).substring(0, 200)}
