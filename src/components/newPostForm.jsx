@@ -27,6 +27,7 @@ class NewPostForm extends React.Component {
 				}
 			)
 			console.log("the server responded", response)
+			this.props.refresh()
 		} catch (error) {
 			console.error(error)
 		}
@@ -34,7 +35,7 @@ class NewPostForm extends React.Component {
 	componentDidMount() {
 		if (this.props.edit) {
 			this.setState({
-				text: this.props.edit.text,
+				message: { text: this.props.edit.text },
 				method: "PUT",
 				id: this.props.edit.id,
 			})

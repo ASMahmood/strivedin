@@ -4,6 +4,7 @@ import {Modal, Button,Form, Col,Image} from 'react-bootstrap'
 
 class AddExperience extends React.Component {
 
+
     state={
         experience:{
             role:'',
@@ -97,7 +98,8 @@ class AddExperience extends React.Component {
                     errMessage: '',
                     loading: false,
                 })
-                this.handleClose()
+				this.handleClose()
+				
             } else {
                 console.log('an error occurred')
                 let error = await response.json()
@@ -116,7 +118,6 @@ class AddExperience extends React.Component {
 
     }
 
-  
     submitForm=(e)=> {
         e.preventDefault()
         this.setState({loading:true})
@@ -212,32 +213,27 @@ class AddExperience extends React.Component {
          })
        }
        
-
-        componentDidMount=async()=>{
-            console.log(this.props.exId)
-
-            if(this.props.exId){
-        this.getFetch()
-       
-            }
-            }
-    
-   
-   
-  
+	submitForm = (e) => {
+		e.preventDefault()
+		this.setState({ loading: true })
+		this.EditFetch()
+	}
 
 
+	componentDidMount = async () => {
+		console.log(this.props.exId)
 
-
-
-
+		if (this.props.exId) {
+			this.getFetch()
+		}
+	}
 
 	render() {
        
       
 
-        const {show } = this.props
-		return(
+		const { show } = this.props
+		return (
 			<>
            
          <Modal show={show} onHide={this.handleClose} >

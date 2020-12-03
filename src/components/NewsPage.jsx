@@ -1,3 +1,5 @@
+import LeftSidebarNewsPage from "./leftSideBarNewsPage"
+
 import React from "react"
 import Sidebar from "./Sidebar"
 import Sidebar0 from "./Sidebar0"
@@ -26,11 +28,13 @@ class Newsfeed extends React.Component {
 			<>
 				<Container>
 					<Row>
-						<Col md={3} className="leftSidebar"></Col>
-						<Col md={6} className="bodyColumn">
+						<Col md={12} lg={3} className="leftSidebar mb-3">
+							<LeftSidebarNewsPage />
+						</Col>
+						<Col md={8} lg={5} className="bodyColumn mb-3">
 							<NewsFeedBody />
 						</Col>
-						<Col md={3}>
+						<Col md={4} className=" mb-3">
 							<Sidebar0 />
 							<Sidebar title="Our Team" />
 							<Sidebar title="People also viewed" />
