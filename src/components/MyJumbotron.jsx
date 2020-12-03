@@ -17,7 +17,9 @@ class MyJumbotron extends React.Component {
 				{
 					method: "GET",
 					headers: new Headers({
+
 						Authorization: `Bearer ${TOKEN}`,
+
 					}),
 				}
 			)
@@ -27,8 +29,10 @@ class MyJumbotron extends React.Component {
 		} catch (e) {
 			console.log("ERROR fetching" + e)
 		}
+
 		//let parsedResponse = await me()
 		//this.setState({ myObject: parsedResponse })
+
 	}
 	componentDidMount = () => {
 		// console.log("id passed to the jumbotron", this.props.id)

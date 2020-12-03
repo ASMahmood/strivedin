@@ -62,6 +62,7 @@ class AddExperience extends React.Component {
 					body: JSON.stringify(this.state.experience),
 					headers: new Headers({
 						"Content-Type": "application/json",
+
 						Authorization: `Bearer ${TOKEN}`,
 					}),
 				})
@@ -73,7 +74,9 @@ class AddExperience extends React.Component {
 						body: JSON.stringify(this.state.experience),
 						headers: new Headers({
 							"Content-Type": "application/json",
+
 							Authorization: `Bearer ${TOKEN}`,
+
 						}),
 					}
 				)
@@ -127,6 +130,7 @@ class AddExperience extends React.Component {
 			let response = await fetch(url + this.props.exId, {
 				method: "GET",
 				headers: {
+
 					Authorization: `Bearer ${TOKEN}`,
 				},
 			})
@@ -157,7 +161,9 @@ class AddExperience extends React.Component {
 			let response = await fetch(url + this.props.exId, {
 				method: "DELETE",
 				headers: {
+
 					Authorization: `Bearer ${TOKEN}`,
+
 				},
 			})
 			if (response.ok) {

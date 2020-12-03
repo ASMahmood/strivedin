@@ -2,7 +2,9 @@ import React from "react"
 import Experience from "./Experience.jsx"
 import { AiOutlinePlus } from "react-icons/ai"
 import AddExperience from "./AddExperience.jsx"
+
 import { me } from "../fetch"
+
 //HERE IS PROFILE BODY
 
 class Body extends React.Component {
@@ -12,7 +14,9 @@ class Body extends React.Component {
 		errMessage: "",
 		loading: false,
 		exId: "",
+
 		id: false,
+
 	}
 
 	//THis fetch for showing experiences based on id/Id is coming from clicking
@@ -26,7 +30,9 @@ class Body extends React.Component {
 		let response = await fetch(url, {
 			method: "GET",
 			headers: {
+
 				Authorization: `Bearer ${TOKEN}`,
+
 			},
 		})
 		if (response.ok) {
@@ -62,7 +68,9 @@ class Body extends React.Component {
 	//Here the showMode (false) is coming from a child component(AddExperience-inside of the Modal)
 	handleClose = (showMode) => {
 		this.setState({ show: showMode, exId: "" })
+
 		this.myId()
+
 		this.fetch()
 	}
 
