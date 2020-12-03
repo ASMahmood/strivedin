@@ -5,33 +5,59 @@ class NewPostForm extends React.Component {
 		message: { text: "" },
 		method: "POST",
 		id: "",
+		data: null,
 	}
 	controlMessage = (event) => {
 		console.log("trying to type a message", event.target.value)
+		const data = new FormData()
+		data.append("text", this.state.message.text)
 		let text = event.currentTarget.value
-		this.setState({ message: { text } })
+		this.setState({ message: { text }, data })
+	}
+	handleImg = (ev) => {
+		console.log("/****image uploader handler function****")
+		console.log("target", ev.target)
+		const data = new FormData()
+		data.append("post", ev.target.files[0])
+		this.setState({ data })
 	}
 	post = async () => {
+		let TOKEN = process.env.REACT_APP_TOKEN
+		let text = {
+			method: `${this.state.method}`,
+			headers: new Headers({
+				Authorization: `Bearer ${TOKEN}`,
+				"Content-Type": "application/json",
+			}),
+			body: JSON.stringify(this.state.message),
+		}
+
+		let img = {
+			method: `PUT`,
+			headers: new Headers({
+				Authorization: `Bearer ${TOKEN}`,
+				"Content-Type": "multipart/form-data",
+			}),
+			body: this.state.data,
+		}
+
 		try {
 			console.log("editing message debug", JSON.stringify(this.state.message))
-			let TOKEN = process.env.REACT_APP_TOKEN
+
 			let response = await fetch(
 				`https://striveschool-api.herokuapp.com/api/posts/${this.state.id}`,
-				{
-					method: `${this.state.method}`,
-					headers: new Headers({
-						Authorization: `Bearer ${TOKEN}`,
-						"Content-Type": "application/json",
-					}),
-					body: JSON.stringify(this.state.message),
-				}
+				this.state.method !== "img" ? text : img
 			)
-			console.log("the server responded", response)
+			if (this.state.method !== "img" && this.state.data !== "null") {
+				response = await response.json()
+				this.setState({ method: "img", id: response._id }, this.post)
+			}
 			this.props.refresh()
 		} catch (error) {
 			console.error(error)
 		}
 	}
+
 	componentDidMount() {
 		if (this.props.edit) {
 			this.setState({
@@ -66,6 +92,15 @@ class NewPostForm extends React.Component {
 							onChange={this.controlMessage}
 							value={this.state.message.text}
 						></Form.Control>
+						{this.props.photo === "photo" && (
+							<Form.File
+								id="picture"
+								label="add a picture"
+								name="pic"
+								onChange={this.handleImg}
+							/>
+						)}
+
 						<Button
 							className="rounded-pill greyButton float-right mt-1 py-0"
 							disabled={this.state.message.text ? false : true}
