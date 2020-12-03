@@ -10,6 +10,7 @@ import MyJumbotron from "./MyJumbotron"
 import Footer from "./Footer"
 import { withRouter } from "react-router-dom"
 import YourDashboard from "./YourDashboard"
+import { me } from "../fetch"
 
 /**
  * we will neeed this when we start routing stuff
@@ -22,6 +23,12 @@ class Home extends React.Component {
 
 	gotId = () => {
 		return this.props.match.params.id ? this.props.match.params.id : "me"
+	}
+
+	myId = async () => {
+		let id = await me()
+		id = id._id
+		return id
 	}
 
 	render() {
