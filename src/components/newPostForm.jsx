@@ -46,7 +46,7 @@ class NewPostForm extends React.Component {
 	}
 	render() {
 		return (
-			<Container className="d-flex flex-row">
+			<Container className="d-flex flex-row ">
 				<Image
 					roundedCircle
 					src="http://placehold.it/100x100"
