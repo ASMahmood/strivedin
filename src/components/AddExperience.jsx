@@ -1,6 +1,6 @@
 import React from "react"
 
-import {Modal, Button,Form, Col} from 'react-bootstrap'
+import {Modal, Button,Form, Col,Image} from 'react-bootstrap'
 
 class AddExperience extends React.Component {
 
@@ -19,6 +19,7 @@ class AddExperience extends React.Component {
             description:''
 
         },
+        formData:null,
       
         exp:{},
         errMessage:'',
@@ -120,6 +121,8 @@ class AddExperience extends React.Component {
         e.preventDefault()
         this.setState({loading:true})
         this.EditFetch()
+        this.UploadImageFetch()
+        
         
     }
 
@@ -188,50 +191,34 @@ class AddExperience extends React.Component {
          console.log("target",event.target)
          const formData = new FormData()
          formData.append("experience", event.target.files[0])
-         fetch('https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences/'+ this.props.exId +'/picture', {
+         this.setState({formData})
+        
+            
+       }
+
+       UploadImageFetch=()=>{
+        fetch('https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences/'+ this.props.exId +'/picture', {
             method: 'POST',
-            body: formData,
+            body: this.state.formData,
             headers: new Headers({
                 // "Content-Type": "application/json",
                 Authorization:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q"
             })
          })
          .then(response => response.json())
-         .then(data => {
-             console.log(data)
-         })
+        
          .catch(error => {
              console.error(error)
          })
-            
        }
-       handleImageFetch=()=>{ 
        
-            
-           
-        fetch('https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences/'+ this.props.exId +'/picture', {
-           
-            headers: {
-                Authorization:
-                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
-            },
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("images",data)
-        })
-        .catch(error => {
-            console.error(error)
-        })
-           
-      }
 
         componentDidMount=async()=>{
             console.log(this.props.exId)
 
             if(this.props.exId){
         this.getFetch()
-        this.handleImageFetch()
+       
             }
             }
     
@@ -255,7 +242,7 @@ class AddExperience extends React.Component {
            
          <Modal show={show} onHide={this.handleClose} >
          <Modal.Header closeButton>
-           <Modal.Title>Add Experience</Modal.Title>
+           <Modal.Title>{this.props.exId? <p>Edit/Delete Experience</p>:<p>Add New Experience</p>}</Modal.Title>
          </Modal.Header>
          <Modal.Body>
                     <Form  onSubmit={this.submitForm}>
@@ -291,12 +278,13 @@ class AddExperience extends React.Component {
                                   Country Spesific Employment Types
                             </Form.Label>
                             </Form.Group>
-                            <Form.Group    >
-                                <Form.Label>Image</Form.Label>
-                                
-                                <Form.Control id="fileUpload" type="file"   onChange={this.handleImageUpload}  />
-                                
+                       
+                            
+                            <Form.Group  >
+                                <Form.Label>Change the Image</Form.Label>
+                                <Form.Control id="fileUpload" type="file"  onChange={this.handleImageUpload}  />
                             </Form.Group>
+                        
                             <Form.Group  >
                                 <Form.Label>Company *</Form.Label>
                                 <Form.Control  id="company"  type="text"  value={this.state.experience.company} onChange={this.updateField} placeholder="Ex: Strive School" required/>                   

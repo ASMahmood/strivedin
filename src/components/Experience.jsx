@@ -38,7 +38,7 @@ import {Image} from "react-bootstrap"
         render(){
             //  console.log("id:",this.props.id)
 
-           const {company,role, area, startDate, endDate,id } = this.props
+           const {company,role, area, startDate, endDate,id,image} = this.props
            //console.log(startDate,endDate)
             // new Date(endDate).getDate() + '-'+ new Date(endDate).getFullYear() + '-'+ (parseInt(new Date(endDate).getMonth())+1)
         
@@ -50,7 +50,7 @@ import {Image} from "react-bootstrap"
            <>
             
             <div className="d-flex  content  mt-3 mb-3 ">
-            <Image className="Img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG9FxYCx3Z63hljZuqkk2220u1CtSQc8xX1exxCkxBnlVC3PXVhRwgFUzvK3Z5t33ZmHR9yZ-DB3h_Co4z5N4g5H8gX-Fj6Uo&usqp=CAU&ec=45732304"/>
+            <Image className="Img" src={image}/>
             <div className="ml-3">
                 <h6> {role} </h6>
                 <p className="mb-0 ">{company}</p>

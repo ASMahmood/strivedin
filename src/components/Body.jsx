@@ -88,9 +88,11 @@ class Body extends React.Component {
 							description={experience.description}
 							startDate={experience.startDate}
 							endDate={experience.endDate}
+							image={experience.image}
 							area={experience.area}
 							handleShow={this.handleShow}//It accepts the showMode:true as prop from Experience and triggers the modal(add experience) open
 							handleId={this.handleId}
+							
 							
 
 						/>
