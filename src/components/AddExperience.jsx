@@ -15,7 +15,6 @@ class AddExperience extends React.Component {
             
             endDate:'',
             updateIndustry:false,
-            updateHeadline:true,
             headline:'',
             description:''
 
@@ -151,6 +150,7 @@ class AddExperience extends React.Component {
 
                 },})
             }
+           
         }
         catch(e){
             console.log(e)
@@ -183,13 +183,55 @@ class AddExperience extends React.Component {
        };
    
        
-
+       handleImageUpload=(event)=>{ 
+       
+         console.log("target",event.target)
+         const formData = new FormData()
+         formData.append("experience", event.target.files[0])
+         fetch('https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences/'+ this.props.exId +'/picture', {
+            method: 'POST',
+            body: formData,
+            headers: new Headers({
+                // "Content-Type": "application/json",
+                Authorization:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q"
+            })
+         })
+         .then(response => response.json())
+         .then(data => {
+             console.log(data)
+         })
+         .catch(error => {
+             console.error(error)
+         })
+            
+       }
+       handleImageFetch=()=>{ 
+       
+            
+           
+        fetch('https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences/'+ this.props.exId +'/picture', {
+           
+            headers: {
+                Authorization:
+                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("images",data)
+        })
+        .catch(error => {
+            console.error(error)
+        })
+           
+      }
 
         componentDidMount=async()=>{
             console.log(this.props.exId)
 
             if(this.props.exId){
         this.getFetch()
+        this.handleImageFetch()
             }
             }
     
@@ -205,7 +247,7 @@ class AddExperience extends React.Component {
 
 	render() {
        
-        // console.log("id:",this.props.match.params.id)
+      
 
         const {show } = this.props
 		return(
@@ -248,6 +290,12 @@ class AddExperience extends React.Component {
                                 <Form.Label htmlFor="employmentType">
                                   Country Spesific Employment Types
                             </Form.Label>
+                            </Form.Group>
+                            <Form.Group    >
+                                <Form.Label>Image</Form.Label>
+                                
+                                <Form.Control id="fileUpload" type="file"   onChange={this.handleImageUpload}  />
+                                
                             </Form.Group>
                             <Form.Group  >
                                 <Form.Label>Company *</Form.Label>

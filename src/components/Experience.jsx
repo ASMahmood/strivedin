@@ -14,6 +14,23 @@ import {Image} from "react-bootstrap"
     SomeFunc= () => {
         this.handleShow()
         this.handleId()}
+
+
+       
+       
+
+     
+
+        // // a and b are javascript Date objects
+        //  dateDiffInDays=(a, b)=> {
+        //     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+        //   // Discard the time and time-zone information.
+        //   const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+        //   const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+        
+        //   return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+        // }
+        
     
 
 		
@@ -41,7 +58,7 @@ import {Image} from "react-bootstrap"
                 
                
                 <p className="mb-0 d-inline ">{endDate && format (parseISO(endDate),'dd-MM-yyyy')}</p>
-                <p className="mb-0 d-inline ">{endDate && differenceInCalendarDays(endDate,startDate)}</p>
+                {/* <p className="mb-0 d-inline ">{endDate && this.dateDiffInDays(endDate,startDate)}</p> */}
                 <p className="mb-0">{area}</p>
                 
             </div>
