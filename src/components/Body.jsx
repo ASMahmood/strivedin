@@ -3,8 +3,7 @@ import Experience from "./Experience.jsx"
 import { AiOutlinePlus } from "react-icons/ai"
 import AddExperience from "./AddExperience.jsx"
 
-//HERE IS PROFILE BODY 
-
+//HERE IS PROFILE BODY
 
 class Body extends React.Component {
 	state = {
@@ -12,19 +11,17 @@ class Body extends React.Component {
 		show: false,
 		errMessage: "",
 		loading: false,
-		exId:''
+		exId: "",
 	}
 
-
- //THis fetch for showing experiences based on id/Id is coming from clicking
+	//THis fetch for showing experiences based on id/Id is coming from clicking
 	fetch = async () => {
 		//old url https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences
 		const url = `https://striveschool-api.herokuapp.com/api/profile/${this.props.id}/experiences`
 		let response = await fetch(url, {
 			method: "GET",
 			headers: {
-				Authorization:
-					"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+				Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
 			},
 		})
 		if (response.ok) {
@@ -38,7 +35,6 @@ class Body extends React.Component {
 		this.fetch()
 	}
 
-    
 	//when comes the new id , it updates the profile page based on new id
 	componentDidUpdate = (oldprops) => {
 		if (oldprops.id !== this.props.id) {
@@ -47,17 +43,17 @@ class Body extends React.Component {
 	}
 
 	//It opens the modal in the component(AddExperience)
-	handleShow = (showMode) => this.setState({ show: showMode})
-	handleId= (id) => this.setState({ exId: id})
+	handleShow = (showMode) => this.setState({ show: showMode })
+	handleId = (id) => this.setState({ exId: id })
 
 	//Here the showMode (false) is coming from a child component(AddExperience-inside of the Modal)
 	handleClose = (showMode) => {
-		this.setState({ show: showMode, exId:'' })
+		this.setState({ show: showMode, exId: "" })
 		this.fetch()
 	}
 
 	render() {
-		console.log("ex id:",this.state.exId)
+		console.log("ex id:", this.state.exId)
 		return (
 			<>
 				{this.state.show && (
@@ -89,10 +85,8 @@ class Body extends React.Component {
 							startDate={experience.startDate}
 							endDate={experience.endDate}
 							area={experience.area}
-							handleShow={this.handleShow}//It accepts the showMode:true as prop from Experience and triggers the modal(add experience) open
+							handleShow={this.handleShow} //It accepts the showMode:true as prop from Experience and triggers the modal(add experience) open
 							handleId={this.handleId}
-							
-
 						/>
 					))}
 				</div>

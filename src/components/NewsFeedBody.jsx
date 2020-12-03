@@ -17,8 +17,11 @@ class NewsFeedBody extends React.Component {
 		this.stopPosting = this.stopPosting.bind(this)
 		this.editMe = this.editMe.bind(this)
 	}
-	openForm() {
+	/*openForm() {
 		this.setState({ openForm: true })
+	}*/
+	openForm(mode = true) {
+		this.setState({ openForm: mode })
 	}
 	editMe(editMe) {
 		this.setState({ editMe }, () => this.setState({ openForm: true }))
@@ -37,6 +40,7 @@ class NewsFeedBody extends React.Component {
 				}
 			)
 			response = await response.json()
+			console.log("got posts", response)
 			return response.reverse()
 		} catch (error) {
 			console.error(error)
@@ -97,7 +101,7 @@ class NewsFeedBody extends React.Component {
 						<Button
 							variant="white"
 							className="postTypeBtn newPostUi"
-							onClick={() => this.openForm()}
+							onClick={() => this.openForm("photo")}
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -201,6 +205,7 @@ class NewsFeedBody extends React.Component {
 						<NewPostForm
 							edit={this.state.editMe ? this.state.editMe : false}
 							refresh={this.stopPosting}
+							photo={this.state.openForm}
 						/>
 					</Modal.Body>
 				</Modal>

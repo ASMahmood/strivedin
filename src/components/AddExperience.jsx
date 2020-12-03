@@ -55,8 +55,7 @@ class AddExperience extends React.Component {
 					body: JSON.stringify(this.state.experience),
 					headers: new Headers({
 						"Content-Type": "application/json",
-						Authorization:
-							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+						Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
 					}),
 				})
 			} else {
@@ -67,8 +66,7 @@ class AddExperience extends React.Component {
 						body: JSON.stringify(this.state.experience),
 						headers: new Headers({
 							"Content-Type": "application/json",
-							Authorization:
-								"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+							Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
 						}),
 					}
 				)
@@ -118,8 +116,7 @@ class AddExperience extends React.Component {
 			let response = await fetch(url + this.props.exId, {
 				method: "GET",
 				headers: {
-					Authorization:
-						"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+					Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
 				},
 			})
 			if (response.ok) {
@@ -148,8 +145,7 @@ class AddExperience extends React.Component {
 			let response = await fetch(url + this.props.exId, {
 				method: "DELETE",
 				headers: {
-					Authorization:
-						"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+					Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
 				},
 			})
 			if (response.ok) {
