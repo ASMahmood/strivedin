@@ -80,7 +80,7 @@ class NewsFeedBody extends React.Component {
 			<>
 				<Container className="cardsin mt-0">
 					<p
-						className="rounded-pill border border-dark p-3 m-2 newPostUi"
+						className="rounded-pill border  p-3 m-2 newPostUi"
 						onClick={() => this.openForm()}
 					>
 						<svg
