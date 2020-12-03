@@ -53,6 +53,7 @@ class AddExperience extends React.Component {
     }
 
     EditFetch= async ()=>{
+		let TOKEN = process.env.REACT_APP_TOKEN
         let response
 
         try {
@@ -63,7 +64,7 @@ class AddExperience extends React.Component {
                         body: JSON.stringify(this.state.experience),
                                  headers: new Headers({
                                      "Content-Type": "application/json",
-                                     Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+                                     Authorization: `Bearer ${TOKEN}`,
                                  })
                              })
                 }
@@ -75,7 +76,7 @@ class AddExperience extends React.Component {
                     body: JSON.stringify(this.state.experience),
                     headers: new Headers({
                         "Content-Type": "application/json",
-                        Authorization:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q"
+                        Authorization:`Bearer ${TOKEN}`
                     })
                 })}
                             
@@ -128,6 +129,7 @@ class AddExperience extends React.Component {
 
 
     getFetch=async()=>{
+		let TOKEN = process.env.REACT_APP_TOKEN
 
     try{
             const url = `https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences/`
@@ -135,7 +137,7 @@ class AddExperience extends React.Component {
                 method: "GET",
                 headers: {
                     Authorization:
-                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+					`Bearer ${TOKEN}`,
                 },
             })
             if (response.ok) {
@@ -161,13 +163,14 @@ class AddExperience extends React.Component {
     }
   
     handleDelete = async () => {
+		let TOKEN = process.env.REACT_APP_TOKEN
         try{
             const url = `https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences/`
        let response = await fetch(url + this.props.exId, {
            method: "DELETE",
            headers: {
                Authorization:
-                   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+			   `Bearer ${TOKEN}`,
            },
        })
            if (response.ok) {
@@ -197,12 +200,14 @@ class AddExperience extends React.Component {
        }
 
        UploadImageFetch=()=>{
+		let TOKEN = process.env.REACT_APP_TOKEN
+
         fetch('https://striveschool-api.herokuapp.com/api/profile/5fc4c459ed266800170ea3d7/experiences/'+ this.props.exId +'/picture', {
             method: 'POST',
             body: this.state.formData,
             headers: new Headers({
                 // "Content-Type": "application/json",
-                Authorization:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q"
+                Authorization:`Bearer ${TOKEN}`
             })
          })
          .then(response => response.json())

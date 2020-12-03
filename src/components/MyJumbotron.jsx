@@ -31,7 +31,7 @@ class MyJumbotron extends React.Component {
 		this.setState({ myObject: parsedResponse })
 	}
 	componentDidMount = () => {
-		console.log("id passed to the jumbotron", this.props.id)
+		// console.log("id passed to the jumbotron", this.props.id)
 		this.fetchMe(this.props.id)
 	}
 	componentDidUpdate = (oldprops) => {
