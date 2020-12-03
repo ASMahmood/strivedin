@@ -11,13 +11,15 @@ class MyJumbotron extends React.Component {
   fetchMe = async (id) => {
     /*try {
 			console.log(this.props.tracksUrl)
+			let TOKEN = process.env.REACT_APP_TOKEN
 			let response = await fetch(
 				`https://striveschool-api.herokuapp.com/api/profile/${id ? id : "me"}`,
 				{
 					method: "GET",
 					headers: new Headers({
-						Authorization:
-							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0Y2MwNGVkMjY2ODAwMTcwZWEzZTEiLCJpYXQiOjE2MDY3MzI4MDQsImV4cCI6MTYwNzk0MjQwNH0.5SXRMRe0ODrHgIQD_X5IjaBng7GYCNd_FeZthitZ8bs",
+
+						Authorization: `Bearer ${TOKEN}`,
+
 					}),
 				}
 			)

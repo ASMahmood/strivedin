@@ -14,6 +14,23 @@ import {Image} from "react-bootstrap"
     SomeFunc= () => {
         this.handleShow()
         this.handleId()}
+
+
+       
+       
+
+     
+
+        // // a and b are javascript Date objects
+        //  dateDiffInDays=(a, b)=> {
+        //     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+        //   // Discard the time and time-zone information.
+        //   const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+        //   const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+        
+        //   return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+        // }
+        
     
 
 		
@@ -21,7 +38,7 @@ import {Image} from "react-bootstrap"
         render(){
             //  console.log("id:",this.props.id)
 
-           const {company,role, area, startDate, endDate,id } = this.props
+           const {company,role, area, startDate, endDate,id,image} = this.props
            //console.log(startDate,endDate)
             // new Date(endDate).getDate() + '-'+ new Date(endDate).getFullYear() + '-'+ (parseInt(new Date(endDate).getMonth())+1)
         
@@ -33,7 +50,7 @@ import {Image} from "react-bootstrap"
            <>
             
             <div className="d-flex  content  mt-3 mb-3 ">
-            <Image className="Img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG9FxYCx3Z63hljZuqkk2220u1CtSQc8xX1exxCkxBnlVC3PXVhRwgFUzvK3Z5t33ZmHR9yZ-DB3h_Co4z5N4g5H8gX-Fj6Uo&usqp=CAU&ec=45732304"/>
+            <Image className="Img" src={image}/>
             <div className="ml-3">
                 <h6> {role} </h6>
                 <p className="mb-0 ">{company}</p>
@@ -41,7 +58,7 @@ import {Image} from "react-bootstrap"
                 
                
                 <p className="mb-0 d-inline ">{endDate && format (parseISO(endDate),'dd-MM-yyyy')}</p>
-                <p className="mb-0 d-inline ">{endDate && differenceInCalendarDays(endDate,startDate)}</p>
+                {/* <p className="mb-0 d-inline ">{endDate && this.dateDiffInDays(endDate,startDate)}</p> */}
                 <p className="mb-0">{area}</p>
                 
             </div>

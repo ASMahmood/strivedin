@@ -1,6 +1,7 @@
 import React from "react"
 
-import { Modal, Button, Form, Col } from "react-bootstrap"
+import { Modal, Button, Form, Col, Image } from "react-bootstrap"
+import { me } from "../fetch"
 
 class AddExperience extends React.Component {
 	state = {
@@ -14,16 +15,21 @@ class AddExperience extends React.Component {
 
 			endDate: "",
 			updateIndustry: false,
-			updateHeadline: true,
 			headline: "",
 			description: "",
 		},
+		formData: null,
 
 		exp: {},
 		errMessage: "",
 		loading: false,
+		id: "",
 	}
-
+	myId = async () => {
+		let id = await me()
+		id = id._id
+		this.setState({ id })
+	}
 	//It passes false as showMode to parent body. It means dont show Modal.
 	handleClose = () => this.props.handleClose(false)
 
@@ -45,30 +51,32 @@ class AddExperience extends React.Component {
 	}
 
 	EditFetch = async () => {
+		let TOKEN = process.env.REACT_APP_TOKEN
 		let response
 
 		try {
 			if (this.props.exId) {
-				const url = `https://striveschool-api.herokuapp.com/api/profile/me/experiences/`
+				const url = `https://striveschool-api.herokuapp.com/api/profile/${this.state.id}/experiences/`
 				response = await fetch(url + this.props.exId, {
 					method: "PUT",
 					body: JSON.stringify(this.state.experience),
 					headers: new Headers({
 						"Content-Type": "application/json",
-						Authorization:
-							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+
+						Authorization: `Bearer ${TOKEN}`,
 					}),
 				})
 			} else {
 				response = await fetch(
-					"https://striveschool-api.herokuapp.com/api/profile/me/experiences",
+					`https://striveschool-api.herokuapp.com/api/profile/${this.state.id}/experiences`,
 					{
 						method: "POST",
 						body: JSON.stringify(this.state.experience),
 						headers: new Headers({
 							"Content-Type": "application/json",
-							Authorization:
-								"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+
+							Authorization: `Bearer ${TOKEN}`,
+
 						}),
 					}
 				)
@@ -110,16 +118,20 @@ class AddExperience extends React.Component {
 		e.preventDefault()
 		this.setState({ loading: true })
 		this.EditFetch()
+		this.UploadImageFetch()
 	}
 
 	getFetch = async () => {
+		let TOKEN = process.env.REACT_APP_TOKEN
+
 		try {
-			const url = `https://striveschool-api.herokuapp.com/api/profile/me/experiences/`
+			//https://striveschool-api.herokuapp.com/api/profile//experiences
+			const url = `https://striveschool-api.herokuapp.com/api/profile/${this.state.id}/experiences/`
 			let response = await fetch(url + this.props.exId, {
 				method: "GET",
 				headers: {
-					Authorization:
-						"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+
+					Authorization: `Bearer ${TOKEN}`,
 				},
 			})
 			if (response.ok) {
@@ -143,13 +155,15 @@ class AddExperience extends React.Component {
 	}
 
 	handleDelete = async () => {
+		let TOKEN = process.env.REACT_APP_TOKEN
 		try {
-			const url = `https://striveschool-api.herokuapp.com/api/profile/me/experiences/`
+			const url = `https://striveschool-api.herokuapp.com/api/profile/${this.state.id}/experiences/`
 			let response = await fetch(url + this.props.exId, {
 				method: "DELETE",
 				headers: {
-					Authorization:
-						"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+
+					Authorization: `Bearer ${TOKEN}`,
+
 				},
 			})
 			if (response.ok) {
@@ -163,23 +177,58 @@ class AddExperience extends React.Component {
 		}
 	}
 
+	handleImageUpload = (event) => {
+		console.log("target", event.target)
+		const formData = new FormData()
+		formData.append("experience", event.target.files[0])
+		this.setState({ formData })
+	}
+
+	UploadImageFetch = () => {
+		let TOKEN = process.env.REACT_APP_TOKEN
+
+		fetch(
+			`https://striveschool-api.herokuapp.com/api/profile/${this.state.id}/experiences/` +
+				this.props.exId +
+				"/picture",
+			{
+				method: "POST",
+				body: this.state.formData,
+				headers: new Headers({
+					// "Content-Type": "application/json",
+					Authorization: `Bearer ${TOKEN}`,
+				}),
+			}
+		)
+			.then((response) => response.json())
+
+			.catch((error) => {
+				console.error(error)
+			})
+	}
+
 	componentDidMount = async () => {
 		console.log(this.props.exId)
+		//this.myId()
 
 		if (this.props.exId) {
-			this.getFetch()
+			this.setState({ id: this.props.uid }, () => this.getFetch())
 		}
 	}
 
 	render() {
-		// console.log("id:",this.props.match.params.id)
-
 		const { show } = this.props
 		return (
 			<>
 				<Modal show={show} onHide={this.handleClose}>
 					<Modal.Header closeButton>
-						<Modal.Title>Add Experience</Modal.Title>
+						<Modal.Title>
+							{this.props.exId ? (
+								<p>Edit/Delete Experience</p>
+							) : (
+								<p>Add New Experience</p>
+							)}
+						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
 						<Form onSubmit={this.submitForm}>
@@ -220,6 +269,16 @@ class AddExperience extends React.Component {
 									Country Spesific Employment Types
 								</Form.Label>
 							</Form.Group>
+
+							<Form.Group>
+								<Form.Label>Change the Image</Form.Label>
+								<Form.Control
+									id="fileUpload"
+									type="file"
+									onChange={this.handleImageUpload}
+								/>
+							</Form.Group>
+
 							<Form.Group>
 								<Form.Label>Company *</Form.Label>
 								<Form.Control
