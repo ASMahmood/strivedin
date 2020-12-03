@@ -12,15 +12,15 @@ class YourDashboard extends React.Component {
         <Row className="privateToYou move"> Private to you </Row>
         <Container fluid className="firstInsideContainer">
           <Row>
-            <Col sm={4}>
+            <Col sm={4} className="colToRepsonse">
               <Row className="number">1</Row>
               <Row className="textInContainer">Who viewed your profile</Row>
             </Col>
-            <Col sm={4} className="colBorderLeft">
+            <Col sm={4} className="colBorderLeft colToRepsonse">
               <Row className="number">0</Row>
               <Row className="textInContainer">Arictle views</Row>
             </Col>
-            <Col sm={4} className="colBorderLeft">
+            <Col sm={4} className="colBorderLeft last colToRepsonse">
               <Row className="number">0</Row>
               <Row className="textInContainer">Search appearances</Row>
             </Col>
@@ -33,7 +33,7 @@ class YourDashboard extends React.Component {
             </Col>
             <Col className="secondColForContainer" sm={11}>
               <Row className="outOfNames">Salary insights </Row>
-              <Row className="outOfNames2">
+              <Row className="outOfNames2 first">
                 See how your salary compares to others in the community{" "}
               </Row>
             </Col>{" "}

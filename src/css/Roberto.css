@@ -9,6 +9,10 @@
 	height: 25px;
 }
 
+.myWrap {
+	word-break: break-all;
+}
+
 .noManualResize {
 	resize: none;
 }
@@ -89,8 +93,4 @@
 	border-right-style: solid;
 	border-right-width: thin;
 	border-right-color: #d6d5d1;
-}
-
-.bodyColumn {
-	margin-top: 20px;
 }
