@@ -1,6 +1,6 @@
 import React from "react"
 import "../css/Evgeni.css"
-import { BsPencil } from "react-icons/bs"
+import {GoPencil} from "react-icons/go"
 import { Col, Row, Button, Container, Dropdown, Image } from "react-bootstrap"
 import { AiOutlinePlus } from "react-icons/ai"
 import { me, addProfilePic } from "../fetch"
@@ -115,7 +115,7 @@ class MyJumbotron extends React.Component {
 							</Dropdown.Menu>
 						</Dropdown>
 					</Col>
-					<Col  lg={3} className="colBtn second d-none  d-lg-block ">
+					<Col  lg={3} className="colBtn second d-none  d-xl-block ">
 						<Dropdown className="Jumbodrop">
 							<Dropdown.Toggle
 								className="addProfileSection second rounded-pill"
@@ -160,7 +160,7 @@ class MyJumbotron extends React.Component {
 						</Button>
 					</Col>
 					<Col  xs={1} sm={1}  className ="d-flex">
-						<BsPencil className="pencil ml-auto " />
+						<GoPencil  className="icons0 pencil ml-auto " />
 					</Col>
 				</Row>
 				<h2 className="username mt-3">{this.state.myObject.name + ' ' + this.state.myObject.surname}</h2>
@@ -207,8 +207,8 @@ class MyJumbotron extends React.Component {
 				<div className=" pt-3 px-3 pb-0 cardsin content">
 					<div className=" d-flex ">
 						<h4 className="mb-3 d-inline ">About</h4>
-						<BsPencil 
-							className="icons ml-auto"
+						<GoPencil 
+							className="icons0 ml-auto"
 						/>
 					</div>
 					<div className="d-flex  bio mt-3 mb-3  ">
