@@ -10,7 +10,7 @@ import {
 	Container,
 	ListGroup,
 } from "react-bootstrap"
-import User from "./User.jsx"
+
 import { me } from "../fetch"
 
 class OurNavBar extends React.Component {
@@ -110,7 +110,20 @@ class OurNavBar extends React.Component {
 										data-Toggle="dropdown"
 									/>
 									<ListGroup className="dropdown-search">
-										<ListGroup.Item>test result</ListGroup.Item>
+										{this.state.users &&
+											this.state.users.map((user) => {
+												return (
+													<ListGroup.Item className="d-flex  content">
+														<Image className="userpic" src={user.image} />
+														<div>
+															<a href={`/profile/${user._id}`}>
+																<h6> {user.name}</h6>
+															</a>
+															<p className="mb-0">{user.title}</p>
+														</div>
+													</ListGroup.Item>
+												)
+											})}
 									</ListGroup>
 								</div>
 							</Form>

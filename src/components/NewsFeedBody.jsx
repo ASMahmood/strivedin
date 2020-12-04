@@ -12,6 +12,7 @@ class NewsFeedBody extends React.Component {
 			openForm: false,
 			editMe: false,
 			Me: {},
+			sort: true,
 			p: 1,
 			pp: 10,
 			pages: 0,
@@ -49,7 +50,9 @@ class NewsFeedBody extends React.Component {
 			let pages = Math.ceil(response.length / this.state.pp)
 			console.log("asd start/end/pages", start, "/", end, "/", pages)
 			this.state.pages = pages
-			return response.reverse().slice(start, end)
+			return this.state.sort === false
+				? response.slice(start, end)
+				: response.reverse()
 		} catch (error) {
 			console.error(error)
 		}
@@ -82,6 +85,11 @@ class NewsFeedBody extends React.Component {
 	isMine(post) {
 		let myid = this.state.Me._id
 		return post.user._id === myid ? true : false
+	}
+
+	handleSort = () => {
+		let sort = !this.state.sort
+		this.setState({ sort }, this.refresh)
 	}
 
 	render(props) {
@@ -184,8 +192,8 @@ class NewsFeedBody extends React.Component {
 				</Container>
 				<Container className="d-flex flex-row ">
 					<div className="myHr flex-fill bg-dark my-auto"></div>
-					<p className="m-0">
-						Sort by:<b>top &#x25bc;</b>
+					<p className="m-0" onClick={() => this.handleSort()}>
+						Sort by:<b>{this.state.sort ? "new" : "first"}</b>
 					</p>
 				</Container>
 				<Container className="d-flex fleax-rounded justify-content-center mb-1">
