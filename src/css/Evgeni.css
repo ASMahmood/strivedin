@@ -284,3 +284,14 @@ a{
 	color:#004282;
 	font-weight:bold;
 }
+
+.dots{ display: inline-block;
+
+	white-space: nowrap;
+	overflow: hidden !important;
+	text-overflow: ellipsis;}
+
+p.dots:hover{
+	white-space: unset;
+	text-overflow: unset;
+}
