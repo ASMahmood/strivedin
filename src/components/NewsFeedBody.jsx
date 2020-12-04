@@ -2,6 +2,9 @@ import React from "react"
 import { Container, Button, Modal, Pagination } from "react-bootstrap"
 import NewPostForm from "./newPostForm"
 import NewsFeedPost from "./NewsFeedPost"
+import LoadingMask from "react-loadingmask"
+import "react-loadingmask/dist/react-loadingmask.css"
+
 import { me } from "../fetch"
 
 class NewsFeedBody extends React.Component {
@@ -53,7 +56,7 @@ class NewsFeedBody extends React.Component {
 			this.state.pages = pages
 			return this.state.sort === false
 				? response.slice(start, end)
-				: response.reverse()
+				: response.reverse().slice(start, end)
 		} catch (error) {
 			console.error(error)
 		}
@@ -99,7 +102,7 @@ class NewsFeedBody extends React.Component {
 	render(props) {
 		const { didMount } = this.state
 		return (
-			<div className={`fade-in ${didMount && "visible"}`}>
+			<LoadingMask loading={!didMount} text={"loading..."}>
 				<Container className="cardsin mt-0">
 					<p
 						className="rounded-pill border  p-3 m-2 newPostUi"
@@ -270,7 +273,7 @@ class NewsFeedBody extends React.Component {
 						/>
 					</Modal.Body>
 				</Modal>
-			</div>
+			</LoadingMask>
 		)
 	}
 }
