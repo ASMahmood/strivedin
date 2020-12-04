@@ -47,7 +47,7 @@ class Body extends React.Component {
 	}
 	componentDidMount = () => {
 		this.myId()
-		this.props.id === "me"  && this.setState({isEditable:true})
+		this.props.id === "me" ? this.setState({isEditable:true}):this.setState({isEditable:false})
 		//this.fetch()
 	}
 
@@ -62,6 +62,7 @@ class Body extends React.Component {
 	componentDidUpdate = (oldprops) => {
 		if (oldprops.id !== this.props.id) {
 			this.fetch()
+			this.props.id === "me" ? this.setState({isEditable:true}):this.setState({isEditable:false})
 		}
 	}
 
