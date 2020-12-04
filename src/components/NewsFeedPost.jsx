@@ -38,9 +38,14 @@ class NewsFeedPost extends React.Component {
 			this.props.refresh()
 		} catch (err) {
 			console.error(err)
+			this.props.refresh()
 		}
 	}
 
+	componentDidMount = async () => {
+		//this.getImgs()
+		console.log("got an image?", this.state.image)
+	}
 	render() {
 		let created = new Date(this.state.createdAt)
 		let updated = new Date(this.state.updatedAt)
@@ -61,6 +66,7 @@ class NewsFeedPost extends React.Component {
 					<Container className="d-flex flex-row">
 						<span className="flex-fill d-inline-block myWrap">
 							{this.state.text}
+							<Image src={this.state.image} thumbnail />
 						</span>
 						{this.state.mine && (
 							<>
