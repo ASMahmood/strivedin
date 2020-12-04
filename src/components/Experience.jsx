@@ -1,25 +1,18 @@
 import React from "react"
-import {Image} from "react-bootstrap"
- import {GoPencil} from "react-icons/go"
- import {differenceInCalendarDays, format, parseISO} from 'date-fns'
+import { Image } from "react-bootstrap"
+import { GoPencil } from "react-icons/go"
+import { differenceInCalendarDays, format, parseISO } from "date-fns"
+
+class Experience extends React.Component {
+	//It opens the same Add Experience Modal when click the pencil icon, by passing props to parent Body Component
+	handleShow = () => this.props.handleShow(true)
+	handleId = () => this.props.handleId(this.props.id)
+	SomeFunc = () => {
+		this.handleShow()
+		this.handleId()
+	}
 
 
- 
- class Experience extends React.Component{
-
-   
-    //It opens the same Add Experience Modal when click the pencil icon, by passing props to parent Body Component 
-    handleShow= () => this.props.handleShow(true);
-    handleId= () => this.props.handleId(this.props.id);
-    SomeFunc= () => {
-        this.handleShow()
-        this.handleId()}
-
-
-       
-       
-
-     
 
         // // a and b are javascript Date objects
         //  dateDiffInDays=(a, b)=> {
@@ -62,7 +55,7 @@ import {Image} from "react-bootstrap"
                 <p className="mb-0">{area}</p>
                 
             </div>
-             {isEditable && <GoPencil className="icons0 ml-auto" onClick={this.SomeFunc}  />}
+              {isEditable && <GoPencil className="icons0 ml-auto" onClick={this.SomeFunc}  />}
         </div>
 
        
