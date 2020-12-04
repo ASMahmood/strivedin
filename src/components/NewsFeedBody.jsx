@@ -209,9 +209,13 @@ class NewsFeedBody extends React.Component {
 				</Container>
 				<Container className="d-flex flex-row ">
 					<div className="myHr flex-fill bg-gray my-auto"></div>
-					<p className="m-0 text-muted font12 " onClick={() => this.handleSort()}>
-						Sort by:</p> <b className="m-0 font12">{this.state.sort ? "new" : "first"}</b>
-					
+					<p
+						className="m-0 text-muted font12 "
+						onClick={() => this.handleSort()}
+					>
+						Sort by:
+					</p>{" "}
+					<b className="m-0 font12">{this.state.sort ? "new" : "first"}</b>
 				</Container>
 				<Container className="d-flex fleax-rounded justify-content-center mb-1">
 					<Pagination>
@@ -225,7 +229,6 @@ class NewsFeedBody extends React.Component {
 						)}
 						{this.state.page > 3 && (
 							<>
-								<Pagination.Ellipsis />
 								<Pagination.Item
 									href={"/news/" + this.state.p - 2}
 								></Pagination.Item>
