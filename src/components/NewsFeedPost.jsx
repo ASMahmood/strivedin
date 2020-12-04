@@ -38,6 +38,7 @@ class NewsFeedPost extends React.Component {
 			this.props.refresh()
 		} catch (err) {
 			console.error(err)
+			this.props.refresh()
 		}
 	}
 
@@ -65,7 +66,7 @@ class NewsFeedPost extends React.Component {
 					<Container className="d-flex flex-row">
 						<span className="flex-fill d-inline-block myWrap">
 							{this.state.text}
-							<Image srcObject={this.state.image !== "" && this.state.image} />
+							<Image src={this.state.image} thumbnail />
 						</span>
 						{this.state.mine && (
 							<>

@@ -54,10 +54,10 @@ import {Image} from "react-bootstrap"
             <div className="ml-3">
                 <h6> {role} </h6>
                 <p className="mb-0 ">{company}</p>
-                <p className="mb-0 d-inline "> {format (parseISO(startDate),'dd-MM-yyyy')} </p>
+                <p className="mb-0 d-inline "> {format (parseISO(startDate),'yyyy-MM-dd')} </p>
                 
                
-                <p className="mb-0 d-inline ">{endDate && format (parseISO(endDate),'dd-MM-yyyy')}</p>
+                <p className="mb-0 d-inline ">{endDate && format (parseISO(endDate),'yyyy-MM-dd')}</p>
                 {/* <p className="mb-0 d-inline ">{endDate && this.dateDiffInDays(endDate,startDate)}</p> */}
                 <p className="mb-0">{area}</p>
                 
