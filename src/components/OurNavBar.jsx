@@ -21,6 +21,7 @@ class OurNavBar extends React.Component {
     let response = await me();
     this.setState({ profile: response });
   };
+
   componentDidMount() {
     this.fetchMe();
     console.log("context test lv1 ournavbar component", this.context.value);
