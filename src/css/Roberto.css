@@ -112,3 +112,11 @@
 	z-index: 9000;
 	top: 3rem;
 }
+
+.fade-in {
+	opacity: 0;
+}
+.fade-in.visible {
+	transition: opacity 1s ease-in;
+	opacity: 1;
+}

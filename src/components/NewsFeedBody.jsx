@@ -16,6 +16,7 @@ class NewsFeedBody extends React.Component {
 			p: 1,
 			pp: 10,
 			pages: 0,
+			didMount: false,
 		}
 		this.refresh = this.refresh.bind(this)
 		this.stopPosting = this.stopPosting.bind(this)
@@ -75,6 +76,9 @@ class NewsFeedBody extends React.Component {
 		let p = this.props.p
 		console.log(posts)
 		this.setState({ posts, Me, p })
+		setTimeout(() => {
+			this.setState({ didMount: true })
+		}, 0)
 	}
 	stopPosting = async () => {
 		this.setState({ posts: false, openForm: false })
@@ -93,6 +97,7 @@ class NewsFeedBody extends React.Component {
 	}
 
 	render(props) {
+		const { didMount } = this.state
 		return (
 			<>
 				<Container className="cardsin mt-0">
