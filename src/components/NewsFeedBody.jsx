@@ -95,11 +95,11 @@ class NewsFeedBody extends React.Component {
 		let sort = !this.state.sort
 		this.setState({ sort }, this.refresh)
 	}
-
+	//{`fade-in ${didMount && 'visible'}`}
 	render(props) {
 		const { didMount } = this.state
 		return (
-			<>
+			<div className={`fade-in ${didMount && "visible"}`}>
 				<Container className="cardsin mt-0">
 					<p
 						className="rounded-pill border  p-3 m-2 newPostUi"
@@ -265,7 +265,7 @@ class NewsFeedBody extends React.Component {
 						/>
 					</Modal.Body>
 				</Modal>
-			</>
+			</div>
 		)
 	}
 }
