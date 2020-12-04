@@ -66,7 +66,8 @@ class NewsFeedPost extends React.Component {
 					<Container className="d-flex flex-row">
 						<span className="flex-fill d-inline-block myWrap">
 							{this.state.text}
-							<Image src={this.state.image} thumbnail />
+
+							{this.state.image && <Image src={this.state.image} thumbnail />}
 						</span>
 						{this.state.mine && (
 							<>

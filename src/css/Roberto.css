@@ -1,8 +1,13 @@
 .navbar {
 	background-color: white;
-	font-size:12px;
-
+	font-size: 12px;
 }
+
+.button-bar .nav-link {
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
 .myHr {
 	height: 1px;
 }
@@ -41,6 +46,11 @@
 .mediumProfilePic {
 	width: 50px;
 	height: 50px;
+}
+
+.post-form-container {
+	height: auto;
+	margin-bottom: 0.1rem;
 }
 
 .nocaret::after {
@@ -95,4 +105,10 @@
 	border-right-style: solid;
 	border-right-width: thin;
 	border-right-color: #d6d5d1;
+}
+
+.dropdown-search {
+	position: absolute;
+	z-index: 9000;
+	top: 3rem;
 }
