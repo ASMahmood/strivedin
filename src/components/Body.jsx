@@ -18,6 +18,7 @@ class Body extends React.Component {
 		exId: "",
 
 		id: false,
+		isEditable:false,
 
 	}
 
@@ -46,6 +47,7 @@ class Body extends React.Component {
 	}
 	componentDidMount = () => {
 		this.myId()
+		this.props.id === "me"  && this.setState({isEditable:true})
 		//this.fetch()
 	}
 
@@ -113,6 +115,7 @@ class Body extends React.Component {
 							area={experience.area}
 							handleShow={this.handleShow} //It accepts the showMode:true as prop from Experience and triggers the modal(add experience) open
 							handleId={this.handleId}
+							isEditable = {this.state.isEditable}
 						/>
 						
 

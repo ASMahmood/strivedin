@@ -105,7 +105,7 @@ class AddExperience extends React.Component {
 				let error = await response.json()
 				this.setState({
 					errMessage: error.message,
-					loading: false,
+					
 				})
 			}
 		} catch (e) {
@@ -199,16 +199,19 @@ class AddExperience extends React.Component {
 			}
 		)
 			.then((response) => response.json())
+			// .then((response) => this.setState({loading:false}))
+			// .then((response) => 
+
 
 			.catch((error) => {
 				console.error(error)
 			})
 			this.handleClose()
+			
 	}
 	submitForm = (e) => {
 		e.preventDefault()
 		this.setState({ loading: true })
-	
 		this.postExp()
 		
 	}

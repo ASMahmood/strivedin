@@ -127,3 +127,15 @@
 	background-color: #9c9797;
 	
 }
+
+.page-link{
+	font-size:14px;
+	color:#5E5E5E;
+	font-weight:bold;
+	
+}
+.page-item.active .page-link{
+	background-color:#948f8f!important;
+	border:none;
+
+}

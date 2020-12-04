@@ -90,7 +90,7 @@ class NewsFeedPost extends React.Component {
 					<div className="myHr w-100 my-1" />
 					<Container className=" d-flex flex-row-reverse border-top">
 						{compareAsc(created, updated) !== 0 && (
-							<span>
+							<span className="mx-2 font12 text-muted ">
 								edited{" "}
 								{formatDuration(
 									intervalToDuration({ start: created, end: updated })
@@ -98,7 +98,7 @@ class NewsFeedPost extends React.Component {
 								ago
 							</span>
 						)}
-						<span className="mx-1">created at {formatISO9075(created)}</span>
+						<span className="mx-1 font12 text-muted ">created at {formatISO9075(created)}</span>
 					</Container>
 				</Card.Body>
 			</Card>
