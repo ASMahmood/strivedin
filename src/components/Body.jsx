@@ -93,7 +93,7 @@ class Body extends React.Component {
 					<div className="d-flex content">
 						<h4 className="mb-3 d-inline ">{this.props.title}</h4>
 						<AiOutlinePlus
-							className="icons ml-auto"
+							className="icons0 ml-auto"
 							onClick={this.handleShow}
 						/>
 					</div>
@@ -120,7 +120,7 @@ class Body extends React.Component {
 					<div className="d-flex content">
 						<h4 className="mb-3 d-inline ">Education</h4>
 						<AiOutlinePlus
-							className="icons ml-auto"
+							className="icons0 ml-auto"
 							
 						/>
 					</div>
@@ -139,12 +139,12 @@ class Body extends React.Component {
 								Program curriculum consist of both Backend & Frontend Development Software Technologies.</p>
 							
 						</div>
-						<GoPencil className="icons ml-auto"  />
+						<GoPencil className="icons0 ml-auto"  />
 					</div>
 					<div className="d-flex content">
 						<h4 className="mb-3 d-inline ">Licenses & certifications</h4>
 						<AiOutlinePlus
-							className="icons ml-auto"
+							className="icons0 ml-auto"
 							
 						/>
 					</div>
@@ -161,7 +161,7 @@ class Body extends React.Component {
 							<p className="mb-0">Issued</p>
 							
 						</div>
-						<GoPencil className="icons ml-auto"  />
+						<GoPencil className="icons0 ml-auto"  />
 					</div>
 
 				</div>
