@@ -1,5 +1,6 @@
 import React from "react"
 import { Container, Form, Button, Image } from "react-bootstrap"
+import { me } from "../fetch"
 class NewPostForm extends React.Component {
 	state = {
 		message: { text: "" },
@@ -7,6 +8,7 @@ class NewPostForm extends React.Component {
 		id: "",
 		data: null,
 		post: null,
+		profile: false,
 	}
 	controlMessage = (event) => {
 		console.log("trying to type a message", event.target.value)
@@ -72,8 +74,10 @@ class NewPostForm extends React.Component {
 		this.props.refresh()
 	}
 
-	componentDidMount() {
-		this.setState({ post: this.postTxt })
+	componentDidMount = async () => {
+		let profile = await me()
+		this.setState({ post: this.postTxt, profile })
+		console.log("formstate", this.state)
 		if (this.props.edit) {
 			this.setState({
 				message: { text: this.props.edit.text },
@@ -90,15 +94,18 @@ class NewPostForm extends React.Component {
 			<Container className="d-flex flex-row ">
 				<Image
 					roundedCircle
-					src="http://placehold.it/100x100"
+					src={this.state && this.state.profile.image}
 					className="mediumProfilePic"
 				/>
 				<Container>
-					<p>myname</p>
+					<p>
+						{this.state &&
+							this.state.profile.name + " " + this.state.profile.surname}
+					</p>
 					<Button variant="outline-dark" className="rounded-pill py-0">
 						Anyone &#x25bc;
 					</Button>
-					<Form>
+					<Form className="mt-1">
 						<Form.Control
 							as="textarea"
 							rows={4}

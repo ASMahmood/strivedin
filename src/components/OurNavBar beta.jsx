@@ -97,7 +97,15 @@ class OurNavBar extends React.Component {
 									className="mr-sm-2"
 									onChange={this.handleSearch}
 									data-Toggle="dropdown"
+									list="cars"
+									name="cars"
 								/>
+								<datalist id="cars">
+									<option value="volvo">Volvo</option>
+									<option value="saab">Saab</option>
+									<option value="mercedes">Mercedes</option>
+									<option value="audi">Audi</option>
+								</datalist>
 							</Form>
 						</div>
 						<Navbar.Toggle aria-controls="responsive-navbar-nav" />

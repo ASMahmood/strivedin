@@ -190,13 +190,37 @@ class NewsFeedBody extends React.Component {
 				</Container>
 				<Container className="d-flex fleax-rounded justify-content-center mb-1">
 					<Pagination>
-						<Pagination.First href="/news/1" />
-						<Pagination.Prev href={"/news/" + (parseInt(this.state.p) - 1)} />
-						<Pagination.Ellipsis />
+						{this.state.p > 1 && (
+							<>
+								<Pagination.Item href={"/news/1"}>{1}</Pagination.Item>
+								<Pagination.Prev
+									href={"/news/" + (parseInt(this.state.p) - 1)}
+								/>
+							</>
+						)}
+						{this.state.page > 3 && (
+							<>
+								<Pagination.Ellipsis />
+								<Pagination.Item
+									href={"/news/" + this.state.p - 2}
+								></Pagination.Item>
+								<Pagination.Item href={"/news/" + this.state.p - 1}>
+									{1}
+								</Pagination.Item>
+							</>
+						)}
 						<Pagination.Item active>{this.state.p}</Pagination.Item>
-						<Pagination.Ellipsis />
-						<Pagination.Next href={"/news/" + (parseInt(this.state.p) + 1)} />
-						<Pagination.Last href={"/news/" + this.state.pages} />
+						{this.state.p < this.state.pages && (
+							<>
+								<Pagination.Ellipsis />
+								<Pagination.Next
+									href={"/news/" + (parseInt(this.state.p) + 1)}
+								/>
+								<Pagination.Item href={"/news/" + this.state.pages}>
+									{this.state.pages}
+								</Pagination.Item>
+							</>
+						)}
 					</Pagination>
 				</Container>
 				<Container>
@@ -211,7 +235,6 @@ class NewsFeedBody extends React.Component {
 						))}
 				</Container>
 				<Modal
-					size="lg"
 					show={this.state.openForm}
 					onHide={() => this.stopPosting()}
 					aria-labelledby="example-modal-sizes-title-sm"
@@ -221,7 +244,7 @@ class NewsFeedBody extends React.Component {
 							{this.state.editMe ? "Edit" : "Create"} a post
 						</Modal.Title>
 					</Modal.Header>
-					<Modal.Body>
+					<Modal.Body class="post-form-container">
 						<NewPostForm
 							edit={this.state.editMe ? this.state.editMe : false}
 							refresh={this.stopPosting}
