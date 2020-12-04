@@ -13,15 +13,15 @@ class YourDashboard extends React.Component {
         <Container fluid className="firstInsideContainer">
           <Row>
             <Col sm={4} className="colToRepsonse">
-              <Row className="number">1</Row>
+              <Row className="number">44</Row>
               <Row className="textInContainer">Who viewed your profile</Row>
             </Col>
             <Col sm={4} className="colBorderLeft colToRepsonse">
-              <Row className="number">0</Row>
-              <Row className="textInContainer">Arictle views</Row>
+              <Row className="number">56</Row>
+              <Row className="textInContainer">Article views</Row>
             </Col>
             <Col sm={4} className="colBorderLeft last colToRepsonse">
-              <Row className="number">0</Row>
+              <Row className="number">22</Row>
               <Row className="textInContainer">Search appearances</Row>
             </Col>
           </Row>
