@@ -102,7 +102,7 @@ class NewsFeedBody extends React.Component {
 	render(props) {
 		const { didMount } = this.state
 		return (
-			<LoadingMask loading={!didMount} text={"loading..."}>
+			<LoadingMask loading={!didMount} text={"loading..."} className="h-100">
 				<Container className="cardsin mt-0">
 					<p
 						className="rounded-pill border  p-3 m-2 newPostUi"
