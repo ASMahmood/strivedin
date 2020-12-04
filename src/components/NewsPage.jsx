@@ -32,7 +32,14 @@ class Newsfeed extends React.Component {
 							<LeftSidebarNewsPage />
 						</Col>
 						<Col md={8} lg={5} className="bodyColumn mb-3">
-							<NewsFeedBody />
+							<NewsFeedBody
+								p={
+									this.props.match.params.page
+										? this.props.match.params.page
+										: 1
+								}
+								pp={10}
+							/>
 						</Col>
 						<Col md={4} className=" mb-3">
 							<Sidebar0 />

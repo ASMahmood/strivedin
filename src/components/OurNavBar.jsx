@@ -9,21 +9,56 @@ import {
 	Dropdown,
 	Container,
 } from "react-bootstrap"
+import User from "./User.jsx"
 import { me } from "../fetch"
 
 class OurNavBar extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = { profile: {} }
+		this.state = { profile: {}, users: [], query: "" }
 	}
 
 	fetchMe = async () => {
 		let response = await me()
 		this.setState({ profile: response })
 	}
+
+	handleSearch = async (event) => {
+		let query = event.target.value
+		this.state.users = "[]"
+		if (query) {
+			const url = "https://striveschool-api.herokuapp.com/api/profile"
+			let response = await fetch(url, {
+				method: "GET",
+				headers: {
+					Authorization:
+						"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+				},
+			})
+			if (response.ok) {
+				let users = await response.json()
+				users = users.filter(
+					(user) =>
+						(user.name &&
+							user.name.toLowerCase().includes(query.toLowerCase())) ||
+						(user.surname &&
+							user.surname.toLowerCase().includes(query.toLowerCase()))
+				)
+
+				this.setState({ users })
+			}
+		}
+	}
+
+	doSearch = async (event) => {
+		event.preventDefault()
+	}
+
 	componentDidMount() {
 		this.fetchMe()
 		console.log("context test lv1 ournavbar component", this.context.value)
+		//New
+		console.log("INFO FROM NAVBAR : " + this.state.profile.image)
 	}
 	render() {
 		return (
@@ -55,11 +90,13 @@ class OurNavBar extends React.Component {
 									</g>
 								</svg>
 							</Navbar.Brand>
-							<Form inline className="">
+							<Form inline className="" onSubmit={this.doSearch}>
 								<FormControl
 									type="text"
-									placeholder="Search"
+									placeholder="Search user"
 									className="mr-sm-2"
+									onChange={this.handleSearch}
+									data-Toggle="dropdown"
 								/>
 							</Form>
 						</div>
@@ -163,6 +200,20 @@ class OurNavBar extends React.Component {
 							</Nav>
 						</Navbar.Collapse>
 					</Navbar>
+				</Container>
+				<Container>
+					{/*this.state.users &&
+						this.state.users.map((user) => {
+							return (
+								<User
+									key={user.id}
+									image={user.image}
+									name={user.name}
+									title={user.title}
+									id={user._id}
+								/>
+							)
+						})*/}
 				</Container>
 			</Container>
 		)

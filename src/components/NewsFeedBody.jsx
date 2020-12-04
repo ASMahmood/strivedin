@@ -1,5 +1,5 @@
 import React from "react"
-import { Container, Button, Modal } from "react-bootstrap"
+import { Container, Button, Modal, Pagination } from "react-bootstrap"
 import NewPostForm from "./newPostForm"
 import NewsFeedPost from "./NewsFeedPost"
 import { me } from "../fetch"
@@ -12,6 +12,9 @@ class NewsFeedBody extends React.Component {
 			openForm: false,
 			editMe: false,
 			Me: {},
+			p: 1,
+			pp: 10,
+			pages: 0,
 		}
 		this.refresh = this.refresh.bind(this)
 		this.stopPosting = this.stopPosting.bind(this)
@@ -40,8 +43,13 @@ class NewsFeedBody extends React.Component {
 				}
 			)
 			response = await response.json()
-			console.log("got posts", response)
-			return response.reverse()
+			console.log("got posts", typeof response)
+			let start = (this.props.p - 1) * this.state.pp
+			let end = start + this.state.pp
+			let pages = Math.ceil(response.length / this.state.pp)
+			console.log("asd start/end/pages", start, "/", end, "/", pages)
+			this.state.pages = pages
+			return response.reverse().slice(start, end)
 		} catch (error) {
 			console.error(error)
 		}
@@ -53,7 +61,7 @@ class NewsFeedBody extends React.Component {
 			"an these are the new ones",
 			this.props
 		)
-		if (!this.state.posts) {
+		if (!this.state.posts || oldprops !== this.props) {
 			let posts = await this.get()
 			this.setState({ posts, editMe: false })
 		}
@@ -61,8 +69,9 @@ class NewsFeedBody extends React.Component {
 	componentDidMount = async () => {
 		let posts = await this.get()
 		let Me = await me()
+		let p = this.props.p
 		console.log(posts)
-		this.setState({ posts, Me })
+		this.setState({ posts, Me, p })
 	}
 	stopPosting = async () => {
 		this.setState({ posts: false, openForm: false })
@@ -80,7 +89,7 @@ class NewsFeedBody extends React.Component {
 			<>
 				<Container className="cardsin mt-0">
 					<p
-						className="rounded-pill border border-dark p-3 m-2 newPostUi"
+						className="rounded-pill border  p-3 m-2 newPostUi"
 						onClick={() => this.openForm()}
 					>
 						<svg
@@ -178,6 +187,17 @@ class NewsFeedBody extends React.Component {
 					<p className="m-0">
 						Sort by:<b>top &#x25bc;</b>
 					</p>
+				</Container>
+				<Container className="d-flex fleax-rounded justify-content-center mb-1">
+					<Pagination>
+						<Pagination.First href="/news/1" />
+						<Pagination.Prev href={"/news/" + (parseInt(this.state.p) - 1)} />
+						<Pagination.Ellipsis />
+						<Pagination.Item active>{this.state.p}</Pagination.Item>
+						<Pagination.Ellipsis />
+						<Pagination.Next href={"/news/" + (parseInt(this.state.p) + 1)} />
+						<Pagination.Last href={"/news/" + this.state.pages} />
+					</Pagination>
 				</Container>
 				<Container>
 					{this.state.posts &&

@@ -17,6 +17,7 @@ class App extends React.Component {
 				<OurNavBar />
 				<Router>
 					<Route exact path="/" component={NewsPage} />
+					<Route path="/news/:page" component={NewsPage} />
 					<Route
 						path="/profile/:id"
 						exact

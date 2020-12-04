@@ -23,13 +23,13 @@ class AddExperience extends React.Component {
 		exp: {},
 		errMessage: "",
 		loading: false,
-		id: "",
+	
 	}
-	myId = async () => {
-		let id = await me()
-		id = id._id
-		this.setState({ id })
-	}
+	// myId = async () => {
+	// 	let id = await me()
+	// 	id = id._id
+	// 	this.setState({ id })
+	// }
 	//It passes false as showMode to parent body. It means dont show Modal.
 	handleClose = () => this.props.handleClose(false)
 
@@ -56,7 +56,7 @@ class AddExperience extends React.Component {
 
 		try {
 			if (this.props.exId) {
-				const url = `https://striveschool-api.herokuapp.com/api/profile/${this.state.id}/experiences/`
+				const url = `https://striveschool-api.herokuapp.com/api/profile/${this.props.uid}/experiences/`
 				response = await fetch(url + this.props.exId, {
 					method: "PUT",
 					body: JSON.stringify(this.state.experience),
@@ -68,7 +68,7 @@ class AddExperience extends React.Component {
 				})
 			} else {
 				response = await fetch(
-					`https://striveschool-api.herokuapp.com/api/profile/${this.state.id}/experiences`,
+					`https://striveschool-api.herokuapp.com/api/profile/${this.props.uid}/experiences`,
 					{
 						method: "POST",
 						body: JSON.stringify(this.state.experience),
@@ -83,6 +83,8 @@ class AddExperience extends React.Component {
 			}
 
 			if (response.ok) {
+				let res= await response.json()
+				console.log("res of post",res)
 				alert("Experience saved!")
 				this.setState({
 					experience: {
@@ -96,7 +98,8 @@ class AddExperience extends React.Component {
 					errMessage: "",
 					loading: false,
 				})
-				this.handleClose()
+				//this.handleClose()
+				return res
 			} else {
 				console.log("an error occurred")
 				let error = await response.json()
@@ -114,19 +117,14 @@ class AddExperience extends React.Component {
 		}
 	}
 
-	submitForm = (e) => {
-		e.preventDefault()
-		this.setState({ loading: true })
-		this.EditFetch()
-		this.UploadImageFetch()
-	}
+	
 
 	getFetch = async () => {
 		let TOKEN = process.env.REACT_APP_TOKEN
 
 		try {
 			//https://striveschool-api.herokuapp.com/api/profile//experiences
-			const url = `https://striveschool-api.herokuapp.com/api/profile/${this.state.id}/experiences/`
+			const url = `https://striveschool-api.herokuapp.com/api/profile/${this.props.uid}/experiences/`
 			let response = await fetch(url + this.props.exId, {
 				method: "GET",
 				headers: {
@@ -157,7 +155,7 @@ class AddExperience extends React.Component {
 	handleDelete = async () => {
 		let TOKEN = process.env.REACT_APP_TOKEN
 		try {
-			const url = `https://striveschool-api.herokuapp.com/api/profile/${this.state.id}/experiences/`
+			const url = `https://striveschool-api.herokuapp.com/api/profile/${this.props.uid}/experiences/`
 			let response = await fetch(url + this.props.exId, {
 				method: "DELETE",
 				headers: {
@@ -184,12 +182,12 @@ class AddExperience extends React.Component {
 		this.setState({ formData })
 	}
 
-	UploadImageFetch = () => {
+	UploadImageFetch = (id) => {
 		let TOKEN = process.env.REACT_APP_TOKEN
 
 		fetch(
-			`https://striveschool-api.herokuapp.com/api/profile/${this.state.id}/experiences/` +
-				this.props.exId +
+			`https://striveschool-api.herokuapp.com/api/profile/${this.props.uid}/experiences/` +
+			id+
 				"/picture",
 			{
 				method: "POST",
@@ -205,14 +203,23 @@ class AddExperience extends React.Component {
 			.catch((error) => {
 				console.error(error)
 			})
+			this.handleClose()
 	}
+	submitForm = (e) => {
+		e.preventDefault()
+		this.setState({ loading: true })
+	
+		this.postExp()
+		
+	}
+	postExp=async()=>{ let expId = await this.EditFetch();this.UploadImageFetch(expId._id)}
 
 	componentDidMount = async () => {
 		console.log(this.props.exId)
 		//this.myId()
 
 		if (this.props.exId) {
-			this.setState({ id: this.props.uid }, () => this.getFetch())
+			this.getFetch()
 		}
 	}
 
@@ -298,6 +305,7 @@ class AddExperience extends React.Component {
 									value={this.state.experience.area}
 									onChange={this.updateField}
 									placeholder="Ex: İstanbul /Turkey"
+									required
 								/>
 							</Form.Group>
 
@@ -321,6 +329,7 @@ class AddExperience extends React.Component {
 										id="startDate"
 										placeholder="start date"
 										value={this.state.experience.startDate}
+										
 										onChange={this.updateField}
 										required
 									></Form.Control>
@@ -376,6 +385,7 @@ class AddExperience extends React.Component {
 									placeholder="description"
 									value={this.state.experience.description}
 									onChange={this.updateField}
+									required
 								/>
 							</Form.Group>
 							<Form.Group className="d-flex px-3">
@@ -404,5 +414,4 @@ class AddExperience extends React.Component {
 		)
 	}
 }
-
 export default AddExperience
