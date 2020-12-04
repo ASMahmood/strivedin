@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import React from "react";
 import "../css/Evgeni.css";
@@ -12,12 +13,17 @@ import { AiOutlinePlus } from "react-icons/ai"
 var tries = 1
 
 =======
+=======
+>>>>>>> parent of 99647e0... ComponentDidUpdate
 import React from "react"
 import "../css/Evgeni.css"
 import { BsPencil } from "react-icons/bs"
 import { Col, Row, Button, Container, Dropdown, Image } from "react-bootstrap"
 import { me, addProfilePic } from "../fetch"
 var tries = 1
+<<<<<<< HEAD
+>>>>>>> parent of 99647e0... ComponentDidUpdate
+=======
 >>>>>>> parent of 99647e0... ComponentDidUpdate
 class MyJumbotron extends React.Component {
 	state = {
@@ -53,6 +59,7 @@ class MyJumbotron extends React.Component {
 		let parsedResponse = await addProfilePic(formData, this.state.myObject._id)
 		console.log(parsedResponse)
 	}
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 
@@ -216,6 +223,9 @@ class MyJumbotron extends React.Component {
     );
   }
 =======
+=======
+
+>>>>>>> parent of 99647e0... ComponentDidUpdate
 	showChangeAvatar = () => {
 		let inputButton = document.querySelector(".inputImage")
 		if (tries % 2 == 1) {
@@ -375,6 +385,9 @@ class MyJumbotron extends React.Component {
 			</Container>
 		)
 	}
+<<<<<<< HEAD
+>>>>>>> parent of 99647e0... ComponentDidUpdate
+=======
 >>>>>>> parent of 99647e0... ComponentDidUpdate
 }
 export default MyJumbotron
