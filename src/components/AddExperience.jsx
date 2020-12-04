@@ -85,7 +85,7 @@ class AddExperience extends React.Component {
 			if (response.ok) {
 				let res= await response.json()
 				console.log("res of post",res)
-				alert("Experience saved!")
+				
 				this.setState({
 					experience: {
 						role: "",
@@ -182,31 +182,41 @@ class AddExperience extends React.Component {
 		this.setState({ formData })
 	}
 
-	UploadImageFetch = (id) => {
+	UploadImageFetch = async (id) => {
 		let TOKEN = process.env.REACT_APP_TOKEN
+	try{
+	let response = await fetch(
+	`https://striveschool-api.herokuapp.com/api/profile/${this.props.uid}/experiences/` +
+	id+
+		"/picture",
+	{
+		method: "POST",
+		body: this.state.formData,
+		headers: new Headers({
+			// "Content-Type": "application/json",
+			Authorization: `Bearer ${TOKEN}`,
+		}),
+	}
+)
 
-		fetch(
-			`https://striveschool-api.herokuapp.com/api/profile/${this.props.uid}/experiences/` +
-			id+
-				"/picture",
-			{
-				method: "POST",
-				body: this.state.formData,
-				headers: new Headers({
-					// "Content-Type": "application/json",
-					Authorization: `Bearer ${TOKEN}`,
-				}),
-			}
-		)
-			.then((response) => response.json())
+if (response.ok){
+	let result=response.json()
+	alert("Experience saved!")
+	this.setState({loading:false})
+	console.log(result)
+	this.handleClose() }
+}
+catch(e){console.log(e)}
+		
+		//	.then((response) => response.json())
 			// .then((response) => this.setState({loading:false}))
-			// .then((response) => 
+			// .then((response) => if (response.ok){this.handleClose()}}
 
 
-			.catch((error) => {
-				console.error(error)
-			})
-			this.handleClose()
+			// .catch((error) => {
+			// 	console.error(error)
+			// })
+			
 			
 	}
 	submitForm = (e) => {
