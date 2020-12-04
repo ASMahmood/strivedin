@@ -2,8 +2,6 @@ import React from "react"
 import Sidebar from "./Sidebar"
 import Sidebar0 from "./Sidebar0"
 import { Container, Row, Col } from "react-bootstrap"
-
-import GenericBody from "./GenericBody"
 import Body from "./Body.jsx"
 import GenericSidebar from "./GenericSidebar"
 import MyJumbotron from "./MyJumbotron"
@@ -40,7 +38,6 @@ class Home extends React.Component {
 							{/**here goes the body*/}
 							<MyJumbotron id={this.gotId()} />
 							<YourDashboard />
-							<GenericBody />
 							<Body title="Experience" id={this.gotId()} />
 						</Col>
 						<Col md={12} lg={3}>

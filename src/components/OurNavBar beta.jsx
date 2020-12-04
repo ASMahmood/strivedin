@@ -8,15 +8,14 @@ import {
 	Image,
 	Dropdown,
 	Container,
-	ListGroup,
 } from "react-bootstrap"
-
+import User from "./User.jsx"
 import { me } from "../fetch"
 
 class OurNavBar extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = { profile: {}, users: false, query: "" }
+		this.state = { profile: {}, users: [], query: "" }
 	}
 
 	fetchMe = async () => {
@@ -26,20 +25,17 @@ class OurNavBar extends React.Component {
 
 	handleSearch = async (event) => {
 		let query = event.target.value
-		if (query.length === 0) {
-			this.setState({ users: false })
-			return 0
-		}
+		this.state.users = "[]"
 		if (query) {
-			try {
-				const url = "https://striveschool-api.herokuapp.com/api/profile"
-				let response = await fetch(url, {
-					method: "GET",
-					headers: {
-						Authorization:
-							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
-					},
-				})
+			const url = "https://striveschool-api.herokuapp.com/api/profile"
+			let response = await fetch(url, {
+				method: "GET",
+				headers: {
+					Authorization:
+						"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM0YzQ1OWVkMjY2ODAwMTcwZWEzZDciLCJpYXQiOjE2MDY3MzA4NjAsImV4cCI6MTYwNzk0MDQ2MH0.tP9w6YZ0yOqToeO2kXHHks7NXSo36rv-sFXVj8L7n8Q",
+				},
+			})
+			if (response.ok) {
 				let users = await response.json()
 				users = users.filter(
 					(user) =>
@@ -50,8 +46,6 @@ class OurNavBar extends React.Component {
 				)
 
 				this.setState({ users })
-			} catch (err) {
-				console.error(err)
 			}
 		}
 	}
@@ -59,11 +53,7 @@ class OurNavBar extends React.Component {
 	doSearch = async (event) => {
 		event.preventDefault()
 	}
-	componentDidUpdate = () => {
-		//if (this.state.users && this.state.users.length === 0) {
-		//	this.setState({ users: false })
-		//}
-	}
+
 	componentDidMount() {
 		this.fetchMe()
 		console.log("context test lv1 ournavbar component", this.context.value)
@@ -101,31 +91,13 @@ class OurNavBar extends React.Component {
 								</svg>
 							</Navbar.Brand>
 							<Form inline className="" onSubmit={this.doSearch}>
-								<div>
-									<FormControl
-										type="text"
-										placeholder="Search user"
-										className="mr-sm-2"
-										onChange={this.handleSearch}
-										data-Toggle="dropdown"
-									/>
-									<ListGroup className="dropdown-search">
-										{this.state.users &&
-											this.state.users.map((user) => {
-												return (
-													<ListGroup.Item className="d-flex  content">
-														<Image className="userpic" src={user.image} />
-														<div>
-															<a href={`/profile/${user._id}`}>
-																<h6> {user.name}</h6>
-															</a>
-															<p className="mb-0">{user.title}</p>
-														</div>
-													</ListGroup.Item>
-												)
-											})}
-									</ListGroup>
-								</div>
+								<FormControl
+									type="text"
+									placeholder="Search user"
+									className="mr-sm-2"
+									onChange={this.handleSearch}
+									data-Toggle="dropdown"
+								/>
 							</Form>
 						</div>
 						<Navbar.Toggle aria-controls="responsive-navbar-nav" />

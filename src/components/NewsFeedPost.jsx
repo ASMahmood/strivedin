@@ -50,7 +50,7 @@ class NewsFeedPost extends React.Component {
 		let created = new Date(this.state.createdAt)
 		let updated = new Date(this.state.updatedAt)
 		return (
-			<Card className="cardsin">
+			<Card className="cardsin  ">
 				<Card.Body className="d-flex flex-column">
 					<Container className="d-flex flex-row">
 						<Image
@@ -62,11 +62,12 @@ class NewsFeedPost extends React.Component {
 							{this.state.user.name} {this.state.user.surname}
 						</b>
 					</Container>
-					<div className="myHr w-100 bg-dark my-1" />
+					<div className="myHr w-100  my-1" />
 					<Container className="d-flex flex-row">
 						<span className="flex-fill d-inline-block myWrap">
 							{this.state.text}
-							<Image src={this.state.image} thumbnail />
+
+							{this.state.image && <Image src={this.state.image} thumbnail />}
 						</span>
 						{this.state.mine && (
 							<>
@@ -86,8 +87,8 @@ class NewsFeedPost extends React.Component {
 							</>
 						)}
 					</Container>
-					<div className="myHr w-100 bg-dark my-1" />
-					<Container className=" d-flex flex-row-reverse ">
+					<div className="myHr w-100 my-1" />
+					<Container className=" d-flex flex-row-reverse border-top">
 						{compareAsc(created, updated) !== 0 && (
 							<span>
 								edited{" "}

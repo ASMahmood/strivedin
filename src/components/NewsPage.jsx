@@ -31,7 +31,7 @@ class Newsfeed extends React.Component {
 						<Col md={12} lg={3} className="leftSidebar mb-3">
 							<LeftSidebarNewsPage />
 						</Col>
-						<Col md={8} lg={5} className="bodyColumn mb-3">
+						<Col md={8} lg={6} className="bodyColumn mb-3">
 							<NewsFeedBody
 								p={
 									this.props.match.params.page
@@ -41,7 +41,7 @@ class Newsfeed extends React.Component {
 								pp={10}
 							/>
 						</Col>
-						<Col md={4} className=" mb-3">
+						<Col md={4} lg={3}className=" mb-3">
 							<Sidebar0 />
 							<Sidebar title="Our Team" />
 							<Sidebar title="People also viewed" />
