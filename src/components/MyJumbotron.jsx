@@ -230,7 +230,7 @@ class MyJumbotron extends React.Component {
 					
 					</div>
 					</div>
-				</div>
+				
 			</>
 		)
 	}
