@@ -202,7 +202,7 @@ class AddExperience extends React.Component {
 if (response.ok){
 	let result=response.json()
 	alert("Experience saved!")
-	this.setState({loading:false}))
+	this.setState({loading:false})
 	console.log(result)
 	this.handleClose() }
 }
