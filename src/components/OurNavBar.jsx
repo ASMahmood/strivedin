@@ -18,6 +18,7 @@ class OurNavBar extends React.Component {
 		this.state = { profile: {}, users: [], query: "" }
 	}
 
+<<<<<<< HEAD
 	fetchMe = async () => {
 		let response = await me()
 		this.setState({ profile: response })
@@ -44,6 +45,39 @@ class OurNavBar extends React.Component {
 						(user.surname &&
 							user.surname.toLowerCase().includes(query.toLowerCase()))
 				)
+=======
+  fetchMe = async () => {
+    let response = await me();
+    this.setState({ profile: response });
+  };
+  componentDidMount() {
+    this.fetchMe();
+    console.log("context test lv1 ournavbar component", this.context.value);
+    //New
+    console.log("INFO FROM NAVBAR : " + this.state.profile.image);
+  }
+  render() {
+    return (
+      <Container fluid className="position-sticky sticky-top bg-white mb-5">
+        <Container>
+          <Navbar
+            variant="light"
+            className="d-flex m-0 p-0 px-3 justify-content-center"
+            collapseOnSelect
+            expand="lg"
+            //	sticky="top"
+          >
+            <div className="d-flex mr-auto">
+              <Navbar.Brand href="#home">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="34"
+                  height="34"
+                  viewBox="0 0 34 34"
+                  className="global-nav__logo"
+                >
+                  <title>LinkedIn</title>
+>>>>>>> parent of 99647e0... ComponentDidUpdate
 
 				this.setState({ users })
 			}
