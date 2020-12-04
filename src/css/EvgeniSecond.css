@@ -45,10 +45,12 @@
 	margin-left: 4px;
 	font-weight: 500;
 	color: grey;
+	font-size:12px;
 }
 .grow {
 	margin-left: 4px;
 	font-weight: 500;
+	font-size:12px;
 }
 .addUser {
 	margin-top: 27px;
@@ -59,28 +61,31 @@
 }
 .access {
 	color: grey;
-	font-size: 16px;
+	font-size: 12px;
 	margin-top: 35px;
 	margin-left: 4px;
+	margin-bottom:5px;
 }
 .premiumIcon {
-	font-size: 22px;
+	font-size: 12px;
 	margin-left: 6px;
 }
 .premiumText {
-	font-size: 17px;
+	font-size: 12px;
 	font-weight: 500;
 }
 .premiumRow {
 	border-bottom: 1px lightgrey solid;
 	padding-bottom: 15px;
+	font-size: 12px;
 }
 .dirtyFlag {
 	transform: rotate(90deg);
-	margin-left: 0.5px;
+	
+	font-size: 12px;
 }
 .savedText {
-	font-size: 17px;
+	font-size: 12px;
 	font-weight: 500;
 	margin-top: 11px;
 }

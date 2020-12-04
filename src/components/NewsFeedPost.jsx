@@ -50,7 +50,7 @@ class NewsFeedPost extends React.Component {
 		let created = new Date(this.state.createdAt)
 		let updated = new Date(this.state.updatedAt)
 		return (
-			<Card className="cardsin">
+			<Card className="cardsin  ">
 				<Card.Body className="d-flex flex-column">
 					<Container className="d-flex flex-row">
 						<Image
