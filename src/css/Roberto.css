@@ -9,7 +9,7 @@
 }
 
 .myHr {
-	height: 1px;
+	height: 0.5px;
 }
 .miniProfilePic {
 	width: 25px;
@@ -122,4 +122,8 @@
 .fade-in.visible {
 	transition: opacity 0.5s ease-in;
 	opacity: 1;
+}
+.bg-gray{
+	background-color: #9c9797;
+	
 }
