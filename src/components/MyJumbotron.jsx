@@ -214,7 +214,7 @@ class MyJumbotron extends React.Component {
 					<div className="d-flex  bio mt-3 mb-3  ">
 
 					{/* {this.state && new String(this.state.myObject.bio).substring(0, 200)+ " ...  see more"} */}
-					<p className="dots pl-5" >{this.state && new String(this.state.myObject.bio) }  </p> 
+					<p className="dots" >{this.state && new String(this.state.myObject.bio) }  </p> 
 					
 					</div>
 					</div>
