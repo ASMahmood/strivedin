@@ -91,33 +91,34 @@ class LeftSideBarNewsPage extends React.Component {
 					</Row>
 				</Container>
 
-				<Container className="secondContainer">
-					<Row className="groups">
-						<a href="/">Groups</a>
+				<Container className="secondContainer ">
+					<Row className="groups ">
+						<a href="/" >Groups</a>
 					</Row>
 					<Row className="events">
 						<Col sm={8} xs={6}>
-							<a href="/">Events</a>
+							<a href="/" className="font12 text-muted ">Events</a>
 						</Col>
 						<Col sm={4} xs={6}>
 							<AiOutlinePlus className="plus" />
 						</Col>
 					</Row>
 					<Row className="hashTag">
-						<a href="/" className="hashTagText">
+					<Col sm={8} xs={6}>
+						<a href="/" className="hashTagText" className= "text-muted font12">
 							Followed Hashtag
 						</a>
-					</Row>
-					<Row className="discoverMe">
-						<Col
-							sm={{ size: 8, offset: 2 }}
-							xs={{ size: 8, offset: 2 }}
-							className="discoverText"
-						>
-							{" "}
-							Discover Me{" "}
 						</Col>
 					</Row>
+					<div className="discoverMe">
+						<p
+						
+							className="discoverText font14"
+						>
+							
+							Discover Me
+						</p>
+					</div>
 				</Container>
 			</>
 		)

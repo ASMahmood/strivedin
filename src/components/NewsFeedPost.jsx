@@ -62,7 +62,7 @@ class NewsFeedPost extends React.Component {
 							{this.state.user.name} {this.state.user.surname}
 						</b>
 					</Container>
-					<div className="myHr w-100 bg-dark my-1" />
+					<div className="myHr w-100  my-1" />
 					<Container className="d-flex flex-row">
 						<span className="flex-fill d-inline-block myWrap">
 							{this.state.text}
@@ -87,8 +87,8 @@ class NewsFeedPost extends React.Component {
 							</>
 						)}
 					</Container>
-					<div className="myHr w-100 bg-dark my-1" />
-					<Container className=" d-flex flex-row-reverse ">
+					<div className="myHr w-100 my-1" />
+					<Container className=" d-flex flex-row-reverse border-top">
 						{compareAsc(created, updated) !== 0 && (
 							<span>
 								edited{" "}
