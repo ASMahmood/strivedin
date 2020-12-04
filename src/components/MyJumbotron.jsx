@@ -69,7 +69,7 @@ class MyJumbotron extends React.Component {
 	render() {
 		return (
 			<>
-			<Container className="notJumbotronContainer cardsin">
+			<Container className="notJumbotronContainer ">
 				<div >
 				<Row>
 					<Image
