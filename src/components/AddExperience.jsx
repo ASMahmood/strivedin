@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Modal, Button, Form, Col, Image } from "react-bootstrap"
+import { Modal, Button, Form, Col, Image,Spinner } from "react-bootstrap"
 import { me } from "../fetch"
 
 class AddExperience extends React.Component {
@@ -96,7 +96,7 @@ class AddExperience extends React.Component {
 						description: "",
 					},
 					errMessage: "",
-					loading: false,
+					
 				})
 				//this.handleClose()
 				return res
@@ -105,6 +105,7 @@ class AddExperience extends React.Component {
 				let error = await response.json()
 				this.setState({
 					errMessage: error.message,
+					loading: false,
 					
 				})
 			}
@@ -154,6 +155,7 @@ class AddExperience extends React.Component {
 
 	handleDelete = async () => {
 		let TOKEN = process.env.REACT_APP_TOKEN
+		this.setState({ loading: true })
 		try {
 			const url = `https://striveschool-api.herokuapp.com/api/profile/${this.props.uid}/experiences/`
 			let response = await fetch(url + this.props.exId, {
@@ -166,12 +168,15 @@ class AddExperience extends React.Component {
 			})
 			if (response.ok) {
 				alert("exp deleted succesfully")
+				this.setState({ loading: false })
 				this.handleClose()
 			} else {
 				alert("Something went wrong!")
+				this.setState({ loading: false })
 			}
 		} catch (e) {
 			console.log(e)
+			this.setState({ loading: false })
 		}
 	}
 
@@ -208,15 +213,7 @@ if (response.ok){
 }
 catch(e){console.log(e)}
 		
-		//	.then((response) => response.json())
-			// .then((response) => this.setState({loading:false}))
-			// .then((response) => if (response.ok){this.handleClose()}}
-
-
-			// .catch((error) => {
-			// 	console.error(error)
-			// })
-			
+	
 			
 	}
 	submitForm = (e) => {
@@ -296,6 +293,7 @@ catch(e){console.log(e)}
 									id="fileUpload"
 									type="file"
 									onChange={this.handleImageUpload}
+									required
 								/>
 							</Form.Group>
 
@@ -407,7 +405,7 @@ catch(e){console.log(e)}
 										className=" deleteBtn"
 										variant="primary"
 										onClick={this.handleDelete}
-									>
+									>{this.state.loading && <Spinner animation="border" variant="warning" />}
 										Delete
 									</Button>
 								)}
@@ -415,7 +413,7 @@ catch(e){console.log(e)}
 									className="saveBtn ml-auto"
 									variant="primary"
 									type="submit"
-								>
+								> {this.state.loading && <Spinner animation="border" variant="warning" />}
 									{" "}
 									Save
 								</Button>
