@@ -6,59 +6,74 @@ class NewPostForm extends React.Component {
 		method: "POST",
 		id: "",
 		data: null,
+		post: null,
 	}
 	controlMessage = (event) => {
 		console.log("trying to type a message", event.target.value)
-		const data = new FormData()
-		data.append("text", this.state.message.text)
+		//const data = new FormData()
+		//data.append("text", this.state.message.text)
 		let text = event.currentTarget.value
-		this.setState({ message: { text }, data })
+		this.setState({ message: { text } })
 	}
 	handleImg = (ev) => {
 		console.log("/****image uploader handler function****")
 		console.log("target", ev.target)
 		const data = new FormData()
 		data.append("post", ev.target.files[0])
-		this.setState({ data })
+		this.setState({ data, post: this.postImg })
 	}
-	post = async () => {
-		let TOKEN = process.env.REACT_APP_TOKEN
-		let text = {
-			method: `${this.state.method}`,
-			headers: new Headers({
-				Authorization: `Bearer ${TOKEN}`,
-				"Content-Type": "application/json",
-			}),
-			body: JSON.stringify(this.state.message),
-		}
 
-		let img = {
-			method: `PUT`,
-			headers: new Headers({
-				Authorization: `Bearer ${TOKEN}`,
-				"Content-Type": "multipart/form-data",
-			}),
-			body: this.state.data,
-		}
-
+	postTxt = async () => {
 		try {
-			console.log("editing message debug", JSON.stringify(this.state.message))
-
 			let response = await fetch(
 				`https://striveschool-api.herokuapp.com/api/posts/${this.state.id}`,
-				this.state.method !== "img" ? text : img
+				{
+					method: this.state.method,
+					headers: new Headers({
+						Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
+						"Content-Type": "application/json",
+					}),
+					body: JSON.stringify(this.state.message),
+				}
 			)
-			if (this.state.method !== "img" && this.state.data !== "null") {
-				response = await response.json()
-				this.setState({ method: "img", id: response._id }, this.post)
+			response = await response.json()
+			if (this.state.data !== null) {
+				return response._id
+			} else {
+				console.log("nopic")
+				this.props.refresh()
 			}
-			this.props.refresh()
-		} catch (error) {
-			console.error(error)
+		} catch (e) {
+			console.error(e)
 		}
+	}
+
+	postImg = async () => {
+		try {
+			let id = await this.postTxt()
+			let url = `https://striveschool-api.herokuapp.com/api/posts/${id}`
+			console.log("posimg url", url)
+			let response = await fetch(url, {
+				method: "POST",
+				headers: new Headers({
+					Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
+				}),
+				body: this.state.data,
+			})
+			response = await response.json()
+			console.log(
+				"so we did try to post an image here is the response",
+				response
+			)
+			this.props.refresh()
+		} catch (e) {
+			console.error(e)
+		}
+		this.props.refresh()
 	}
 
 	componentDidMount() {
+		this.setState({ post: this.postTxt })
 		if (this.props.edit) {
 			this.setState({
 				message: { text: this.props.edit.text },
@@ -92,19 +107,17 @@ class NewPostForm extends React.Component {
 							onChange={this.controlMessage}
 							value={this.state.message.text}
 						></Form.Control>
-						{this.props.photo === "photo" && (
-							<Form.File
-								id="picture"
-								label="add a picture"
-								name="pic"
-								onChange={this.handleImg}
-							/>
-						)}
+						<Form.File
+							id="picture"
+							label="add a picture"
+							name="pic"
+							onChange={this.handleImg}
+						/>
 
 						<Button
 							className="rounded-pill greyButton float-right mt-1 py-0"
 							disabled={this.state.message.text ? false : true}
-							onClick={this.post}
+							onClick={this.state.post}
 						>
 							Post
 						</Button>

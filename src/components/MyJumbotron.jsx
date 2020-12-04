@@ -1,9 +1,15 @@
+
 import React from "react";
 import "../css/Evgeni.css";
 import { BsPencil } from "react-icons/bs";
 import { Col, Row, Button, Container, Dropdown, Image } from "react-bootstrap";
 import { me, addProfilePic } from "../fetch";
-var tries = 1;
+
+
+import {GoPencil} from "react-icons/go"
+import { AiOutlinePlus } from "react-icons/ai"
+var tries = 1
+
 class MyJumbotron extends React.Component {
   state = {
     myObject: {},
@@ -39,6 +45,7 @@ class MyJumbotron extends React.Component {
     console.log(parsedResponse);
     this.fetchMe(this.props.id);
   };
+
 
   showChangeAvatar = () => {
     let inputButton = document.querySelector(".inputImage");
