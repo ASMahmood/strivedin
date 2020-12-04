@@ -6,63 +6,21 @@ class NewPostForm extends React.Component {
 		method: "POST",
 		id: "",
 		data: null,
+		post: null,
 	}
 	controlMessage = (event) => {
 		console.log("trying to type a message", event.target.value)
-		const data = new FormData()
-		data.append("text", this.state.message.text)
+		//const data = new FormData()
+		//data.append("text", this.state.message.text)
 		let text = event.currentTarget.value
-		this.setState({ message: { text }, data })
+		this.setState({ message: { text } })
 	}
 	handleImg = (ev) => {
 		console.log("/****image uploader handler function****")
 		console.log("target", ev.target)
 		const data = new FormData()
 		data.append("post", ev.target.files[0])
-		this.setState({ data })
-	}
-	post = async () => {
-		let TOKEN = process.env.REACT_APP_TOKEN
-		let text = {
-			method: `${this.state.method}`,
-			headers: new Headers({
-				Authorization: `Bearer ${TOKEN}`,
-				"Content-Type": "application/json",
-			}),
-			body: JSON.stringify(this.state.message),
-		}
-
-		let img = {
-			method: `PUT`,
-			headers: new Headers({
-				Authorization: `Bearer ${TOKEN}`,
-			}),
-			body: this.state.data,
-		}
-
-		try {
-			console.log("editing message debug", JSON.stringify(this.state.message))
-
-			let response = await fetch(
-				`https://striveschool-api.herokuapp.com/api/posts/${this.state.id}`,
-				this.state.method !== "img" ? text : img
-			)
-			console.log("inside the post poster")
-			console.log(
-				"this.state.method",
-				this.state.method,
-				"this.state.data",
-				this.state.data
-			)
-
-			if (this.state.method !== "img" && this.state.data !== "null") {
-				response = await response.json()
-				this.setState({ method: "img", id: response._id }, this.post)
-			}
-			this.props.refresh()
-		} catch (error) {
-			console.error(error)
-		}
+		this.setState({ data, post: this.postImg })
 	}
 
 	postTxt = async () => {
@@ -79,7 +37,12 @@ class NewPostForm extends React.Component {
 				}
 			)
 			response = await response.json()
-			return response._id
+			if (this.state.data !== null) {
+				return response._id
+			} else {
+				console.log("nopic")
+				this.props.refresh()
+			}
 		} catch (e) {
 			console.error(e)
 		}
@@ -106,9 +69,11 @@ class NewPostForm extends React.Component {
 		} catch (e) {
 			console.error(e)
 		}
+		this.props.refresh()
 	}
 
 	componentDidMount() {
+		this.setState({ post: this.postTxt })
 		if (this.props.edit) {
 			this.setState({
 				message: { text: this.props.edit.text },
@@ -148,12 +113,11 @@ class NewPostForm extends React.Component {
 							name="pic"
 							onChange={this.handleImg}
 						/>
-						{this.props.photo === "photo" && "anystuff"}
 
 						<Button
 							className="rounded-pill greyButton float-right mt-1 py-0"
 							disabled={this.state.message.text ? false : true}
-							onClick={this.postImg}
+							onClick={this.state.post}
 						>
 							Post
 						</Button>

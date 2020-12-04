@@ -38,6 +38,7 @@ class NewsFeedPost extends React.Component {
 			this.props.refresh()
 		} catch (err) {
 			console.error(err)
+			this.props.refresh()
 		}
 	}
 
