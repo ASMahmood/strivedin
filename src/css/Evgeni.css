@@ -1,9 +1,16 @@
 .notJumbotronContainer {
-	border-radius: 15px;
+
 	/*height: 500px; removed, messed up the scaling*/
-	border: 1px lightgrey solid;
+	
 	margin-bottom: 15px;
 	padding-bottom: 2rem; /*this whill leave 2 rows of space at the bottom and the container can self adjust it's heigth*/
+	background-color: rgb(255, 255, 255);
+
+	border: 1px solid #d6d5d1;
+	border-radius: 25px;
+	font-size: 14px;
+	margin-bottom: 20px;
+	
 }
 .addProfileSection.second {
 	background-color: white;
@@ -276,4 +283,15 @@ hr {
 a{
 	color:#004282;
 	font-weight:bold;
+}
+
+.dots{ display: inline-block;
+
+	white-space: nowrap;
+	overflow: hidden !important;
+	text-overflow: ellipsis;}
+
+p.dots:hover{
+	white-space: unset;
+	text-overflow: unset;
 }

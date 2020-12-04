@@ -62,7 +62,7 @@ import {Image} from "react-bootstrap"
                 <p className="mb-0">{area}</p>
                 
             </div>
-            <GoPencil className="icons ml-auto" onClick={this.SomeFunc}  />
+            {this.props.id === "me" && <GoPencil className="icons0 ml-auto" onClick={this.SomeFunc}  />}
         </div>
 
        

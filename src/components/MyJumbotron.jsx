@@ -1,6 +1,6 @@
 import React from "react"
 import "../css/Evgeni.css"
-import { BsPencil } from "react-icons/bs"
+import {GoPencil} from "react-icons/go"
 import { Col, Row, Button, Container, Dropdown, Image } from "react-bootstrap"
 import { AiOutlinePlus } from "react-icons/ai"
 import { me, addProfilePic } from "../fetch"
@@ -69,7 +69,7 @@ class MyJumbotron extends React.Component {
 	render() {
 		return (
 			<>
-			<Container className="notJumbotronContainer cardsin">
+			<Container className="notJumbotronContainer ">
 				<div >
 				<Row>
 					<Image
@@ -79,7 +79,7 @@ class MyJumbotron extends React.Component {
 					/>
 				</Row>
 				<Row className= "d-flex align-items-center">
-					<Col xs={4} sm={4} >
+					<Col sm={6} xl={3}>
 						<Image
 							className="profilePhoto "
 							src={this.state.myObject.image}
@@ -96,7 +96,7 @@ class MyJumbotron extends React.Component {
 							onChange={(event) => this.fetchAddProfilePic(event)}
 						/>
 					</Col>
-					<Col  sm={2} className="colBtn first ">
+					<Col  sm={3} xl={2} className="colBtn first ">
 						<Dropdown className="Jumbodrop">
 							<Dropdown.Toggle
 								className="addProfileSection rounded-pill"
@@ -115,7 +115,7 @@ class MyJumbotron extends React.Component {
 							</Dropdown.Menu>
 						</Dropdown>
 					</Col>
-					<Col  lg={3} className="colBtn second d-none  d-lg-block ">
+					<Col         xl={3} className="colBtn second d-none  d-xl-block ">
 						<Dropdown className="Jumbodrop">
 							<Dropdown.Toggle
 								className="addProfileSection second rounded-pill"
@@ -154,13 +154,13 @@ class MyJumbotron extends React.Component {
 							</Dropdown.Menu>
 						</Dropdown>
 					</Col>
-					<Col  xs={2} sm={2} className="colBtn third">
+					<Col  sm={2} xl={2} className="colBtn third">
 						<Button className="moreBtn rounded-pill btn-outline-secondary">
 							More...
 						</Button>
 					</Col>
-					<Col  xs={1} sm={1}  className ="d-flex">
-						<BsPencil className="pencil ml-auto " />
+					<Col  sm={1}  xl={1} className ="d-flex">
+					{this.props.id === "me" &&	<GoPencil  className="icons0 pencil ml-auto " />}
 					</Col>
 				</Row>
 				<h2 className="username mt-3">{this.state.myObject.name + ' ' + this.state.myObject.surname}</h2>
@@ -207,13 +207,14 @@ class MyJumbotron extends React.Component {
 				<div className=" pt-3 px-3 pb-0 cardsin content">
 					<div className=" d-flex ">
 						<h4 className="mb-3 d-inline ">About</h4>
-						<BsPencil 
-							className="icons ml-auto"
-						/>
+						{this.props.id === "me" &&<GoPencil 
+							className="icons0 ml-auto"
+						/>}
 					</div>
 					<div className="d-flex  bio mt-3 mb-3  ">
 
-					{this.state && new String(this.state.myObject.bio).substring(0, 200)+ " ...  see more"}
+					{/* {this.state && new String(this.state.myObject.bio).substring(0, 200)+ " ...  see more"} */}
+					<p className="dots pl-5" >{this.state && new String(this.state.myObject.bio) }  </p> 
 					
 					</div>
 					</div>
