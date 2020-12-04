@@ -38,7 +38,7 @@ import {Image} from "react-bootstrap"
         render(){
             //  console.log("id:",this.props.id)
 
-           const {company,role, area, startDate, endDate,id,image} = this.props
+           const {company,role, area, startDate, endDate,id,image, isEditable} = this.props
            //console.log(startDate,endDate)
             // new Date(endDate).getDate() + '-'+ new Date(endDate).getFullYear() + '-'+ (parseInt(new Date(endDate).getMonth())+1)
         
@@ -62,7 +62,7 @@ import {Image} from "react-bootstrap"
                 <p className="mb-0">{area}</p>
                 
             </div>
-            {this.props.id === "me" && <GoPencil className="icons0 ml-auto" onClick={this.SomeFunc}  />}
+             {isEditable && <GoPencil className="icons0 ml-auto" onClick={this.SomeFunc}  />}
         </div>
 
        
