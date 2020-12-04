@@ -3,8 +3,8 @@ import "../css/Evgeni.css"
 import { GoPencil } from "react-icons/go"
 import { Col, Row, Button, Container, Dropdown, Image } from "react-bootstrap"
 import { AiOutlinePlus } from "react-icons/ai"
-import { me, addProfilePic } from "../fetch"
-var tries = 1
+import { addProfilePic } from "../fetch"
+//var tries = 1 NO pl NO
 class MyJumbotron extends React.Component {
 	state = {
 		myObject: {},
@@ -49,18 +49,20 @@ class MyJumbotron extends React.Component {
 	}
 	showChangeAvatar = () => {
 		let inputButton = document.querySelector(".inputImage")
-		if (tries % 2 == 1) {
-			inputButton.classList.remove("d-none")
-		} else {
-			inputButton.classList.add("d-none")
-		}
-		tries++
+		//if (tries % 2 == 1) {
+		//	inputButton.classList.remove("d-none")
+		inputButton.classList.toggle("d-none") //the logic is wrong and if it wasn't this is still the way to do it not a VAR
+		//} else {
+		//	inputButton.classList.add("d-none")
+		//}
+		//tries++
 	}
 	componentDidMount = () => {
 		console.log("id passed to the jumbotron", this.props.id)
 		this.fetchMe(this.props.id)
 	}
 	componentDidUpdate = (oldprops) => {
+		document.querySelector(".inputImage").classList.add("d-none")
 		if (oldprops.id !== this.props.id) {
 			this.fetchMe(this.props.id)
 		}
@@ -224,13 +226,12 @@ class MyJumbotron extends React.Component {
 						{this.props.id === "me" && <GoPencil className="icons0 ml-auto" />}
 					</div>
 					<div className="d-flex  bio mt-3 mb-3  ">
-
-					{/* {this.state && new String(this.state.myObject.bio).substring(0, 200)+ " ...  see more"} */}
-					<p className="dots" >{this.state && new String(this.state.myObject.bio) }  </p> 
-					
+						{/* {this.state && new String(this.state.myObject.bio).substring(0, 200)+ " ...  see more"} */}
+						<p className="dots">
+							{this.state && String(this.state.myObject.bio)}{" "}
+						</p>
 					</div>
-					</div>
-				
+				</div>
 			</>
 		)
 	}
